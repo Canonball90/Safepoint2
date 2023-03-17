@@ -83,9 +83,11 @@ public class AutoCrystal extends Module {
 
     //render
     ParentSetting rendor = new ParentSetting("Render", false, this);
-    ColorSetting color = new ColorSetting("Color", new Color(255,0,0,100), this).setParent(rendor);
+    ColorSetting boxColor = new ColorSetting("Color", new Color(255,0,0,100), this).setParent(rendor);
+    ColorSetting outlineColor = new ColorSetting("Color", new Color(255,0,0,100), this).setParent(rendor);
     BooleanSetting slab = new BooleanSetting("Slab", false, this).setParent(rendor);
     FloatSetting height = new FloatSetting("Height", 0.8f, -1.5f, 3, this, v -> slab.getValue()).setParent(rendor);
+    FloatSetting lineWidth = new FloatSetting("LineWidth", 0.8f, -1.5f, 3, this).setParent(rendor);
     BooleanSetting pulse = new BooleanSetting("Pulse", true, this).setParent(rendor);
     FloatSetting pulseMax = new FloatSetting("Pulse Max", 1f, 0.0f, 1.5f, this, v -> pulse.getValue()).setParent(rendor);
     FloatSetting pulseMin = new FloatSetting("Pulse Min", 0.5f, 0.0f, 1.5f, this, v -> pulse.getValue()).setParent(rendor);
@@ -95,6 +97,8 @@ public class AutoCrystal extends Module {
     IntegerSetting fadeSpeed = new IntegerSetting("Fade Speed", 20, 0, 100,this,v -> fade.getValue()).setParent(rendor);
     IntegerSetting startAlpha = new IntegerSetting("Start Alpha", 255, 0, 255, this,v -> fade.getValue()).setParent(rendor);
     IntegerSetting endAlpha = new IntegerSetting("End Alpha", 255, 0, 255, this,v -> fade.getValue()).setParent(rendor);
+    BooleanSetting box = new BooleanSetting("Slab", false, this).setParent(rendor);
+    BooleanSetting outline = new BooleanSetting("Slab", false, this).setParent(rendor);
 
     //other
     ParentSetting other = new ParentSetting("Other", false, this);
@@ -309,10 +313,10 @@ public class AutoCrystal extends Module {
                         possesToFade.remove(entry.getKey());
                         return;
                     }
-                    RenderUtil.renderBox(entry.getKey(), new Color(color.getColor().getRed(), color.getColor().getGreen(), color.getColor().getBlue(), entry.getValue()/255), 1);
+                    RenderUtil.drawBoxESP(entry.getKey(), new Color(boxColor.getColor().getRed() / 255f, boxColor.getColor().getGreen() / 255f, boxColor.getColor().getBlue() / 255f, entry.getValue() / 255f), true, new Color(outlineColor.getColor().getRed() / 255f, outlineColor.getColor().getGreen() / 255f, outlineColor.getColor().getBlue() / 255f, entry.getValue() / 255f), lineWidth.getValue(), outline.getValue(), box.getValue(), entry.getValue(), true);
                 }
             }else {
-                RenderUtil.renderBox(pos, color.getValue(), 1);
+                RenderUtil.renderBox(pos, boxColor.getValue(), 1);
             }
         }
     }
