@@ -1,0 +1,55 @@
+State:Disabled
+Place:false
+Place:true
+Predict:false
+1.13+:true
+FacePlace:8
+Break:false
+HitDelay:-0.9920000076293946
+Ak47:false
+SetDead:false
+Instant:false
+Packets:1.0
+Render:false
+Color:1694433280
+Color:java.awt.Color[r=255,g=0,b=0]
+Slab:false
+Height:0.8
+Pulse:false
+Pulse Max:1.0
+Pulse Min:0.5
+Pulse Speed:4.0
+Pulse W:8.0
+Fade:true
+Fade Speed:100
+Start Alpha:255
+End Alpha:2
+Other:false
+Logic:BREAKPLACE
+Rotate:true
+SpoofRotations:true
+AutoSwitch:true
+Range:5
+Walls:true
+WallRange:3
+EnemyRange:12
+PlaceRange:5
+MaxSeldDMG:8
+MinDMG:8
+Limit Attack:false
+Inhibit:false
+StartVal:200.0
+EndVal:400.0
+Predictions:false
+Sound Predict:false
+Break Predict:false
+Break Predict Calc:false
+Global Entity Spawn Predict:false
+Spawn Object:false
+Predict Delay:100
+Threading:false
+Thread:false
+ThreadMode:Run
+CPU Optimize:false
+Mode:RenderTick
+Keybind:46

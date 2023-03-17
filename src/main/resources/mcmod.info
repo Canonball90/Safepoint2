@@ -1,0 +1,14 @@
+[
+  {
+    "modid": "safepoint",
+    "name": "Safepoint",
+    "description": "a based",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "CanonBall90"
+    ]
+  }
+]

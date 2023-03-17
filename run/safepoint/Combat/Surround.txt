@@ -1,0 +1,13 @@
+State:Disabled
+Delay:1.0
+SelfWeb:false
+Center:false
+AutoDisable:false
+PacketPlace:false
+OnStop:false
+OnSneak:false
+DisableOnJump:false
+Predict:false
+Non1x1:false
+Mode:RenderTick
+Keybind:0

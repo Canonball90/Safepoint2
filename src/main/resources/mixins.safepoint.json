@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "safepoint.two.mixin.mixins",
+  "refmap": "mixins.safepoint.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "MixinEntityPlayerSP",
+    "MixinRenderPlayer",
+    "MixinRenderLivingBase",
+    "MixinModelPlayer",
+    "MixinPlayerControllerMP",
+    "ICPacketUseEntity",
+    "AccessorCPacketUseEntity"
+  ],
+  "mixins": [
+    "MixinNetworkManager"
+  ]
+}
