@@ -22,15 +22,13 @@ public class MixinEntityPlayerSP {
         UpdateWalkingPlayerEvent event = new UpdateWalkingPlayerEvent();
         MinecraftForge.EVENT_BUS.post(event);
 
-    }
+        RotationEvent eventR = new RotationEvent();
+        MinecraftForge.EVENT_BUS.post(eventR);
 
-    @Inject(method = "onUpdateWalkingPlayer", at = @At("HEAD"), cancellable = true)
-    public void hookUWPPre(CallbackInfo info) {
-        RotationEvent event = new RotationEvent();
-        MinecraftForge.EVENT_BUS.post(event);
-
-        if (event.isCanceled()) {
-            info.cancel();
+        if (eventR.isCanceled()) {
+            ci.cancel();
         }
+
     }
+
 }

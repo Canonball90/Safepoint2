@@ -733,8 +733,8 @@ public class Aura extends Module {
                 float hue1 = System.currentTimeMillis() % (int) ((100.5f - 50) * 1000) / (float) ((100.5f - 50) * 1000);
                 color = Color.HSBtoRGB(hue1, 0.65f, 1);
 
-                Gui.drawRect(Width.getValue() / 2 - 110, Height.getValue() / 2 + 100, Width.getValue() / 2 + 110, Height.getValue() / 2 + 170, 0xff36393f);
-                Gui.drawRect(Width.getValue() / 2 - 41, Height.getValue() / 2 + 100 + 54, Width.getValue() / 2 + 100, Height.getValue() / 2 + 96 + 45, 0xff202225);
+                Gui.drawRect(Width.getValue() / 2 - 110, Height.getValue() / 2 + 100, Width.getValue() / 2 + 90, Height.getValue() / 2 + 170, 0xff36393f);
+                Gui.drawRect(Width.getValue() / 2 - 41, Height.getValue() / 2 + 100 + 54, Width.getValue() / 2 + 80, Height.getValue() / 2 + 96 + 45, 0xff202225);
                 Gui.drawRect(Width.getValue() / 2 - 41, Height.getValue() / 2 + 100 + 54, (int) healthBar, Height.getValue() / 2 + 96 + 45, color);
                 GlStateManager.color(1, 1, 1);
                 GuiInventory.drawEntityOnScreen(Width.getValue() / 2 - 75, Height.getValue() / 2 + 165, 25, 1f, 1f, target);

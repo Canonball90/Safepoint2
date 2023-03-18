@@ -13,21 +13,21 @@ Packets:1.0
 Render:false
 Color:1677787026
 Color:java.awt.Color[r=0,g=255,b=146]
-Color:1677787113
-Color:java.awt.Color[r=0,g=255,b=233]
+Color:1677787026
+Color:java.awt.Color[r=0,g=255,b=146]
 Slab:false
 Height:0.8
-LineWidth:1.7
-Pulse:false
+LineWidth:0.8
+Pulse:true
 Pulse Max:1.0
 Pulse Min:0.5
 Pulse Speed:4.0
 Pulse W:8.0
 Fade:true
-Fade Speed:46
-Start Alpha:113
-End Alpha:2
-Slab:true
+Fade Speed:20
+Start Alpha:255
+End Alpha:255
+Slab:false
 Slab:false
 Other:false
 Logic:BREAKPLACE
