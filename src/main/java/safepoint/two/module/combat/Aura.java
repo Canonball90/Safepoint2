@@ -704,6 +704,7 @@ public class Aura extends Module {
                 }
             }
         }
+
         super.onWorldRender();
     }
 
