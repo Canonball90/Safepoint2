@@ -44,13 +44,13 @@ RaytraceAmount:7.0
 NoSprint:false
 TpsSync:true
 Other:false
-OnlySword:true
-Switch:false
+OnlySword:false
+Switch:true
 Silent:false
 isPrefered:Sword
 ArmorBreak:false
 HitBoxExpand:false
-HitBoxSize:1.0
+HitBoxSize:0.4630000114440918
 Hand:Mainhand
 Resolver:false
 RepeatUnit:false

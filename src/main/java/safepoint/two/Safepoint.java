@@ -40,7 +40,6 @@ public class Safepoint {
         serverInitializer = new ServerInitializer();
         threadInitializer = new ThreadInitializer();
 
-
         time = System.currentTimeMillis();
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {

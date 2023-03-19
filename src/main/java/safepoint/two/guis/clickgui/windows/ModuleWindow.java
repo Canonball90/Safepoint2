@@ -88,7 +88,7 @@ public class ModuleWindow {
                             y += ((EnumButton) button).enumSetting.getModes().size() * 10;
                 }
             }
-            RenderUtil.drawOutlineRect(x + 2, this.y + height, x + width - 2, y + height - 1, module.category.getColor(), 1f);
+            //RenderUtil.drawOutlineRect(x + 2, this.y + height, x + width - 2, y + height - 1, module.category.getColor(), 1f);
         }
     }
 

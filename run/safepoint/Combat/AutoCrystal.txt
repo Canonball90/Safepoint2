@@ -5,10 +5,10 @@ Predict:false
 1.13+:true
 FacePlace:8
 Break:false
-HitDelay:-0.9920000076293946
+HitDelay:54.0
 Ak47:false
 SetDead:false
-Instant:false
+Instant:true
 Packets:1.0
 Render:false
 Color:1677787026
