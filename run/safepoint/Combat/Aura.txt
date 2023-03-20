@@ -43,6 +43,7 @@ RayTraceMode:Body
 RaytraceAmount:7.0
 NoSprint:false
 TpsSync:true
+ToggleOnCa:false
 Other:false
 OnlySword:false
 Switch:true

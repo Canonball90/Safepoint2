@@ -12,6 +12,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiWorldSelection;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.opengl.GL11;
+import safepoint.two.Safepoint;
 import safepoint.two.utils.render.RenderUtil;
 
 public class MainMenu
@@ -25,6 +26,7 @@ public class MainMenu
     ArrayList<Button> buttons = new ArrayList();
 
     public MainMenu() {
+        //this.playMusic();
         this.buttons.add(this.singlePlayerButton);
         this.multiPlayerButton = new Button("Multi", this.width / 2 - 75, this.height / 2 + 25, 75);
         this.buttons.add(this.multiPlayerButton);
@@ -37,6 +39,13 @@ public class MainMenu
         this.discordButton = new Button("Discord", this.width / 2 - 75, this.height / 2, 75);
         this.buttons.add(this.discordButton);
     }
+
+    private void playMusic() {
+        if (!mc.soundHandler.isSoundPlaying(Safepoint.soundInitializer.getMenuSong())) {
+            mc.soundHandler.playSound(Safepoint.soundInitializer.getMenuSong());
+        }
+    }
+
 
     public void drawScreen(int p_drawScreen_1_, int p_drawScreen_2_, float p_drawScreen_3_) {
         ScaledResolution sr = new ScaledResolution(this.mc);

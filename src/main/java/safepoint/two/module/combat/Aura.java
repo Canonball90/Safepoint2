@@ -104,6 +104,7 @@ public class Aura extends Module {
     FloatSetting raytraceAmount = new FloatSetting("RaytraceAmount", 3.0f, 0.0f, 7.0f, this, v -> raytrace.getValue()).setParent(antiCheat);
     BooleanSetting stopSprint = new BooleanSetting("NoSprint", false, this).setParent(antiCheat);
     BooleanSetting tpsSync = new BooleanSetting("TpsSync", false, this).setParent(antiCheat);
+    BooleanSetting disableOnCa = new BooleanSetting("ToggleOnCa", false, this).setParent(antiCheat);
 
     ParentSetting other = new ParentSetting("Other", false, this);
     BooleanSetting swordOnly = new BooleanSetting("OnlySword", true, this).setParent(other);
@@ -162,6 +163,11 @@ public class Aura extends Module {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onUpdateWalk(UpdateWalkingPlayerEvent event) {
         if (mc.player == null || mc.world == null) {return;}
+        if(disableOnCa.getValue()){
+            if(AutoCrystal.Instance.isEnabled()){
+                disableModule();
+            }
+        }
         doKillAura();
         if(tStrafe.getValue()){
             try {

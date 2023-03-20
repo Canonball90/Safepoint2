@@ -1,0 +1,11 @@
+State:Enabled
+Packet:false
+JumpHeight:0.3
+OnlyWeapon:false
+Raytrace:false
+2b2t:false
+MoveCancel:false
+NoDesync:false
+Delayed:true
+Delay:3
+Keybind:0

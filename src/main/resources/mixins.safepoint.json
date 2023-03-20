@@ -10,7 +10,8 @@
     "MixinModelPlayer",
     "MixinPlayerControllerMP",
     "ICPacketUseEntity",
-    "AccessorCPacketUseEntity"
+    "AccessorCPacketUseEntity",
+    "MixinMinecraft"
   ],
   "mixins": [
     "MixinNetworkManager"

@@ -18,7 +18,7 @@ Color:java.awt.Color[r=0,g=255,b=146]
 Slab:false
 Height:0.8
 LineWidth:0.8
-Pulse:true
+Pulse:false
 Pulse Max:1.0
 Pulse Min:0.5
 Pulse Speed:4.0
@@ -27,8 +27,8 @@ Fade:true
 Fade Speed:20
 Start Alpha:255
 End Alpha:255
-Slab:false
-Slab:false
+Box:false
+Outline:false
 Other:false
 Logic:BREAKPLACE
 Rotate:true
@@ -45,6 +45,7 @@ Limit Attack:false
 Inhibit:false
 StartVal:200.0
 EndVal:400.0
+ToggleOnKa:false
 Predictions:false
 Sound Predict:false
 Break Predict:false

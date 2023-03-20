@@ -88,7 +88,7 @@ public class AutoCrystal extends Module {
     BooleanSetting slab = new BooleanSetting("Slab", false, this).setParent(rendor);
     FloatSetting height = new FloatSetting("Height", 0.8f, -1.5f, 3, this, v -> slab.getValue()).setParent(rendor);
     FloatSetting lineWidth = new FloatSetting("LineWidth", 0.8f, -1.5f, 3, this).setParent(rendor);
-    BooleanSetting pulse = new BooleanSetting("Pulse", true, this).setParent(rendor);
+    BooleanSetting pulse = new BooleanSetting("Pulse", false, this).setParent(rendor);
     FloatSetting pulseMax = new FloatSetting("Pulse Max", 1f, 0.0f, 1.5f, this, v -> pulse.getValue()).setParent(rendor);
     FloatSetting pulseMin = new FloatSetting("Pulse Min", 0.5f, 0.0f, 1.5f, this, v -> pulse.getValue()).setParent(rendor);
     FloatSetting pulseSpeed = new FloatSetting("Pulse Speed", 4.0f, 0.0f, 5.0f, this, v -> pulse.getValue()).setParent(rendor);
@@ -97,8 +97,8 @@ public class AutoCrystal extends Module {
     IntegerSetting fadeSpeed = new IntegerSetting("Fade Speed", 20, 0, 100,this,v -> fade.getValue()).setParent(rendor);
     IntegerSetting startAlpha = new IntegerSetting("Start Alpha", 255, 0, 255, this,v -> fade.getValue()).setParent(rendor);
     IntegerSetting endAlpha = new IntegerSetting("End Alpha", 255, 0, 255, this,v -> fade.getValue()).setParent(rendor);
-    BooleanSetting box = new BooleanSetting("Slab", false, this).setParent(rendor);
-    BooleanSetting outline = new BooleanSetting("Slab", false, this).setParent(rendor);
+    BooleanSetting box = new BooleanSetting("Box", false, this).setParent(rendor);
+    BooleanSetting outline = new BooleanSetting("Outline", false, this).setParent(rendor);
 
     //other
     ParentSetting other = new ParentSetting("Other", false, this);
@@ -117,6 +117,7 @@ public class AutoCrystal extends Module {
     BooleanSetting inhibit = new BooleanSetting("Inhibit", false, this).setParent(other);
     DoubleSetting startVal = new DoubleSetting("StartVal",200, 1, 1000, this,v -> inhibit.getValue()).setParent(other);
     DoubleSetting endVal = new DoubleSetting("EndVal",400, 1, 1000, this,v -> inhibit.getValue()).setParent(other);
+    BooleanSetting disableWhenKA = new BooleanSetting("ToggleOnKa", false, this).setParent(other);
 
     //Predict
     ParentSetting prediction = new ParentSetting("Predictions", false, this);
@@ -147,11 +148,21 @@ public class AutoCrystal extends Module {
     Timer predictTimer = new Timer();
     boolean mainhand = false;
     boolean offhand = false;
+    public static AutoCrystal Instance;
+
+    public AutoCrystal() {
+        Instance = this;
+    }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onTick(TickEvent.RenderTickEvent event) {
         if (mc.player == null || mc.world == null)
             return;
+        if(disableWhenKA.getValue()){
+            if(Aura.INSTANCE.isEnabled()){
+                disableModule();
+            }
+        }
         if (inhibit.getValue()) {
             inhibitator.doInhibitation(hitDelay,0,endVal.getValue(),startVal.getValue(),5);
         }

@@ -25,6 +25,7 @@ public class Safepoint {
     public static RotationInitializer rotationInitializer;
     public static ServerInitializer serverInitializer;
     public static ThreadInitializer threadInitializer;
+    public static SoundInitializer soundInitializer;
 
     public void init() {
         Display.setTitle("Safepoint+2 1.0");
@@ -39,6 +40,7 @@ public class Safepoint {
         rotationInitializer = new RotationInitializer();
         serverInitializer = new ServerInitializer();
         threadInitializer = new ThreadInitializer();
+        soundInitializer = new SoundInitializer();
 
         time = System.currentTimeMillis();
 
