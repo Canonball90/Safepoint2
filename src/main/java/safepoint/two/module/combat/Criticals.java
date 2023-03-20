@@ -1,6 +1,7 @@
 package safepoint.two.module.combat;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import safepoint.two.core.module.Module;
@@ -16,6 +17,7 @@ import net.minecraft.util.EnumHand;
 import safepoint.two.core.settings.impl.FloatSetting;
 import safepoint.two.core.event.events.PlayerAttackEvent;
 import safepoint.two.core.settings.impl.IntegerSetting;
+import safepoint.two.core.decentralized.interfac.INetworkManager;
 import safepoint.two.utils.math.Timer;
 
 
@@ -32,7 +34,8 @@ public class Criticals extends Module {
     BooleanSetting noDesync = new BooleanSetting("NoDesync", false, this);
     BooleanSetting delayedAttack = new BooleanSetting("Delayed", false, this);
     IntegerSetting delay = new IntegerSetting("Delay", 3, 0, 20, this,v -> delayedAttack.getValue());
-
+    BooleanSetting boats = new BooleanSetting("Boats", false, this);
+    IntegerSetting hits = new IntegerSetting("Hits", 5, 1, 15, this,v -> boats.getValue());
     public static Criticals INSTANCE;
 
     Timer delayTimer = new Timer();
@@ -127,6 +130,13 @@ public class Criticals extends Module {
                 }
             }
 
+        } else if (!mc.gameSettings.keyBindJump.isKeyDown() &&
+                canCrit() &&
+                mc.player.onGround &&
+                event.target instanceof EntityBoat && !flag) {
+            for (int i = 0; i < hits.getValue(); ++i) {
+                ((INetworkManager) mc.getConnection().getNetworkManager()).sendPacketNoEvent(new CPacketUseEntity(event.target));
+            }
         }
     }
 

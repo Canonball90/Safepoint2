@@ -8,4 +8,6 @@ MoveCancel:false
 NoDesync:false
 Delayed:true
 Delay:3
+Boats:false
+Hits:15
 Keybind:0
