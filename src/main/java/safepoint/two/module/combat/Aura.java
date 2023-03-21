@@ -56,94 +56,174 @@ public class Aura extends Module {
     public static Aura INSTANCE;
 
     public EntityLivingBase target = null;
-    ParentSetting targetP = new ParentSetting("Target", false, this);
-    EnumSetting targetMode = new EnumSetting("Mode","Distance", Arrays.asList("Distance", "Multi", "Health"), this).setParent(targetP);
-    BooleanSetting players = new BooleanSetting("Player", true, this).setParent(targetP);
-    BooleanSetting mobs = new BooleanSetting("Mobs", true, this).setParent(targetP);
-    BooleanSetting ghast = new BooleanSetting("Ghast", true, this,v -> mobs.getValue()).setParent(targetP);
-    BooleanSetting animals = new BooleanSetting("Animals", true, this).setParent(targetP);
-    BooleanSetting projectile = new BooleanSetting("Projectiles", true, this).setParent(targetP);
+    ParentSetting targetP =
+            new ParentSetting("Target", false, this);
+    EnumSetting targetMode =
+            new EnumSetting("Mode","Distance", Arrays.asList("Distance", "Multi", "Health"), this).setParent(targetP);
+    BooleanSetting players =
+            new BooleanSetting("Player", true, this).setParent(targetP);
+    BooleanSetting mobs =
+            new BooleanSetting("Mobs", true, this).setParent(targetP);
+    BooleanSetting ghast =
+            new BooleanSetting("Ghast", true, this,v -> mobs.getValue()).setParent(targetP);
+    BooleanSetting animals =
+            new BooleanSetting("Animals", true, this).setParent(targetP);
+    BooleanSetting projectile =
+            new BooleanSetting("Projectiles", true, this).setParent(targetP);
 
-    ParentSetting advancedTargeting = new ParentSetting("AdvancedTargeting", false, this);
-    BooleanSetting advancedTarget = new BooleanSetting("AdvancedTarget", false, this).setParent(advancedTargeting);
-    BooleanSetting Aplayers = new BooleanSetting("Players", false, this,v -> advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting aNoNaked = new BooleanSetting("AntiNaked", false, this,v -> Aplayers.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting aFriendProtect = new BooleanSetting("FriendProtect", false, this,v -> Aplayers.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    ParentSetting advancedTargeting =
+            new ParentSetting("AdvancedTargeting", false, this);
+    BooleanSetting advancedTarget =
+            new BooleanSetting("AdvancedTarget", false, this).setParent(advancedTargeting);
+    BooleanSetting Aplayers =
+            new BooleanSetting("Players", false, this,v -> advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting aNoNaked =
+            new BooleanSetting("AntiNaked", false, this,v -> Aplayers.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting aFriendProtect =
+            new BooleanSetting("FriendProtect", false, this,v -> Aplayers.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
 
-    BooleanSetting Amobs = new BooleanSetting("Mobs", false, this,v -> advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting zombie = new BooleanSetting("Zombie", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting spider = new BooleanSetting("Spider", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting creeper = new BooleanSetting("Creeper", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting blaze = new BooleanSetting("Blaze", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting witch = new BooleanSetting("Witch", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting enderMan = new BooleanSetting("EnderMan", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting Amobs =
+            new BooleanSetting("Mobs", false, this,v -> advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting zombie =
+            new BooleanSetting("Zombie", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting spider =
+            new BooleanSetting("Spider", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting creeper =
+            new BooleanSetting("Creeper", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting blaze =
+            new BooleanSetting("Blaze", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting witch =
+            new BooleanSetting("Witch", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting enderMan =
+            new BooleanSetting("EnderMan", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
 
-    BooleanSetting Apassives = new BooleanSetting("Passives", false, this,v -> advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting sheep = new BooleanSetting("Sheep", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting cow = new BooleanSetting("Cow", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting pig = new BooleanSetting("Pig", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting rabbit = new BooleanSetting("Rabbit", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting donkey = new BooleanSetting("Donkey", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting horse = new BooleanSetting("Horse", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting chicken = new BooleanSetting("Chicken", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting villager = new BooleanSetting("Villager", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting squid = new BooleanSetting("Squid", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting bat = new BooleanSetting("Bat", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting iromGolem = new BooleanSetting("IronGolem", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting Apassives =
+            new BooleanSetting("Passives", false, this,v -> advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting sheep =
+            new BooleanSetting("Sheep", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting cow =
+            new BooleanSetting("Cow", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting pig =
+            new BooleanSetting("Pig", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting rabbit =
+            new BooleanSetting("Rabbit", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting donkey =
+            new BooleanSetting("Donkey", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting horse =
+            new BooleanSetting("Horse", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting chicken =
+            new BooleanSetting("Chicken", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting villager =
+            new BooleanSetting("Villager", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting squid =
+            new BooleanSetting("Squid", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting bat =
+            new BooleanSetting("Bat", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
+    BooleanSetting iromGolem =
+            new BooleanSetting("IronGolem", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
 
-    ParentSetting antiCheat = new ParentSetting("AntiCheat", false, this);
-    BooleanSetting rotate = new BooleanSetting("Rotate", true, this).setParent(antiCheat);
-    BooleanSetting packet = new BooleanSetting("Packet", false, this).setParent(antiCheat);
-    BooleanSetting threaded = new BooleanSetting("Threaded", false, this).setParent(antiCheat);
-    BooleanSetting click = new BooleanSetting("MouseClick", false, this).setParent(antiCheat);
-    FloatSetting range = new FloatSetting("Range", 5f, 2f, 6f,this).setParent(antiCheat);
-    BooleanSetting fovCheck = new BooleanSetting("FovCheck", false, this).setParent(antiCheat);
-    FloatSetting angle = new FloatSetting("Angle", 180.0f, 0.0f, 180.0f, this, v -> fovCheck.getValue()).setParent(antiCheat);
-    BooleanSetting raytrace = new BooleanSetting("RayTrace", false, this).setParent(antiCheat);
-    EnumSetting raytracePart = new EnumSetting("RayTraceMode", "Body", Arrays.asList("Body", "Feet"), this).setParent(antiCheat);
-    FloatSetting raytraceAmount = new FloatSetting("RaytraceAmount", 3.0f, 0.0f, 7.0f, this, v -> raytrace.getValue()).setParent(antiCheat);
-    BooleanSetting stopSprint = new BooleanSetting("NoSprint", false, this).setParent(antiCheat);
-    BooleanSetting tpsSync = new BooleanSetting("TpsSync", false, this).setParent(antiCheat);
-    BooleanSetting disableOnCa = new BooleanSetting("ToggleOnCa", false, this).setParent(antiCheat);
+    ParentSetting antiCheat =
+            new ParentSetting("AntiCheat", false, this);
+    BooleanSetting rotate =
+            new BooleanSetting("Rotate", true, this).setParent(antiCheat);
+    BooleanSetting packet =
+            new BooleanSetting("Packet", false, this).setParent(antiCheat);
+    BooleanSetting threaded =
+            new BooleanSetting("Threaded", false, this).setParent(antiCheat);
+    BooleanSetting click =
+            new BooleanSetting("MouseClick", false, this).setParent(antiCheat);
+    FloatSetting range =
+            new FloatSetting("Range", 5f, 2f, 6f,this).setParent(antiCheat);
+    BooleanSetting fovCheck =
+            new BooleanSetting("FovCheck", false, this).setParent(antiCheat);
+    FloatSetting angle =
+            new FloatSetting("Angle", 180.0f, 0.0f, 180.0f, this, v -> fovCheck.getValue()).setParent(antiCheat);
+    BooleanSetting raytrace =
+            new BooleanSetting("RayTrace", false, this).setParent(antiCheat);
+    EnumSetting raytracePart =
+            new EnumSetting("RayTraceMode", "Body", Arrays.asList("Body", "Feet"), this).setParent(antiCheat);
+    FloatSetting raytraceAmount =
+            new FloatSetting("RaytraceAmount", 3.0f, 0.0f, 7.0f, this, v -> raytrace.getValue()).setParent(antiCheat);
+    BooleanSetting stopSprint =
+            new BooleanSetting("NoSprint", false, this).setParent(antiCheat);
+    BooleanSetting tpsSync =
+            new BooleanSetting("TpsSync", false, this).setParent(antiCheat);
+    BooleanSetting disableOnCa =
+            new BooleanSetting("ToggleOnCa", false, this).setParent(antiCheat);
 
-    ParentSetting other = new ParentSetting("Other", false, this);
-    BooleanSetting swordOnly = new BooleanSetting("OnlySword", true, this).setParent(other);
-    BooleanSetting switchA = new BooleanSetting("Switch", false, this).setParent(other);
-    BooleanSetting silent = new BooleanSetting("Silent", false, this,v -> switchA.getValue()).setParent(other);
-    EnumSetting pWeapon = new EnumSetting("isPrefered", "Sword", Arrays.asList("Sword", "Axe", "Pickaxe", "Shovel", "None"), this).setParent(other);
-    BooleanSetting armorBreak = new BooleanSetting("ArmorBreak", false, this).setParent(other);
-    BooleanSetting hitbox = new BooleanSetting("HitBoxExpand", false, this).setParent(other);
-    DoubleSetting hitboxSize = new DoubleSetting("HitBoxSize", 1, 0.1, 4, this, v -> hitbox.getValue()).setParent(other);
-    EnumSetting hand = new EnumSetting("Hand", "Mainhand", Arrays.asList("Offhand", "Mainhand", "Both"), this).setParent(other);
-    BooleanSetting resolve = new BooleanSetting("Resolver", false, this).setParent(other);
-    BooleanSetting repeatUnit = new BooleanSetting("RepeatUnit", false, this).setParent(other);
+    ParentSetting other =
+            new ParentSetting("Other", false, this);
+    BooleanSetting swordOnly =
+            new BooleanSetting("OnlySword", true, this).setParent(other);
+    BooleanSetting switchA =
+            new BooleanSetting("Switch", false, this).setParent(other);
+    BooleanSetting silent =
+            new BooleanSetting("Silent", false, this,v -> switchA.getValue()).setParent(other);
+    EnumSetting pWeapon =
+            new EnumSetting("isPrefered", "Sword", Arrays.asList("Sword", "Axe", "Pickaxe", "Shovel", "None"), this).setParent(other);
+    BooleanSetting armorBreak =
+            new BooleanSetting("ArmorBreak", false, this).setParent(other);
+    BooleanSetting hitbox =
+            new BooleanSetting("HitBoxExpand", false, this).setParent(other);
+    DoubleSetting hitboxSize =
+            new DoubleSetting("HitBoxSize", 1, 0.1, 4, this, v -> hitbox.getValue()).setParent(other);
+    EnumSetting hand =
+            new EnumSetting("Hand", "Mainhand", Arrays.asList("Offhand", "Mainhand", "Both"), this).setParent(other);
+    BooleanSetting resolve =
+            new BooleanSetting("Resolver", false, this).setParent(other);
+    BooleanSetting repeatUnit =
+            new BooleanSetting("RepeatUnit", false, this).setParent(other);
 
-    ParentSetting delays = new ParentSetting("Delays", false, this);
-    IntegerSetting delay = new IntegerSetting("Delay", 4, 0, 70, this,v -> threaded.getValue() || packet.getValue()).setParent(delays);
-    BooleanSetting randomD = new BooleanSetting("RandomDelay", false, this).setParent(delays);
-    IntegerSetting randomDelay = new IntegerSetting("Random Delay", 4, 0, 40, this,v -> randomD.getValue()).setParent(delays);
-    IntegerSetting iterations = new IntegerSetting("Iterations", 1, 1, 10, this).setParent(delays);
-    BooleanSetting customDelays = new BooleanSetting("CustomDelays", false, this).setParent(delays);
-    IntegerSetting Sword = new IntegerSetting("Sword", 600, 250, 1000, this,v -> customDelays.getValue()).setParent(delays);
-    IntegerSetting Axe = new IntegerSetting("Axe", 1000, 250, 1500, this,v -> customDelays.getValue()).setParent(delays);
-    IntegerSetting Shovel = new IntegerSetting("Shovel", 600, 250, 1000, this,v -> customDelays.getValue()).setParent(delays);
-    IntegerSetting PickAxe = new IntegerSetting("PickAxe", 850, 250, 1000, this,v -> customDelays.getValue()).setParent(delays);
-    IntegerSetting Hand = new IntegerSetting("Hand", 250, 250, 1000, this,v -> customDelays.getValue()).setParent(delays);
+    ParentSetting delays =
+            new ParentSetting("Delays", false, this);
+    IntegerSetting delay =
+            new IntegerSetting("Delay", 4, 0, 70, this,v -> threaded.getValue() || packet.getValue()).setParent(delays);
+    BooleanSetting randomD =
+            new BooleanSetting("RandomDelay", false, this).setParent(delays);
+    IntegerSetting randomDelay =
+            new IntegerSetting("Random Delay", 4, 0, 40, this,v -> randomD.getValue()).setParent(delays);
+    IntegerSetting iterations =
+            new IntegerSetting("Iterations", 1, 1, 10, this).setParent(delays);
+    BooleanSetting customDelays =
+            new BooleanSetting("CustomDelays", false, this).setParent(delays);
+    IntegerSetting Sword =
+            new IntegerSetting("Sword", 600, 250, 1000, this,v -> customDelays.getValue()).setParent(delays);
+    IntegerSetting Axe =
+            new IntegerSetting("Axe", 1000, 250, 1500, this,v -> customDelays.getValue()).setParent(delays);
+    IntegerSetting Shovel =
+            new IntegerSetting("Shovel", 600, 250, 1000, this,v -> customDelays.getValue()).setParent(delays);
+    IntegerSetting PickAxe =
+            new IntegerSetting("PickAxe", 850, 250, 1000, this,v -> customDelays.getValue()).setParent(delays);
+    IntegerSetting Hand =
+            new IntegerSetting("Hand", 250, 250, 1000, this,v -> customDelays.getValue()).setParent(delays);
 
-    ParentSetting targetStrafe = new ParentSetting("TargetStrafe", false, this);
-    BooleanSetting tStrafe = new BooleanSetting("TargetStrafe", false, this).setParent(targetStrafe);
-    BooleanSetting onKey = new BooleanSetting("OnKey", false, this).setParent(targetStrafe);
-    KeySetting key = new KeySetting("Key", 0, this,v -> onKey.getValue()).setParent(targetStrafe);
-    IntegerSetting speed = new IntegerSetting("Speed", 1, 0, 5, this,v -> tStrafe.getValue()).setParent(targetStrafe);
+    ParentSetting targetStrafe =
+            new ParentSetting("TargetStrafe", false, this);
+    BooleanSetting tStrafe =
+            new BooleanSetting("TargetStrafe", false, this).setParent(targetStrafe);
+    BooleanSetting onKey =
+            new BooleanSetting("OnKey", false, this).setParent(targetStrafe);
+    KeySetting key =
+            new KeySetting("Key", 0, this,v -> onKey.getValue()).setParent(targetStrafe);
+    IntegerSetting speed =
+            new IntegerSetting("Speed", 1, 0, 5, this,v -> tStrafe.getValue()).setParent(targetStrafe);
 
-    ParentSetting rendering = new ParentSetting("Renders", false, this);
-    BooleanSetting targetHud = new BooleanSetting("TargetHud", true, this).setParent(rendering);
-    IntegerSetting Width = new IntegerSetting("Width", 200, 0, 500, this,v -> targetHud.getValue()).setParent(rendering);
-    IntegerSetting Height = new IntegerSetting("Height", 200, 0, 500, this,v -> targetHud.getValue()).setParent(rendering);
-    IntegerSetting healthbarSpeed = new IntegerSetting("AnimSpeed", 5, 1, 10, this,v -> targetHud.getValue()).setParent(rendering);
-    BooleanSetting render = new BooleanSetting("Render", true, this).setParent(rendering);
-    BooleanSetting cool = new BooleanSetting("Cool", true, this,v -> render.getValue()).setParent(rendering);
-    ColorSetting color = new ColorSetting("Color", new Color(255,0,0,130), this,v -> render.getValue()).setParent(rendering);
+    ParentSetting rendering =
+            new ParentSetting("Renders", false, this);
+    BooleanSetting targetHud =
+            new BooleanSetting("TargetHud", true, this).setParent(rendering);
+    IntegerSetting Width =
+            new IntegerSetting("Width", 200, 0, 500, this,v -> targetHud.getValue()).setParent(rendering);
+    IntegerSetting Height =
+            new IntegerSetting("Height", 200, 0, 500, this,v -> targetHud.getValue()).setParent(rendering);
+    IntegerSetting healthbarSpeed =
+            new IntegerSetting("AnimSpeed", 5, 1, 10, this,v -> targetHud.getValue()).setParent(rendering);
+    BooleanSetting render =
+            new BooleanSetting("Render", true, this).setParent(rendering);
+    BooleanSetting cool =
+            new BooleanSetting("Cool", true, this,v -> render.getValue()).setParent(rendering);
+    ColorSetting color =
+            new ColorSetting("Color", new Color(255,0,0,130), this,v -> render.getValue()).setParent(rendering);
     private final List<RepeatUnit> repeatUnits = new ArrayList<>();
     int waiting = 0;
     long killLast = new Date().getTime();
@@ -168,7 +248,9 @@ public class Aura extends Module {
                 disableModule();
             }
         }
+
         doKillAura();
+
         if(tStrafe.getValue()){
             try {
                 if(onKey.getValue() && key.isTyping) {
@@ -309,6 +391,12 @@ public class Aura extends Module {
                         target = (EntityLivingBase) entity;
                     }
 
+                    float[] arrf = RotationUtil.getRotations(target);
+
+                    if(rotate.getValue()){
+                        mc.player.renderYawOffset = arrf[0];
+                        mc.player.rotationYawHead = arrf[0];
+                    }
 
                     if (new Date().getTime() >= this.killLast + (threaded.getValue() || packet.getValue() ? delay : getHitCoolDown(mc.player))) {
 
@@ -413,23 +501,32 @@ public class Aura extends Module {
         yaw = RotationUtil.getRotations(target)[0];
         pitch = RotationUtil.getRotations(target)[1];
 
+        float[] arrf = RotationUtil.getRotations((EntityLivingBase)target);
         if(packet.getValue()) {
             if (swordOnly.getValue()) {
                 if (mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) {
+                    mc.player.renderYawOffset = arrf[0];
+                    mc.player.rotationYawHead = arrf[0];
                     mc.playerController.connection.sendPacket(new CPacketUseEntity(target));
                     mc.player.swingArm(attackhand());
                 }
             }else {
+                    mc.player.renderYawOffset = arrf[0];
+                    mc.player.rotationYawHead = arrf[0];
                     mc.playerController.connection.sendPacket(new CPacketUseEntity(target));
                     mc.player.swingArm(attackhand());
                 }
         } else {
             if (swordOnly.getValue()) {
                 if (mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) {
+                    mc.player.renderYawOffset = arrf[0];
+                    mc.player.rotationYawHead = arrf[0];
                     mc.playerController.attackEntity(mc.player, target);
                     mc.player.swingArm(attackhand());
                 }
             } else {
+                mc.player.renderYawOffset = arrf[0];
+                mc.player.rotationYawHead = arrf[0];
                 mc.playerController.attackEntity(mc.player, target);
                 mc.player.swingArm(attackhand());
             }
@@ -811,17 +908,25 @@ public class Aura extends Module {
 
         if (entity != null) {
             if (mc.player.onGround) {
+
                 mc.player.jump();
+
             }
+
             float[] arrf = RotationUtil.getRotations((EntityLivingBase)entity);
+
             if ((double) Minecraft.getMinecraft().player.getDistance(entity) <= 3) {
+
                 mc.player.renderYawOffset = arrf[0];
                 mc.player.rotationYawHead = arrf[0];
                 setSpeed(d - (0.1 - 7 / 100.0), arrf[0], direction, 0.0);
+
             } else {
+
                 setSpeed(d - (0.1 - 7 / 100.0), arrf[0], direction, 1.0);
                 mc.player.renderYawOffset = arrf[0];
                 mc.player.rotationYawHead = arrf[0];
+
             }
         }
         return bl;
@@ -903,5 +1008,4 @@ public class Aura extends Module {
         }
 
     }
-
 }

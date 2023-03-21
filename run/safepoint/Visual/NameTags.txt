@@ -1,5 +1,5 @@
 State:Enabled
-Size:2.0
+Size:1.3
 Hight:0.0
 CustomPos:false
 X:0.0
@@ -20,7 +20,7 @@ Ping:true
 GameMode:false
 Heart:false
 Threaded:false
-Outline:false
+Outline:true
 ShadowedText:false
 Colors:false
 Color:-132707841

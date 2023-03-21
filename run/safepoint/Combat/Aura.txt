@@ -1,4 +1,4 @@
-State:Disabled
+State:Enabled
 Target:false
 Mode:Distance
 Player:true
@@ -72,7 +72,7 @@ OnKey:false
 Key:0
 Speed:1
 Renders:false
-TargetHud:true
+TargetHud:false
 Width:200
 Height:200
 AnimSpeed:5

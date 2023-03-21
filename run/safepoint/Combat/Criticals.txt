@@ -1,12 +1,12 @@
 State:Enabled
-Packet:false
+Packet:true
 JumpHeight:0.3
 OnlyWeapon:false
 Raytrace:false
 2b2t:false
 MoveCancel:false
 NoDesync:false
-Delayed:true
+Delayed:false
 Delay:3
 Boats:false
 Hits:15

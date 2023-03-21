@@ -81,12 +81,12 @@ public class Criticals extends Module {
 
             flag2 = false;
         }
-        if(anyMovementKeys() || isMoving() && moveCancel.getValue()){
-
-            flag = false;
-
-            flag2 = false;
-        }
+//        if(anyMovementKeys() || isMoving() && moveCancel.getValue()){
+//
+//            flag = false;
+//
+//            flag2 = false;
+//        }
     }
 
     @SubscribeEvent
