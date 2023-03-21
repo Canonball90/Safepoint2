@@ -3,6 +3,22 @@ package safepoint.two.core.module;
 import safepoint.two.Safepoint;
 import safepoint.two.guis.clickgui.ClickGui;
 import org.lwjgl.input.Keyboard;
+import safepoint.two.module.combat.Aura;
+import safepoint.two.module.combat.AutoCrystal;
+import safepoint.two.module.combat.Criticals;
+import safepoint.two.module.combat.Surround;
+import safepoint.two.module.core.ChatNotifications;
+import safepoint.two.module.core.ConfigSave;
+import safepoint.two.module.core.HudEditor;
+import safepoint.two.module.misc.FakePlayer;
+import safepoint.two.module.movement.Sprint;
+import safepoint.two.module.movement.Velocity;
+import safepoint.two.module.player.AutoToolModule;
+import safepoint.two.module.player.PacketEXP;
+import safepoint.two.module.player.VClip;
+import safepoint.two.module.visual.Chams;
+import safepoint.two.module.visual.HoleESP;
+import safepoint.two.module.visual.Nametags;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -21,12 +37,34 @@ public class ModuleInitializer {
     }
 
     public void init(){
-        addModules("combat");
-        addModules("core");
-        addModules("misc");
-        addModules("movement");
-        addModules("player");
-        addModules("visual");
+        //COMBAT
+        moduleList.add(new Aura());
+        moduleList.add(new AutoCrystal());
+        moduleList.add(new Criticals());
+        moduleList.add(new Surround());
+
+        //CORE
+        moduleList.add(new ChatNotifications());
+        moduleList.add(new safepoint.two.module.core.ClickGui());
+        moduleList.add(new ConfigSave());
+        moduleList.add(new HudEditor());
+
+        //MISC
+        moduleList.add(new FakePlayer());
+
+        //MOVEMENT
+        moduleList.add(new Sprint());
+        moduleList.add(new Velocity());
+
+        //PLAYER
+        moduleList.add(new AutoToolModule());
+        moduleList.add(new PacketEXP());
+        moduleList.add(new VClip());
+
+        //VISUAL
+        moduleList.add(new Chams());
+        moduleList.add(new HoleESP());
+        moduleList.add(new Nametags());
     }
 
     public List<Module.Category> getCategories() {

@@ -44,8 +44,9 @@ public class Module {
     public void onWorldRender(){
     }
 
-    public boolean doNullCheck(){
-        return mc.world == null || mc.player == null;
+    public void doNullCheck(){
+        if(mc.world == null || mc.player == null)
+            return;
     }
 
     public void enableModule() {
