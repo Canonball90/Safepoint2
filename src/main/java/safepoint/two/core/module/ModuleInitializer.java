@@ -10,6 +10,7 @@ import safepoint.two.module.combat.Surround;
 import safepoint.two.module.core.ChatNotifications;
 import safepoint.two.module.core.ConfigSave;
 import safepoint.two.module.core.HudEditor;
+import safepoint.two.module.core.MusicPlayer;
 import safepoint.two.module.misc.FakePlayer;
 import safepoint.two.module.misc.TestModule;
 import safepoint.two.module.movement.Sprint;
@@ -49,6 +50,7 @@ public class ModuleInitializer {
         moduleList.add(new safepoint.two.module.core.ClickGui());
         moduleList.add(new ConfigSave());
         moduleList.add(new HudEditor());
+        moduleList.add(new MusicPlayer());
 
         //MISC
         moduleList.add(new FakePlayer());

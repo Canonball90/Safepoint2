@@ -18,8 +18,8 @@ public class SafepointMod {
         Safepoint.INSTANCE.init();
     }
 
-    @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event){
-        MinecraftForge.EVENT_BUS.register(new onGuiOpenEvent());
-    }
+//    @Mod.EventHandler
+//    public void postInit(FMLPostInitializationEvent event){
+//        MinecraftForge.EVENT_BUS.register(new onGuiOpenEvent());
+//    }
 }
