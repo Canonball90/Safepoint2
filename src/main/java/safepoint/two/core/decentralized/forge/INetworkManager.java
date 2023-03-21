@@ -1,4 +1,4 @@
-package safepoint.two.core.decentralized.interfac;
+package safepoint.two.core.decentralized.forge;
 
 import net.minecraft.network.Packet;
 

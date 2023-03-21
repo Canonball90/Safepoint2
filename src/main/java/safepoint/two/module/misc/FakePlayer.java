@@ -25,6 +25,8 @@ public class FakePlayer extends Module {
 
     @Override
     public void onTick() {
+        if (mc.world == null || mc.player == null)
+            return;
         if (fake_player != null && fake_player.getDistanceSq(mc.player) > (100 * 100))
             mc.world.removeEntityFromWorld(-100);
     }

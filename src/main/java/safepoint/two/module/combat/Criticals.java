@@ -17,7 +17,7 @@ import net.minecraft.util.EnumHand;
 import safepoint.two.core.settings.impl.FloatSetting;
 import safepoint.two.core.event.events.PlayerAttackEvent;
 import safepoint.two.core.settings.impl.IntegerSetting;
-import safepoint.two.core.decentralized.interfac.INetworkManager;
+import safepoint.two.core.decentralized.forge.INetworkManager;
 import safepoint.two.utils.math.Timer;
 
 

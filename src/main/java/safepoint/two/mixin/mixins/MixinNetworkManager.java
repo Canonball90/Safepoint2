@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import safepoint.two.core.event.events.PacketEvent;
-import safepoint.two.core.decentralized.interfac.INetworkManager;
+import safepoint.two.core.decentralized.forge.INetworkManager;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.Future;
