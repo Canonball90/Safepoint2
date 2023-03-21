@@ -71,18 +71,18 @@ public class Window {
                         if (settingsRewrite.getName().equals("Enabled"))
                             continue;
                         if (settingsRewrite.isVisible())
-                            openedHeight += 10;
+                            openedHeight += 15;
 
                         if (settingsRewrite instanceof ColorSetting && settingsRewrite.isVisible()) {
                             if (((ColorSetting) settingsRewrite).isOpen()) {
                                 openedHeight += 112;
                                 if (((ColorSetting) settingsRewrite).isSelected())
-                                    openedHeight += 10;
+                                    openedHeight += 15;
                             }
                         }
                         if (settingsRewrite instanceof EnumSetting)
                             if (((EnumSetting) settingsRewrite).droppedDown)
-                                openedHeight += ((EnumSetting) settingsRewrite).getModes().size() * 10;
+                                openedHeight += ((EnumSetting) settingsRewrite).getModes().size() * 15;
                     }
                 }
                 modules.add(new ModuleWindow(module.getName(), x, y += height, width, height, ClickGui.getInstance().backgroundColor.getColor(), category.getColor(), module));

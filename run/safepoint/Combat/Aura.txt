@@ -72,12 +72,12 @@ OnKey:false
 Key:0
 Speed:1
 Renders:false
-TargetHud:false
+TargetHud:true
 Width:200
 Height:200
 AnimSpeed:5
 Render:true
-Cool:false
+Cool:true
 Color:-2097217536
 Color:java.awt.Color[r=255,g=0,b=0]
 Keybind:19

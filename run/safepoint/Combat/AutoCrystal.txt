@@ -30,7 +30,7 @@ End Alpha:255
 Box:false
 Outline:false
 Other:false
-Logic:PLACEBREAK
+Logic:BREAKPLACE
 SpoofRotations:true
 AutoSwitch:true
 Range:5
@@ -56,7 +56,7 @@ Rotations:false
 Rotate:true
 PlaceRotate:true
 PlaceRotateLegit:false
-BreakRotate:true
+BreakRotate:false
 Threading:false
 Thread:false
 ThreadMode:Run

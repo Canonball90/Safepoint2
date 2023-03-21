@@ -68,7 +68,7 @@ public class ModuleWindow {
             RenderUtil.drawRect(x + 1, y, x + width - 1, y + height, module.category.getColor().getRGB());
         if (isInside(mouseX, mouseY))
             RenderUtil.drawRect(x + 1, y, x + width - 1, y + height, new Color(0, 0, 0, 100).getRGB());
-        Safepoint.mc.fontRenderer.drawStringWithShadow(name, isInside(mouseX, mouseY) ? x + 2 : x + 1, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
+        Safepoint.mc.fontRenderer.drawStringWithShadow(name, isInside(mouseX, mouseY) ? x + 3 : x + 2, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
         if (module.isOpened) {
             int y = this.y;
             for (Button button : newButton) {
@@ -85,7 +85,7 @@ public class ModuleWindow {
                     }
                     if (button instanceof EnumButton)
                         if (((EnumButton) button).enumSetting.droppedDown)
-                            y += ((EnumButton) button).enumSetting.getModes().size() * 10;
+                            y += ((EnumButton) button).enumSetting.getModes().size() * 15;
                 }
             }
             //RenderUtil.drawOutlineRect(x + 2, this.y + height, x + width - 2, y + height - 1, module.category.getColor(), 1f);
