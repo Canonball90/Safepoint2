@@ -1,4 +1,4 @@
-State:Enabled
+State:Disabled
 Target:false
 Mode:Distance
 Player:true
@@ -77,7 +77,7 @@ Width:200
 Height:200
 AnimSpeed:5
 Render:true
-Cool:true
+Cool:false
 Color:-2097217536
 Color:java.awt.Color[r=255,g=0,b=0]
 Keybind:19

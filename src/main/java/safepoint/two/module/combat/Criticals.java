@@ -52,6 +52,9 @@ public class Criticals extends Module {
 
     @Override
     public void onTick() {
+        if(mc.player == null || mc.world == null){
+            return;
+        }
         if (!packetMode.getValue()) {
             if (target == null) return;
 
@@ -81,12 +84,12 @@ public class Criticals extends Module {
 
             flag2 = false;
         }
-//        if(anyMovementKeys() || isMoving() && moveCancel.getValue()){
-//
-//            flag = false;
-//
-//            flag2 = false;
-//        }
+        if(anyMovementKeys() || isMoving() && moveCancel.getValue()){
+
+            flag = false;
+
+            flag2 = false;
+        }
     }
 
     @SubscribeEvent

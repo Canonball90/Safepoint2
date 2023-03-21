@@ -103,7 +103,6 @@ public class AutoCrystal extends Module {
     //other
     ParentSetting other = new ParentSetting("Other", false, this);
     EnumSetting logic = new EnumSetting("Logic", "BREAKPLACE",  Arrays.asList("BREAKPLACE", "PLACEBREAK"), this).setParent(other);
-    BooleanSetting rotate = new BooleanSetting("Rotate", true, this).setParent(other);
     BooleanSetting spoofRotations = new BooleanSetting("SpoofRotations", true, this).setParent(other);
     BooleanSetting autoSwitch = new BooleanSetting("AutoSwitch", true, this).setParent(other);
     IntegerSetting range = new IntegerSetting("Range",  5, 0, 6, this).setParent(other);
@@ -127,6 +126,13 @@ public class AutoCrystal extends Module {
     BooleanSetting globalEntitySpawnPredict = new BooleanSetting("Global Entity Spawn Predict", false, this).setParent(prediction);
     BooleanSetting spawnObject = new BooleanSetting("Spawn Object", false, this).setParent(prediction);
     IntegerSetting predictDelay = new IntegerSetting("Predict Delay", 100, 0, 500, this).setParent(prediction);
+
+    //Rotation
+    ParentSetting rotations = new ParentSetting("Rotations", false, this);
+    BooleanSetting rotate = new BooleanSetting("Rotate", true, this).setParent(rotations);
+    BooleanSetting placeRotate = new BooleanSetting("PlaceRotate", true, this,v -> rotate.getValue()).setParent(rotations);
+    BooleanSetting placeLegit = new BooleanSetting("PlaceRotateLegit", false, this,v -> rotate.getValue()).setParent(rotations);
+    BooleanSetting breakRotate = new BooleanSetting("BreakRotate", false, this,v -> rotate.getValue()).setParent(rotations);
 
     //Threading
     ParentSetting thred = new ParentSetting("Threading", false, this);
@@ -352,10 +358,19 @@ public class AutoCrystal extends Module {
             }
 
             if (breakTimer.passedMs(hitDelay.getValue().intValue())) {
+
                 if (predict.getValue()) {
                     final CPacketUseEntity attackPacket = new CPacketUseEntity();
                     mc.player.connection.sendPacket((Packet)attackPacket);
                 }
+
+                float[] arrf = RotationUtil.getRotations(crystal);
+
+                if(rotate.getValue() && breakRotate.getValue()){
+                    mc.player.renderYawOffset = arrf[0];
+                    mc.player.rotationYawHead = arrf[0];
+                }
+
                 mc.playerController.attackEntity(mc.player, crystal);
                 mc.player.swingArm(EnumHand.MAIN_HAND);
                 breakTimer.reset();
@@ -418,6 +433,14 @@ public class AutoCrystal extends Module {
         if (place.getValue()) {
             if (offhand || mainhand) {
                 render = pos;
+
+                float[] arrf = RotationUtil.getRotationsBlock(pos, EnumFacing.UP, placeLegit.getValue());
+
+                if(rotate.getValue() && placeRotate.getValue()){
+                    mc.player.renderYawOffset = arrf[0];
+                    mc.player.rotationYawHead = arrf[0];
+                }
+
                 placeCrystalOnBlock(pos, offhand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND);
                 damageString = String.valueOf(String.format("%.1f", dmg));
             }
