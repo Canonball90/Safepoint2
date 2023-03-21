@@ -18,6 +18,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketAnimation;
+import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.network.play.server.*;
@@ -439,6 +440,7 @@ public class AutoCrystal extends Module {
                 if(rotate.getValue() && placeRotate.getValue()){
                     mc.player.renderYawOffset = arrf[0];
                     mc.player.rotationYawHead = arrf[0];
+                    mc.player.connection.sendPacket(new CPacketPlayer.Rotation(arrf[0], (float) MathHelper.normalizeAngle((int) arrf[1], 360), mc.player.onGround));
                 }
 
                 placeCrystalOnBlock(pos, offhand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND);
