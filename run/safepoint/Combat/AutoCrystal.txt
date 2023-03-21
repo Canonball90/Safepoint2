@@ -3,9 +3,9 @@ Place:false
 Place:true
 Predict:false
 1.13+:true
-FacePlace:8
+FacePlace:14
 Break:false
-HitDelay:9.023999786376953
+HitDelay:319.53701171875
 Ak47:false
 SetDead:false
 Instant:false

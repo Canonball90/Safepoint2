@@ -11,6 +11,7 @@ import safepoint.two.module.core.ChatNotifications;
 import safepoint.two.module.core.ConfigSave;
 import safepoint.two.module.core.HudEditor;
 import safepoint.two.module.misc.FakePlayer;
+import safepoint.two.module.misc.TestModule;
 import safepoint.two.module.movement.Sprint;
 import safepoint.two.module.movement.Velocity;
 import safepoint.two.module.player.AutoToolModule;
@@ -51,6 +52,7 @@ public class ModuleInitializer {
 
         //MISC
         moduleList.add(new FakePlayer());
+        moduleList.add(new TestModule());
 
         //MOVEMENT
         moduleList.add(new Sprint());
