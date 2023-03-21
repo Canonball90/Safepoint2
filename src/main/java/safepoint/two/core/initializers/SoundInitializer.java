@@ -2,6 +2,7 @@ package safepoint.two.core.initializers;
 
 import net.minecraft.client.audio.ISound;
 import safepoint.two.utils.core.songs.BackInBlood;
+import safepoint.two.utils.core.songs.Zooties;
 
 import java.util.*;
 
@@ -12,7 +13,7 @@ public class SoundInitializer {
     Random random = new Random();
 
     private final List<ISound> songs = Arrays.asList(
-            BackInBlood.sound
+            Zooties.sound
     );
 
     private final ISound menuSong;

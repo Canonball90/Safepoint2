@@ -1,6 +1,7 @@
 package safepoint.two.mixin.mixins;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.crash.CrashReport;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,14 +27,13 @@ public abstract class MixinMinecraft {
         MinecraftForge.EVENT_BUS.post(closeEvent);
         DisplayGuiScreenEvent.Displayed displayEvent = new DisplayGuiScreenEvent.Displayed(guiScreenIn);
         MinecraftForge.EVENT_BUS.post(displayEvent);
+
+        if (guiScreenIn instanceof GuiMainMenu) {
+            this.displayGuiScreen(new MainMenu());
+        }
     }
 
     @Shadow
     public abstract void displayGuiScreen(@Nullable GuiScreen var1);
-
-    @Inject(method = {"init"}, at = {@At(value = "TAIL")})
-    private void init(CallbackInfo ci) {
-        this.displayGuiScreen(new MainMenu());
-    }
 
 }

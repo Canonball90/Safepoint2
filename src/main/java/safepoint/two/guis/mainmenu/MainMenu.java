@@ -26,7 +26,6 @@ public class MainMenu
     ArrayList<Button> buttons = new ArrayList();
 
     public MainMenu() {
-        //this.playMusic();
         this.buttons.add(this.singlePlayerButton);
         this.multiPlayerButton = new Button("Multi", this.width / 2 - 75, this.height / 2 + 25, 75);
         this.buttons.add(this.multiPlayerButton);
@@ -38,6 +37,7 @@ public class MainMenu
         this.buttons.add(this.alts);
         this.discordButton = new Button("Discord", this.width / 2 - 75, this.height / 2, 75);
         this.buttons.add(this.discordButton);
+       // this.playMusic();
     }
 
     private void playMusic() {

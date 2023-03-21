@@ -14,8 +14,8 @@ import static safepoint.two.Safepoint.mc;
 public class BackInBlood {
 
     public static final ISound sound;
-    private static final String song = "bbb";
-    private static final ResourceLocation loc = new ResourceLocation("assets/fonts/bbb.ogg");
+    private static final String song = "dontstop";
+    private static final ResourceLocation loc = new ResourceLocation("assets/minecraft/sounds/dontstop.ogg");
 
     static {
         sound = new ISound() {
