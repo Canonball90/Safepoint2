@@ -1,4 +1,4 @@
-State:Enabled
+State:Disabled
 Hole Radius:8.0
 Obsidian Holes:false
 Obsidian Box:true

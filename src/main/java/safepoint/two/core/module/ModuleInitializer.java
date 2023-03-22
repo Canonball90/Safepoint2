@@ -3,23 +3,12 @@ package safepoint.two.core.module;
 import safepoint.two.Safepoint;
 import safepoint.two.guis.clickgui.ClickGui;
 import org.lwjgl.input.Keyboard;
-import safepoint.two.module.combat.Aura;
-import safepoint.two.module.combat.AutoCrystal;
-import safepoint.two.module.combat.Criticals;
-import safepoint.two.module.combat.Surround;
-import safepoint.two.module.core.ChatNotifications;
-import safepoint.two.module.core.ConfigSave;
-import safepoint.two.module.core.HudEditor;
-import safepoint.two.module.core.MusicPlayer;
-import safepoint.two.module.misc.FakePlayer;
-import safepoint.two.module.movement.Sprint;
-import safepoint.two.module.movement.Velocity;
-import safepoint.two.module.player.AutoToolModule;
-import safepoint.two.module.player.PacketEXP;
-import safepoint.two.module.player.VClip;
-import safepoint.two.module.visual.Chams;
-import safepoint.two.module.visual.HoleESP;
-import safepoint.two.module.visual.Nametags;
+import safepoint.two.module.combat.*;
+import safepoint.two.module.core.*;
+import safepoint.two.module.misc.*;
+import safepoint.two.module.movement.*;
+import safepoint.two.module.player.*;
+import safepoint.two.module.visual.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -49,22 +38,26 @@ public class ModuleInitializer {
         moduleList.add(new safepoint.two.module.core.ClickGui());
         moduleList.add(new ConfigSave());
         moduleList.add(new HudEditor());
-        moduleList.add(new MusicPlayer());
+        //moduleList.add(new MusicPlayer());
 
         //MISC
         moduleList.add(new FakePlayer());
+        moduleList.add(new TestModule());
 
         //MOVEMENT
+        moduleList.add(new ReverseStep());
         moduleList.add(new Sprint());
         moduleList.add(new Velocity());
 
         //PLAYER
         moduleList.add(new AutoToolModule());
         moduleList.add(new PacketEXP());
+        moduleList.add(new Replanish());
         moduleList.add(new VClip());
 
         //VISUAL
         moduleList.add(new Chams());
+        moduleList.add(new HandChams());
         moduleList.add(new HoleESP());
         moduleList.add(new Nametags());
     }

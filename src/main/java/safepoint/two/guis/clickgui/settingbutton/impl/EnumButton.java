@@ -26,19 +26,24 @@ public class EnumButton extends Button {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, ClickGui.getInstance().backgroundColor.getColor().getRGB());
+        RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, 0x50000000);
+        if (setting.hasParentSetting) RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, 0x40000000);
+        if (setting.hasParentSetting) RenderUtil.drawRect(x - 2, y, x, y + height, setting.module.category.getColor().getRGB());
         if (isInside(mouseX, mouseY))
             RenderUtil.drawRect(x, y, x + width, y + height, new Color(0, 0, 0, 100).getRGB());
-        Safepoint.mc.fontRenderer.drawStringWithShadow(enumSetting.getName() + " " + ChatFormatting.GRAY + enumSetting.getValueAsString(), x + 2, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
+        Safepoint.mc.fontRenderer.drawStringWithShadow(enumSetting.getName() + " " + ChatFormatting.GRAY + enumSetting.getValueAsString(), x + 2, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f)+1, -1);
         int y = this.y;
         if (enumSetting.droppedDown) {
             for (String string : enumSetting.getModes()) {
-                y += 10;
+                y += 15;
                 RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, ClickGui.getInstance().backgroundColor.getColor().getRGB());
-                if (mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height)
-                    RenderUtil.drawRect(x+ 3, y, x + width - 1, y + 10, new Color(0, 0, 0, 100).getRGB());
-                Safepoint.mc.fontRenderer.drawStringWithShadow(enumSetting.getValue().equals(string) ? string : ChatFormatting.GRAY + string, (mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height) ? x + 5 : x + 4, y, -1);
+                RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, 0x50000000);
+                RenderUtil.drawRect(x, y-15, x + 1, y + height, setting.module.category.getColor().getRGB());
+                if (mouseX > x+3 && mouseX < x + width-1 && mouseY > y+1 && mouseY < y + height-1)
+                    RenderUtil.drawRect(x+ 3, y+1, x + width - 1, y + height-1, new Color(0, 0, 0, 100).getRGB());
+                Safepoint.mc.fontRenderer.drawStringWithShadow(enumSetting.getValue().equals(string) ? string : ChatFormatting.GRAY + string, (mouseX > x+3 && mouseX < x + width-1 && mouseY > y+1 && mouseY < y + height-1) ? x + 5 : x + 4, y+4, -1);
             }
-            RenderUtil.drawOutlineRect(x + 3, this.y + height - 1, x + width - 1, y + height - 2, setting.module.category.getColor(), 1f);
+            RenderUtil.drawOutlineRect(x + 3, this.y + height+1, x + width - 1, y + height-1, setting.module.category.getColor(), 1f);
         }
     }
 
@@ -50,8 +55,8 @@ public class EnumButton extends Button {
         int y = this.y;
         if (enumSetting.droppedDown)
             for (String string : enumSetting.getModes()) {
-                y += 10;
-                if (mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height && mouseButton == 0) {
+                y += 15;
+                if (mouseX > x+3 && mouseX < x + width-1 && mouseY > y+1 && mouseY < y + height-1 && mouseButton == 0) {
                     enumSetting.setValue(string);
                 }
 
