@@ -10,6 +10,8 @@ import safepoint.two.core.settings.impl.*;
 import safepoint.two.utils.render.RenderUtil;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.init.SoundEvents;
+import safepoint.two.utils.render.animation.Animation;
+import safepoint.two.utils.render.animation.Easing;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class ModuleWindow {
     public Color enabledColor;
     public Module module;
     ArrayList<Button> newButton = new ArrayList<>();
+    Animation animation = new Animation(() -> 200f, false, () -> Easing.LINEAR);
 
     public ModuleWindow(String name, int x, int y, int width, int height, Color disabledColor, Color enabledColor, Module module) {
         this.name = name;
@@ -98,13 +101,16 @@ public class ModuleWindow {
         if (mouseButton == 1 && isInside(mouseX, mouseY)) {
             module.isOpened = !module.isOpened;
             Safepoint.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0f));
+            animation.setState(!animation.getState());
         }
         if (isInside(mouseX, mouseY) && mouseButton == 0)
             if (module.isEnabled())
                 module.disableModule();
             else module.enableModule();
 
-        newButton.forEach(newButton -> newButton.mouseClicked(mouseX, mouseY, mouseButton));
+        if(animation.getAnimationFactor() > 0) {
+            newButton.forEach(newButton -> newButton.mouseClicked(mouseX, mouseY, mouseButton));
+        }
     }
 
     public void initGui() {
@@ -113,7 +119,9 @@ public class ModuleWindow {
     }
 
     public void onKeyTyped(char typedChar, int keyCode) {
-        newButton.forEach(newButton -> newButton.onKeyTyped(typedChar, keyCode));
+        if (animation.getAnimationFactor() > 0) {
+            newButton.forEach(newButton -> newButton.onKeyTyped(typedChar, keyCode));
+        }
     }
 
     public boolean isInside(int mouseX, int mouseY) {

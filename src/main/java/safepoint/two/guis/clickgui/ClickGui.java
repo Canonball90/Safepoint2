@@ -10,6 +10,8 @@ import safepoint.two.guis.clickgui.windows.Window;
 import safepoint.two.core.module.Module;
 import net.minecraft.client.gui.GuiScreen;
 import safepoint.two.utils.render.RenderUtil;
+import safepoint.two.utils.render.animation.Animation;
+import safepoint.two.utils.render.animation.Easing;
 
 import java.awt.*;
 import java.io.IOException;

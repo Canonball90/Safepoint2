@@ -61,5 +61,5 @@ Threading:false
 Thread:false
 ThreadMode:Run
 CPU Optimize:false
-Mode:Thread
+Mode:RenderTick
 Keybind:46
