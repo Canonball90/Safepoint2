@@ -5,15 +5,45 @@
     },
     "done": true
   },
-  "minecraft:recipes/brewing/golden_carrot": {
+  "minecraft:recipes/combat/wooden_sword": {
     "criteria": {
-      "has_gold_nugget": "2023-03-12 10:16:02 -0700"
+      "has_stick": "2023-03-22 07:12:36 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/item_frame": {
+    "criteria": {
+      "has_leather": "2023-03-22 07:12:36 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_pickaxe": {
+    "criteria": {
+      "has_stick": "2023-03-22 07:12:36 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/leather_chestplate": {
+    "criteria": {
+      "has_leather": "2023-03-22 07:12:36 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_axe": {
+    "criteria": {
+      "has_stick": "2023-03-22 07:12:36 -0700"
     },
     "done": true
   },
   "minecraft:story/iron_tools": {
     "criteria": {
       "iron_pickaxe": "2023-03-12 10:16:02 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/ladder": {
+    "criteria": {
+      "has_stick": "2023-03-22 07:12:36 -0700"
     },
     "done": true
   },
@@ -29,15 +59,45 @@
     },
     "done": true
   },
+  "minecraft:recipes/decorations/enchanting_table": {
+    "criteria": {
+      "has_obsidian": "2023-03-12 10:16:02 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_shovel": {
+    "criteria": {
+      "has_stick": "2023-03-22 07:12:36 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/brewing/golden_carrot": {
+    "criteria": {
+      "has_gold_nugget": "2023-03-12 10:16:02 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_hoe": {
+    "criteria": {
+      "has_stick": "2023-03-22 07:12:36 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/leather_boots": {
+    "criteria": {
+      "has_leather": "2023-03-22 07:12:36 -0700"
+    },
+    "done": true
+  },
   "minecraft:story/form_obsidian": {
     "criteria": {
       "obsidian": "2023-03-12 10:16:02 -0700"
     },
     "done": true
   },
-  "minecraft:recipes/decorations/enchanting_table": {
+  "minecraft:recipes/combat/leather_helmet": {
     "criteria": {
-      "has_obsidian": "2023-03-12 10:16:02 -0700"
+      "has_leather": "2023-03-22 07:12:36 -0700"
     },
     "done": true
   },
@@ -46,5 +106,11 @@
       "plains": "2023-03-12 10:16:02 -0700"
     },
     "done": false
+  },
+  "minecraft:recipes/combat/leather_leggings": {
+    "criteria": {
+      "has_leather": "2023-03-22 07:12:36 -0700"
+    },
+    "done": true
   }
 }

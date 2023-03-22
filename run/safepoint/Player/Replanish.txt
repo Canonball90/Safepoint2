@@ -1,5 +1,5 @@
 State:Disabled
-Percent:1.0
-Delay:100.0
+Percent:35.8260009765625
+Delay:278.51201171875
 Wait:false
 Keybind:0

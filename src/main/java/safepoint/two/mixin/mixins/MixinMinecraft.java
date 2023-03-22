@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import safepoint.two.core.event.events.DisplayGuiScreenEvent;
+import safepoint.two.core.event.events.RootEvent;
 import safepoint.two.guis.mainmenu.MainMenu;
 
 import javax.annotation.Nullable;
@@ -32,6 +33,13 @@ public abstract class MixinMinecraft {
             this.displayGuiScreen(new MainMenu());
         }
     }
+
+    @Inject(method={"runGameLoop"}, at={@At(value="HEAD")})
+    private void onRunGameLoop(CallbackInfo callbackInfo) {
+        RootEvent event = new RootEvent();
+        MinecraftForge.EVENT_BUS.post(event);
+    }
+
 
     @Shadow
     public abstract void displayGuiScreen(@Nullable GuiScreen var1);

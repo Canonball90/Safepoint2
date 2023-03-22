@@ -32,6 +32,7 @@ public class ModuleInitializer {
         moduleList.add(new AutoCrystal());
         moduleList.add(new Criticals());
         moduleList.add(new Surround());
+        moduleList.add(new AutoTotem());
 
         //CORE
         moduleList.add(new ChatNotifications());

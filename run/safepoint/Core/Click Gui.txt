@@ -2,7 +2,7 @@ State:Disabled
 Cat Colors:true
 Color:-800131847
 Color:java.awt.Color[r=78,g=244,b=249]
-Background Color:38159686
-Background Color:java.awt.Color[r=70,g=69,b=70]
-I:285
+Background Color:838860800
+Background Color:java.awt.Color[r=0,g=0,b=0]
+I:100
 Keybind:54

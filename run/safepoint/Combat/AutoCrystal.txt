@@ -25,10 +25,10 @@ Pulse Speed:4.0
 Pulse W:8.0
 Fade:true
 Fade Speed:20
-Start Alpha:101
-End Alpha:2
-Box:true
-Outline:true
+Start Alpha:255
+End Alpha:255
+Box:false
+Outline:false
 Other:false
 Logic:BREAKPLACE
 SpoofRotations:true
@@ -44,7 +44,7 @@ Limit Attack:false
 Inhibit:false
 StartVal:200.0
 EndVal:400.0
-ToggleOnKa:true
+ToggleOnKa:false
 Predictions:false
 Sound Predict:false
 Break Predict:false
