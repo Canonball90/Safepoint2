@@ -55,6 +55,7 @@ HitBoxSize:0.4630000114440918
 Hand:Mainhand
 Resolver:false
 RepeatUnit:false
+Gravity:false
 Delays:false
 Delay:4
 RandomDelay:false

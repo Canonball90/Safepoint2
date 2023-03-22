@@ -16,8 +16,6 @@ import safepoint.two.module.visual.HandChams;
 @Mixin(value = {RenderPlayer.class})
 public abstract class MixinRenderPlayer {
 
-    @Shadow public abstract void doRender(EntityLivingBase par1, double par2, double par3, double par4, float par5, float par6);
-
     private float renderPitch, renderYaw, renderHeadYaw, prevRenderHeadYaw, prevRenderPitch, prevRenderYawOffset, prevPrevRenderYawOffset;
 
     @Inject(method = {"renderEntityName*"}, at = {@At(value = "HEAD")}, cancellable = true)

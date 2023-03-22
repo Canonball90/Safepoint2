@@ -175,6 +175,8 @@ public class Aura extends Module {
             new BooleanSetting("Resolver", false, this).setParent(other);
     BooleanSetting repeatUnit =
             new BooleanSetting("RepeatUnit", false, this).setParent(other);
+    BooleanSetting eGravity =
+            new BooleanSetting("Gravity", false, this).setParent(other);
 
     ParentSetting delays =
             new ParentSetting("Delays", false, this);
@@ -406,6 +408,10 @@ public class Aura extends Module {
                             }
 
                             rayTrace(target);
+
+                            if (eGravity.getValue() && !mc.player.onGround && mc.player.fallDistance > 0) {
+                                mc.player.motionY -= 0.003;
+                            }
 
                             if(rotate.getValue()){
                               Safepoint.rotationInitializer.rotate(target, false);

@@ -37,6 +37,7 @@ import org.lwjgl.input.Keyboard;
 import safepoint.two.Safepoint;
 import safepoint.two.core.event.events.CrystalAttackEvent;
 import safepoint.two.core.event.events.PacketEvent;
+import safepoint.two.core.event.events.RootEvent;
 import safepoint.two.core.event.events.UpdateWalkingPlayerEvent;
 import safepoint.two.core.module.Module;
 import safepoint.two.core.module.ModuleInfo;
@@ -192,8 +193,8 @@ public class AutoCrystal extends Module {
         }
     }
 
-    @Override
-    public void onThread() {
+    @SubscribeEvent
+    public void onRoot(RootEvent event) {
         if (mc.player == null || mc.world == null)
             return;
         if (inhibit.getValue()) {
