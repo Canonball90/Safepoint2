@@ -1,5 +1,5 @@
 State:Enabled
 Mode:Glow
-Color:2080309248
-Color:java.awt.Color[r=255,g=0,b=0]
+Color:2079916032
+Color:java.awt.Color[r=249,g=0,b=0]
 Keybind:0

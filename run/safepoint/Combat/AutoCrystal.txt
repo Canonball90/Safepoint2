@@ -5,10 +5,10 @@ Predict:false
 1.13+:true
 FacePlace:14
 Break:false
-HitDelay:319.53701171875
+HitDelay:-6.0
 Ak47:false
 SetDead:false
-Instant:false
+Instant:true
 Packets:1.0
 Render:false
 Color:1677787026
@@ -25,10 +25,10 @@ Pulse Speed:4.0
 Pulse W:8.0
 Fade:true
 Fade Speed:20
-Start Alpha:255
-End Alpha:255
-Box:false
-Outline:false
+Start Alpha:101
+End Alpha:2
+Box:true
+Outline:true
 Other:false
 Logic:BREAKPLACE
 SpoofRotations:true
@@ -44,7 +44,7 @@ Limit Attack:false
 Inhibit:false
 StartVal:200.0
 EndVal:400.0
-ToggleOnKa:false
+ToggleOnKa:true
 Predictions:false
 Sound Predict:false
 Break Predict:false
