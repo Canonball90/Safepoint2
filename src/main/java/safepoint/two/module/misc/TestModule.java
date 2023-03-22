@@ -1,6 +1,5 @@
 package safepoint.two.module.misc;
 
-import com.mojang.authlib.GameProfile;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import safepoint.two.core.module.Module;
 import safepoint.two.core.module.ModuleInfo;
@@ -8,7 +7,6 @@ import safepoint.two.core.settings.impl.*;
 
 import java.awt.*;
 import java.util.Arrays;
-import java.util.UUID;
 
 @ModuleInfo(name = "Test Module", category = Module.Category.Misc, description = "This is a test module")
 public class TestModule extends Module {
