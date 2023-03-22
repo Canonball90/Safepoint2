@@ -38,7 +38,7 @@ public class ModuleInitializer {
         moduleList.add(new safepoint.two.module.core.ClickGui());
         moduleList.add(new ConfigSave());
         moduleList.add(new HudEditor());
-        //moduleList.add(new MusicPlayer());
+        moduleList.add(new MusicPlayer());
 
         //MISC
         moduleList.add(new FakePlayer());

@@ -20,12 +20,15 @@ import safepoint.two.core.settings.impl.IntegerSetting;
 import safepoint.two.core.decentralized.forge.INetworkManager;
 import safepoint.two.utils.math.Timer;
 
+import java.util.Objects;
+
 
 @ModuleInfo(name = "Criticals", description = "", category = Module.Category.Combat)
 public class Criticals extends Module {
 
 
     BooleanSetting packetMode = new BooleanSetting("Packet", true, this);
+    IntegerSetting packeets = new IntegerSetting("Packets", 2, 1, 4, this,v -> packetMode.getValue());
     FloatSetting jumpHeight = new FloatSetting("JumpHeight", 0.3f, 0.1f, 0.5f, this,v -> !packetMode.getValue());
     BooleanSetting onlyWeapon = new BooleanSetting("OnlyWeapon", true, this);
     BooleanSetting checkRaytrace = new BooleanSetting("Raytrace", true, this);
@@ -36,6 +39,7 @@ public class Criticals extends Module {
     IntegerSetting delay = new IntegerSetting("Delay", 3, 0, 20, this,v -> delayedAttack.getValue());
     BooleanSetting boats = new BooleanSetting("Boats", false, this);
     IntegerSetting hits = new IntegerSetting("Hits", 5, 1, 15, this,v -> boats.getValue());
+    BooleanSetting crystals = new BooleanSetting("Crystals", false, this);
     public static Criticals INSTANCE;
 
     Timer delayTimer = new Timer();
@@ -97,15 +101,44 @@ public class Criticals extends Module {
         if (!mc.gameSettings.keyBindJump.isKeyDown() && canCrit() && mc.player.onGround &&
                 event.target instanceof EntityLivingBase && !flag) {
 
-            if (event.target instanceof EntityEnderCrystal) {
+            if (event.target instanceof EntityEnderCrystal && !crystals.getValue()) {
                 return;
             }
 
             if(delayedAttack.getValue() && delayTimer.passedMs(delay.getValue())){
                 if (packetMode.getValue()) {
                     if (mc.player.getCooledAttackStrength(0.5f) > 0.9f) {
-                        mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.1, mc.player.posZ, false));
-                        mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY, mc.player.posZ, false));
+                        switch(packeets.getValue()){
+                            case 1: {
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + (double) 0.1f, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                break;
+                            }
+                            case 2: {
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 0.0625101, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 1.1E-5, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                break;
+                            }
+                            case 3: {
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 0.0625101, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 0.0125, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                break;
+                            }
+                            case 4: {
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 0.1625, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 4.0E-6, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 1.0E-6, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer());
+                                //Criticals.mc.player.onCriticalHit(Objects.requireNonNull(packet.getEntityFromWorld(Criticals.mc.world)));
+                            }
+                        }
                     }
                     if(twoBee.getValue()){
                         sendCriticalPackets();
@@ -119,8 +152,37 @@ public class Criticals extends Module {
             }else{
                 if (packetMode.getValue()) {
                     if (mc.player.getCooledAttackStrength(0.5f) > 0.9f) {
-                        mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.1, mc.player.posZ, false));
-                        mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY, mc.player.posZ, false));
+                        switch(packeets.getValue()){
+                            case 1: {
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + (double) 0.1f, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                break;
+                            }
+                            case 2: {
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 0.0625101, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 1.1E-5, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                break;
+                            }
+                            case 3: {
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 0.0625101, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 0.0125, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                break;
+                            }
+                            case 4: {
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 0.1625, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 4.0E-6, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY + 1.0E-6, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer.Position(Criticals.mc.player.posX, Criticals.mc.player.posY, Criticals.mc.player.posZ, false));
+                                Criticals.mc.player.connection.sendPacket(new CPacketPlayer());
+                                //Criticals.mc.player.onCriticalHit(Objects.requireNonNull(packet.getEntityFromWorld(Criticals.mc.world)));
+                            }
+                        }
                     }
                     if(twoBee.getValue()){
                         sendCriticalPackets();
