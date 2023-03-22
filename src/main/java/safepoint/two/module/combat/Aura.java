@@ -19,11 +19,13 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSword;
 import net.minecraft.network.play.client.CPacketEntityAction;
+import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -393,11 +395,6 @@ public class Aura extends Module {
 
                     float[] arrf = RotationUtil.getRotations(target);
 
-                    if(rotate.getValue()){
-                        mc.player.renderYawOffset = arrf[0];
-                        mc.player.rotationYawHead = arrf[0];
-                    }
-
                     if (new Date().getTime() >= this.killLast + (threaded.getValue() || packet.getValue() ? delay : getHitCoolDown(mc.player))) {
 
                         this.killLast = new Date().getTime();
@@ -409,6 +406,10 @@ public class Aura extends Module {
                             }
 
                             rayTrace(target);
+
+                            if(rotate.getValue()){
+                              Safepoint.rotationInitializer.rotate(target, false);
+                            }
 
                             if (armorBreak.getValue()) {
                                 mc.playerController.windowClick(mc.player.inventoryContainer.windowId, 9, mc.player.inventory.currentItem, ClickType.SWAP, mc.player);
@@ -501,32 +502,35 @@ public class Aura extends Module {
         yaw = RotationUtil.getRotations(target)[0];
         pitch = RotationUtil.getRotations(target)[1];
 
-        float[] arrf = RotationUtil.getRotations((EntityLivingBase)target);
         if(packet.getValue()) {
             if (swordOnly.getValue()) {
                 if (mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) {
-                    mc.player.renderYawOffset = arrf[0];
-                    mc.player.rotationYawHead = arrf[0];
+                    if(rotate.getValue()){
+                        Safepoint.rotationInitializer.rotate(target, false);
+                    }
                     mc.playerController.connection.sendPacket(new CPacketUseEntity(target));
                     mc.player.swingArm(attackhand());
                 }
             }else {
-                    mc.player.renderYawOffset = arrf[0];
-                    mc.player.rotationYawHead = arrf[0];
+                if(rotate.getValue()){
+                    Safepoint.rotationInitializer.rotate(target, false);
+                }
                     mc.playerController.connection.sendPacket(new CPacketUseEntity(target));
                     mc.player.swingArm(attackhand());
                 }
         } else {
             if (swordOnly.getValue()) {
                 if (mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) {
-                    mc.player.renderYawOffset = arrf[0];
-                    mc.player.rotationYawHead = arrf[0];
+                    if(rotate.getValue()){
+                        Safepoint.rotationInitializer.rotate(target, false);
+                    }
                     mc.playerController.attackEntity(mc.player, target);
                     mc.player.swingArm(attackhand());
                 }
             } else {
-                mc.player.renderYawOffset = arrf[0];
-                mc.player.rotationYawHead = arrf[0];
+                if(rotate.getValue()){
+                    Safepoint.rotationInitializer.rotate(target, false);
+                }
                 mc.playerController.attackEntity(mc.player, target);
                 mc.player.swingArm(attackhand());
             }

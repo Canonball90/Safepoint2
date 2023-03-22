@@ -370,6 +370,7 @@ public class AutoCrystal extends Module {
                 if(rotate.getValue() && breakRotate.getValue()){
                     mc.player.renderYawOffset = arrf[0];
                     mc.player.rotationYawHead = arrf[0];
+                    mc.player.connection.sendPacket(new CPacketPlayer.Rotation(arrf[0], (float) MathHelper.normalizeAngle((int) arrf[1], 360), mc.player.onGround));
                 }
 
                 mc.playerController.attackEntity(mc.player, crystal);
