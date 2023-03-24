@@ -200,6 +200,19 @@ public class Surround extends Module {
                 if (!mc.world.getBlockState(pos).getBlock().isReplaceable(mc.world, pos)) {
                     onPacketPlaceFlagMap.put(pos, true);
                 }
+                if (placeWeb.getValue()) {
+                    if (mc.world.getBlockState(new BlockPos(pos.x, pos.y, pos.z)).getBlock() == Blocks.AIR) {
+                        if (PlayerUtil.getSlot(Item.getItemFromBlock(Blocks.WEB)) != -1) {
+                            int prevSlot = mc.player.inventory.currentItem;
+                            PlayerUtil.changeSlot(PlayerUtil.getSlot(Item.getItemFromBlock(Blocks.WEB)));
+                            PlayerUtil.placeBlock(new BlockPos(PlayerUtil.getPosFloored(mc.player)), EnumHand.MAIN_HAND, false);
+                            mc.player.connection.sendPacket(new CPacketHeldItemChange(prevSlot));
+                        } else {
+                            ChatUtil.send("You need to have webs to selfweb");
+                            this.disableModule();
+                        }
+                    }
+                }
             }
         }
 
