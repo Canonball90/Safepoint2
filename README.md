@@ -1,3 +1,6 @@
+# Safepoint+2
+Cool client that focuses on module customizablility for a cool experience
+
 **Todo**
 * add mainmenu music
 * maybe add custom font
