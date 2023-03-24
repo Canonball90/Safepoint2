@@ -119,7 +119,7 @@ public class ColorButton extends Button {
     }
 
     public boolean isInsideButtonOnly(int mouseX, int mouseY) {
-        return (mouseX > x && mouseX < x + width) && (mouseY > y && mouseY < y + 10);
+        return (mouseX > x && mouseX < x + width) && (mouseY > y && mouseY < y + 15);
     }
 
     public ColorSetting getColorSetting(){

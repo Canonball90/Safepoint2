@@ -3,7 +3,7 @@ Place:false
 Place:true
 Predict:false
 1.13+:true
-FacePlace:14
+FacePlace:9
 Break:false
 HitDelay:-6.0
 Ak47:false
@@ -24,10 +24,10 @@ Pulse Min:0.5
 Pulse Speed:4.0
 Pulse W:8.0
 Fade:true
-Fade Speed:70
+Fade Speed:20
 Start Alpha:255
-End Alpha:46
-Box:true
+End Alpha:255
+Box:false
 Outline:false
 Other:false
 Logic:BREAKPLACE
