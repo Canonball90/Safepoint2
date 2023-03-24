@@ -7,6 +7,7 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,14 +34,12 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import safepoint.two.Safepoint;
 import safepoint.two.core.decentralized.concurrent.repeat.RepeatUnit;
-import safepoint.two.core.event.events.RenderRotationsEvent;
-import safepoint.two.core.event.events.RotationEvent;
-import safepoint.two.core.event.events.RotationUpdateEvent;
-import safepoint.two.core.event.events.UpdateWalkingPlayerEvent;
+import safepoint.two.core.event.events.*;
 import safepoint.two.core.initializers.RotationInitializer;
 import safepoint.two.core.module.Module;
 import safepoint.two.core.module.ModuleInfo;
 import safepoint.two.core.settings.impl.*;
+import safepoint.two.mixin.mixins.AccessorCPacketPlayer;
 import safepoint.two.utils.core.MathUtil;
 import safepoint.two.utils.math.Timer;
 import safepoint.two.utils.render.RenderUtil;
@@ -234,15 +233,56 @@ public class Aura extends Module {
     long killLast = new Date().getTime();
     double spoofedY = -1337;
     Timer timer = new Timer();
-    float yaw;
-    float pitch;
     public boolean sideDirection = true;
     public static int direction = -1;
     public double increment = 0.05;
+    transient private static boolean rotating = false;
+    transient public static float yaw;
+    transient public static float pitch;
+    transient public static float renderPitch;
+    transient public static boolean shouldSpoofPacket;
 
     public Aura() {
         INSTANCE = this;
         repeatUnits.add(updateAura);
+    }
+
+    @SubscribeEvent
+    public void onPacketSend(PacketEvent.Send event){
+        if (event.getPacket() instanceof CPacketPlayer) {
+            CPacketPlayer packet1 = (CPacketPlayer) event.getPacket();
+            if (shouldSpoofPacket) {
+                ((AccessorCPacketPlayer) packet1).setYaw(yaw);
+                ((AccessorCPacketPlayer) packet1).setPitch(pitch);
+                shouldSpoofPacket = false;
+            }
+        }
+    }
+
+    private void resetRotation() {
+        if (shouldSpoofPacket) {
+            yaw = mc.player.rotationYaw;
+            pitch = mc.player.rotationPitch;
+            shouldSpoofPacket = false;
+            rotating = false;
+        }
+    }
+
+    public void lookAtEnt(Entity ent) {
+        float[] v = RotationUtil.getRotations(ent);
+        float[] v2 = RotationUtil.getRotations(ent);
+        setYawAndPitch(v[0], v[1], v2[1]);
+    }
+
+
+    public void setYawAndPitch(float yaw1, float pitch1, float renderPitch1) {
+        yaw = yaw1;
+        pitch = pitch1;
+        renderPitch = renderPitch1;
+        mc.player.rotationYawHead = yaw;
+        mc.player.renderYawOffset = yaw;
+        shouldSpoofPacket = true;
+        rotating = true;
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -398,6 +438,10 @@ public class Aura extends Module {
 
                     float[] arrf = RotationUtil.getRotations(target);
 
+                    if(rotate.getValue()){
+                        lookAtEnt(target);
+                    }
+
                     if (new Date().getTime() >= this.killLast + (threaded.getValue() || packet.getValue() ? delay : getHitCoolDown(mc.player))) {
 
                         this.killLast = new Date().getTime();
@@ -412,10 +456,6 @@ public class Aura extends Module {
 
                             if (eGravity.getValue() && !mc.player.onGround && mc.player.fallDistance > 0) {
                                 mc.player.motionY -= 0.003;
-                            }
-
-                            if(rotate.getValue()){
-                              RotationInitializer.lookAtTarget(target,false,2);
                             }
 
                             if (armorBreak.getValue()) {
@@ -461,11 +501,19 @@ public class Aura extends Module {
         }
     }
 
+    @SubscribeEvent
+    public void renderModelRotation(RenderModelEvent event) {
+        if (!rotate.getValue()) return;
+        if (rotating) {
+            event.rotating = true;
+            event.pitch = renderPitch;
+        }
+    }
 
     @Override
     public void onDisable() {
         if(mc.player == null || mc.world == null){return;}
-        RotationInitializer.resetRotation(false,2);
+        resetRotation();
     }
 
     void attackeed(Entity ent, Boolean threaded, int time){
@@ -513,14 +561,14 @@ public class Aura extends Module {
             if (swordOnly.getValue()) {
                 if (mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) {
                     if(rotate.getValue()){
-                        RotationInitializer.lookAtTarget(target,false,2);
+                        lookAtEnt(target);
                     }
                     mc.playerController.connection.sendPacket(new CPacketUseEntity(target));
                     mc.player.swingArm(attackhand());
                 }
             }else {
                 if(rotate.getValue()){
-                    RotationInitializer.lookAtTarget(target,false,2);
+                    lookAtEnt(target);
                 }
                     mc.playerController.connection.sendPacket(new CPacketUseEntity(target));
                     mc.player.swingArm(attackhand());
@@ -529,14 +577,14 @@ public class Aura extends Module {
             if (swordOnly.getValue()) {
                 if (mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) {
                     if(rotate.getValue()){
-                        RotationInitializer.lookAtTarget(target,false,2);
+                        lookAtEnt(target);
                     }
                     mc.playerController.attackEntity(mc.player, target);
                     mc.player.swingArm(attackhand());
                 }
             } else {
                 if(rotate.getValue()){
-                    RotationInitializer.lookAtTarget(target,false,2);
+                    lookAtEnt(target);
                 }
                 mc.playerController.attackEntity(mc.player, target);
                 mc.player.swingArm(attackhand());
@@ -544,7 +592,7 @@ public class Aura extends Module {
         }
 
         if (rotate.getValue()) {
-            RotationInitializer.lookAtTarget(target,false,2);
+            lookAtEnt(target);
         }
 
     }
