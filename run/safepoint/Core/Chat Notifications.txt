@@ -1,4 +1,4 @@
-State:Disabled
-Modules:false
+State:Enabled
+Modules:true
 Deaths:false
 Keybind:0

@@ -1,5 +1,5 @@
 State:Disabled
-XYZ:false
+XYZ:true
 IDK:false
 Self:false
 SelfColor:-16711936
