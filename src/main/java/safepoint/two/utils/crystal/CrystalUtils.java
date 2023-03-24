@@ -7,8 +7,11 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.network.play.client.CPacketAnimation;
+import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.potion.Potion;
@@ -20,8 +23,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.*;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import safepoint.two.core.initializers.RotationInitializer;
 import safepoint.two.mixin.mixins.AccessorCPacketUseEntity;
 import safepoint.two.utils.world.BlockUtil;
+import safepoint.two.utils.world.PlayerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -339,6 +344,62 @@ public class CrystalUtils {
 
     public static void setEntityId(CPacketUseEntity packet, int entityId) {
         ((AccessorCPacketUseEntity) packet).setId(entityId);
+    }
+
+    public static void breakBlockingCrystals(AxisAlignedBB bb, boolean antiSuicideMode, float minHealthRemaining, float maxDamage, boolean rotate) {
+        if (antiSuicideMode) {
+            if (mc.player.getHealth() + mc.player.getAbsorptionAmount() - getDmgSelf() < minHealthRemaining) return;
+        }
+        else {
+            if (getDmgSelf() >= maxDamage) return;
+        }
+
+        PlayerUtil.entitiesListFlag = true;
+        for (Entity entity : mc.world.getEntitiesWithinAABB(Entity.class, bb)) {
+            if (!(entity instanceof EntityEnderCrystal)) continue;
+            if (!entity.preventEntitySpawning) continue;
+            if (!entity.isEntityAlive()) continue;
+
+            boolean sprinting = mc.player.isSprinting();
+            if (sprinting) {
+                mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SPRINTING));
+            }
+
+            if (rotate) RotationInitializer.lookAtTarget(entity, false, 100.0f);
+            breakCrystal((EntityEnderCrystal) entity);
+
+            if (sprinting) {
+                mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SPRINTING));
+            }
+            break;
+        }
+        PlayerUtil.entitiesListFlag = false;
+    }
+
+    public static float getDmgSelf() {
+        float dmg = 0.0f;
+        PlayerUtil.entitiesListFlag = true;
+        for (Entity entity : PlayerUtil.entitiesList()) {
+            if (!(entity instanceof EntityEnderCrystal) || mc.player.getDistance(entity) > 12.0f) {
+                continue;
+            }
+
+            float crystalDmg = CrystalUtils.calculateDamage(entity.posX, entity.posY, entity.posZ, mc.player);
+            if (crystalDmg > dmg) {
+                dmg = crystalDmg;
+            }
+        }
+        PlayerUtil.entitiesListFlag = false;
+
+        return dmg;
+    }
+
+    public static void breakCrystal(EntityEnderCrystal entity) {
+        CPacketUseEntity packet = new CPacketUseEntity(entity);
+        ((AccessorCPacketUseEntity) packet).setId(((AccessorCPacketUseEntity) packet).getId());
+        ((AccessorCPacketUseEntity) packet).setAction(CPacketUseEntity.Action.ATTACK);
+        mc.player.connection.sendPacket(packet);
+        mc.player.connection.sendPacket(new CPacketAnimation(EnumHand.MAIN_HAND));
     }
 
 }

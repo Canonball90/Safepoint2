@@ -12,6 +12,7 @@ public class ReverseStep extends Module {
 
     @Override
     public void onTick() {
+        if(mc.player == null || mc.world == null) return;
         if (mc.player.onGround && !mc.player.inWater && !mc.player.isInLava() && !mc.player.isOnLadder() && !mc.gameSettings.keyBindJump.isKeyDown()) {
             mc.player.motionY = -power.value;
         }
