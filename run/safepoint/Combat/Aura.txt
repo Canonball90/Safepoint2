@@ -1,4 +1,4 @@
-State:Enabled
+State:Disabled
 Target:false
 Mode:Distance
 Player:true
