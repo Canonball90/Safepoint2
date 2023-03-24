@@ -37,6 +37,7 @@ import safepoint.two.core.event.events.RenderRotationsEvent;
 import safepoint.two.core.event.events.RotationEvent;
 import safepoint.two.core.event.events.RotationUpdateEvent;
 import safepoint.two.core.event.events.UpdateWalkingPlayerEvent;
+import safepoint.two.core.initializers.RotationInitializer;
 import safepoint.two.core.module.Module;
 import safepoint.two.core.module.ModuleInfo;
 import safepoint.two.core.settings.impl.*;
@@ -414,7 +415,7 @@ public class Aura extends Module {
                             }
 
                             if(rotate.getValue()){
-                              Safepoint.rotationInitializer.rotate(target, false);
+                              RotationInitializer.lookAtTarget(target,false,2);
                             }
 
                             if (armorBreak.getValue()) {
@@ -464,7 +465,7 @@ public class Aura extends Module {
     @Override
     public void onDisable() {
         if(mc.player == null || mc.world == null){return;}
-        Safepoint.rotationInitializer.reset();
+        RotationInitializer.resetRotation(false,2);
     }
 
     void attackeed(Entity ent, Boolean threaded, int time){
@@ -512,14 +513,14 @@ public class Aura extends Module {
             if (swordOnly.getValue()) {
                 if (mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) {
                     if(rotate.getValue()){
-                        Safepoint.rotationInitializer.rotate(target, false);
+                        RotationInitializer.lookAtTarget(target,false,2);
                     }
                     mc.playerController.connection.sendPacket(new CPacketUseEntity(target));
                     mc.player.swingArm(attackhand());
                 }
             }else {
                 if(rotate.getValue()){
-                    Safepoint.rotationInitializer.rotate(target, false);
+                    RotationInitializer.lookAtTarget(target,false,2);
                 }
                     mc.playerController.connection.sendPacket(new CPacketUseEntity(target));
                     mc.player.swingArm(attackhand());
@@ -528,14 +529,14 @@ public class Aura extends Module {
             if (swordOnly.getValue()) {
                 if (mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) {
                     if(rotate.getValue()){
-                        Safepoint.rotationInitializer.rotate(target, false);
+                        RotationInitializer.lookAtTarget(target,false,2);
                     }
                     mc.playerController.attackEntity(mc.player, target);
                     mc.player.swingArm(attackhand());
                 }
             } else {
                 if(rotate.getValue()){
-                    Safepoint.rotationInitializer.rotate(target, false);
+                    RotationInitializer.lookAtTarget(target,false,2);
                 }
                 mc.playerController.attackEntity(mc.player, target);
                 mc.player.swingArm(attackhand());
@@ -543,7 +544,7 @@ public class Aura extends Module {
         }
 
         if (rotate.getValue()) {
-            Safepoint.rotationInitializer.setRotations(yaw, pitch);
+            RotationInitializer.lookAtTarget(target,false,2);
         }
 
     }

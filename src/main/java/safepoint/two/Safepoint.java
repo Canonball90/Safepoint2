@@ -41,7 +41,7 @@ public class Safepoint {
         serverInitializer = new ServerInitializer();
         threadInitializer = new ThreadInitializer();
         soundInitializer = new SoundInitializer();
-
+        RotationInitializer.init();
         time = System.currentTimeMillis();
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {

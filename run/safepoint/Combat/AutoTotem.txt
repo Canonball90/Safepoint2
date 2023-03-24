@@ -1,5 +1,5 @@
 State:Disabled
-Mode:Semi
+Mode:Strict
 NoSprint:false
 Totem:false
 Hard:false

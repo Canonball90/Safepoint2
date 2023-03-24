@@ -24,11 +24,11 @@ Pulse Min:0.5
 Pulse Speed:4.0
 Pulse W:8.0
 Fade:true
-Fade Speed:20
-Start Alpha:255
-End Alpha:255
-Box:false
-Outline:false
+Fade Speed:100
+Start Alpha:135
+End Alpha:14
+Box:true
+Outline:true
 Other:false
 Logic:BREAKPLACE
 SpoofRotations:true
@@ -52,11 +52,6 @@ Break Predict Calc:false
 Global Entity Spawn Predict:false
 Spawn Object:false
 Predict Delay:100
-Rotations:false
-Rotate:true
-PlaceRotate:true
-PlaceRotateLegit:false
-BreakRotate:false
 Threading:false
 Thread:false
 ThreadMode:Run
