@@ -261,6 +261,15 @@ public class AutoCrystal extends Module {
         }
     }
 
+    @SubscribeEvent
+    public void renderModelRotation(RenderModelEvent event) {
+        if (!rotate.getValue()) return;
+        if (rotating) {
+            event.rotating = true;
+            event.pitch = renderPitch;
+        }
+    }
+
     private void resetRotation() {
         if (shouldSpoofPacket) {
             yaw = mc.player.rotationYaw;
@@ -478,6 +487,7 @@ public class AutoCrystal extends Module {
     public void onDisable() {
         render = null;
         target2 = null;
+        resetRotation();
     }
 
     private float getRolledHeight(float offset) {

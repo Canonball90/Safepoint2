@@ -85,7 +85,7 @@ key_key.hotbar.6:7
 key_key.hotbar.7:8
 key_key.hotbar.8:9
 key_key.hotbar.9:10
-soundCategory_master:0.63907284
+soundCategory_master:0.0
 soundCategory_music:0.0
 soundCategory_record:0.0
 soundCategory_weather:0.0
