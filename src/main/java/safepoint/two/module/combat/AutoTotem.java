@@ -62,7 +62,7 @@ public class AutoTotem extends Module {
 
     @SubscribeEvent
     public void onRoot(RootEvent event){
-        doNullCheck();
+        if(mc.player == null || mc.world == null) return;
         if (mode.getValue().equalsIgnoreCase("Strict")) {
             if (mc.currentScreen instanceof GuiContainer && !(mc.currentScreen instanceof GuiInventory)) return;
             if (getItemSlot(Items.TOTEM_OF_UNDYING, false) != -1) {
