@@ -12,8 +12,7 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
-import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.network.play.client.CPacketPlayerDigging;
+import net.minecraft.network.play.client.*;
 import net.minecraft.util.CombatRules;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
@@ -22,8 +21,6 @@ import net.minecraft.world.World;
 import safepoint.two.Safepoint;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.network.play.client.CPacketEntityAction;
-import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -31,9 +28,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import safepoint.two.core.initializers.RotationInitializer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static net.minecraft.init.Enchantments.EFFICIENCY;
 import static safepoint.two.Safepoint.mc;
@@ -392,4 +387,63 @@ public class BlockUtil {
     public static Vec3d posToVec3d(BlockPos pos) {
         return new Vec3d(pos);
     }
+
+    public static void placeBlock(BlockPos pos, EnumHand hand, boolean rotate, boolean packet) {
+        EnumFacing side = getFirstFacing(pos);
+        if (side == null) {
+            return;
+        }
+        BlockPos neighbour = pos.offset(side);
+        EnumFacing opposite = side.getOpposite();
+        Vec3d hitVec = new Vec3d(neighbour).add(0.5, 0.5, 0.5).add(new Vec3d(opposite.getDirectionVec()).scale(0.5));
+        Block neighbourBlock = mc.world.getBlockState(neighbour).getBlock();
+        if (!mc.player.isSneaking() && (blackList.contains(neighbourBlock) || shulkerList.contains(neighbourBlock))) {
+            mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
+            mc.player.setSneaking(true);
+        }
+        if (rotate) {
+        }
+        rightClickBlock(neighbour, hitVec, hand, opposite, packet);
+        mc.rightClickDelayTimer = 4;
+    }
+
+    public static void rightClickBlock(BlockPos pos, Vec3d vec, EnumHand hand, EnumFacing direction, boolean packet) {
+        if (packet) {
+            mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(pos, direction, hand, 0.5f, 1.0f, 0.5f));
+        } else {
+            mc.playerController.processRightClickBlock(mc.player, mc.world, pos, direction, vec, hand);
+        }
+        mc.player.connection.sendPacket(new CPacketAnimation(EnumHand.MAIN_HAND));
+        mc.rightClickDelayTimer = 4;
+    }
+
+    public static List<Block> blackList;
+    public static List<Block> shulkerList;
+
+    static {
+        blackList = Arrays.asList(Blocks.ENDER_CHEST, Blocks.CHEST, Blocks.TRAPPED_CHEST, Blocks.CRAFTING_TABLE, Blocks.ANVIL, Blocks.BREWING_STAND, Blocks.HOPPER, Blocks.DROPPER, Blocks.DISPENSER);
+        shulkerList = Arrays.asList(Blocks.WHITE_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.SILVER_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.GREEN_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.BLACK_SHULKER_BOX);
+    }
+
+    public static EnumFacing getFirstFacing(BlockPos pos) {
+        Iterator<EnumFacing> iterator = getPossibleSides(pos).iterator();
+        if (iterator.hasNext()) {
+            return iterator.next();
+        }
+        return null;
+    }
+
+    public static List<EnumFacing> getPossibleSides(BlockPos pos) {
+        ArrayList<EnumFacing> facings = new ArrayList<>();
+        for (EnumFacing side : EnumFacing.values()) {
+            BlockPos neighbour = pos.offset(side);
+            if (!mc.world.getBlockState(neighbour).getBlock().canCollideCheck(mc.world.getBlockState(neighbour), false) || mc.world.getBlockState(neighbour).getMaterial().isReplaceable())
+                continue;
+            facings.add(side);
+        }
+        return facings;
+    }
+
+
+
 }

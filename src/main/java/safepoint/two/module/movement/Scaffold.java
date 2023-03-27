@@ -3,19 +3,25 @@ package safepoint.two.module.movement;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import safepoint.two.Safepoint;
+import safepoint.two.core.event.events.PacketEvent;
+import safepoint.two.core.event.events.RenderModelEvent;
 import safepoint.two.core.module.Module;
 import safepoint.two.core.module.ModuleInfo;
 import safepoint.two.core.settings.impl.BooleanSetting;
 import safepoint.two.core.settings.impl.ColorSetting;
 import safepoint.two.core.settings.impl.DoubleSetting;
+import safepoint.two.mixin.mixins.AccessorCPacketPlayer;
 import safepoint.two.utils.core.MathUtil;
 import safepoint.two.utils.math.Timer;
 import safepoint.two.utils.render.RenderUtil;
 import safepoint.two.utils.world.BlockUtil;
+import safepoint.two.utils.world.RotationUtil;
 import safepoint.two.utils.world.ScaffoldBlock;
 
 import java.awt.*;
@@ -44,6 +50,11 @@ public class Scaffold extends Module {
     private boolean packet = false;
     Timer time = new Timer();
     private final Timer towerTimer = new Timer();
+    transient private static boolean rotating = false;
+    transient public static float yaw;
+    transient public static float pitch;
+    transient public static float renderPitch;
+    transient public static boolean shouldSpoofPacket;
 
     @Override
     public void onTick() {
@@ -54,8 +65,11 @@ public class Scaffold extends Module {
         }else{
             mc.player.setSneaking(false);
         }
+        if(rotate.getValue()){
+            lookAtPos(pos, EnumFacing.UP);
+        }
         if (this.isAir(this.pos)) {//ToDo add , this.mc.player.isSneaking() later
-            BlockUtil.placeBlock(this.pos, EnumFacing.UP, swing.getValue(), false, rotate.getValue());
+            BlockUtil.placeBlock(pos, EnumHand.MAIN_HAND, rotate.getValue(), this.packet);
             this.blocksToRender.add(new ScaffoldBlock(BlockUtil.posToVec3d(this.pos)));
         }
         if (this.swing.getValue().booleanValue()) {
@@ -102,24 +116,68 @@ public class Scaffold extends Module {
                 }
                 if (center.getValue() && !this.teleported)
                     return;
-                mc.player.motionY = upSpeed.getValue();
-                mc.player.motionZ = 0.0D;
-                mc.player.motionX = 0.0D;
-                if (this.time.passedMs(1500L)) {
-                    //ToDo add timer manager
-                    Safepoint.serverInitializer.reset();
-                    time.reset();
-                    mc.player.motionY = -0.28D;
+                mc.player.setVelocity(0.0, 0.42, 0.0);
+                if (towerTimer.passedMs(1500)) {
+                    mc.player.motionY = -0.28;
+                    towerTimer.reset();
                 }
             }
         }
     }
 
+    @SubscribeEvent
+    public void onPacketSend(PacketEvent.Send event){
+        if (event.getPacket() instanceof CPacketPlayer) {
+            CPacketPlayer packet1 = (CPacketPlayer) event.getPacket();
+            if (shouldSpoofPacket) {
+                ((AccessorCPacketPlayer) packet1).setYaw(yaw);
+                ((AccessorCPacketPlayer) packet1).setPitch(pitch);
+                shouldSpoofPacket = false;
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void renderModelRotation(RenderModelEvent event) {
+        if (!rotate.getValue()) return;
+        if (rotating) {
+            event.rotating = true;
+            event.pitch = renderPitch;
+        }
+    }
+
+    private void resetRotation() {
+        if (shouldSpoofPacket) {
+            yaw = mc.player.rotationYaw;
+            pitch = mc.player.rotationPitch;
+            shouldSpoofPacket = false;
+            rotating = false;
+        }
+    }
+
+    public void lookAtPos(BlockPos block, EnumFacing face) {
+        float[] v = RotationUtil.getRotationsBlock(block, face, false);
+        float[] v2 = RotationUtil.getRotationsBlock(block.add(0, +0.5, 0), face, false);
+        setYawAndPitch(v[0], v[1], v2[1]);
+    }
+
+
+    public void setYawAndPitch(float yaw1, float pitch1, float renderPitch1) {
+        yaw = yaw1;
+        pitch = pitch1;
+        renderPitch = renderPitch1;
+        mc.player.rotationYawHead = yaw;
+        mc.player.renderYawOffset = yaw;
+        shouldSpoofPacket = true;
+        rotating = true;
+    }
+
+
     @Override
     public void onWorldRender() {
         //ToDo fix this cause it don work
         if(render.getValue()){
-            RenderUtil.drawBlockBox(new BlockPos(blocksToRender), color.getValue(), true, 2f);
+          //  RenderUtil.drawBlockBox(new BlockPos(blocksToRender), color.getValue(), true, 2f);
         }
         super.onWorldRender();
     }
