@@ -32,14 +32,14 @@ public class HudWatermarkComponent extends HudModule {
             if (isInsideDragField(mouseX, mouseY)) {
                 RenderUtil.drawRect(renderX, renderY, renderX + Safepoint.mc.fontRenderer.getStringWidth("Mint 0.1.1"), renderY + Safepoint.mc.fontRenderer.FONT_HEIGHT, new Color(0, 0, 0, 100).getRGB());
                 RenderUtil.drawRect(renderX + Safepoint.mc.fontRenderer.getStringWidth("Mint 0.1.1") + 3, renderY - 7, renderX + Safepoint.mc.fontRenderer.getStringWidth("Mint 0.1.1") + 3 + Safepoint.mc.fontRenderer.getStringWidth("renderX: " + renderX + " renderY: " + renderY), renderY - 7 + Safepoint.mc.fontRenderer.FONT_HEIGHT, new Color(0, 0, 0, 100).getRGB());
-                Safepoint.mc.fontRenderer.drawStringWithShadow("renderX: " + renderX + " renderY: " + renderY, renderX + Safepoint.mc.fontRenderer.getStringWidth("Mint 0.1.1") + 3, renderY - 7, -1);
+                Safepoint.fontInitializer.drawString("renderX: " + renderX + " renderY: " + renderY, renderX + Safepoint.mc.fontRenderer.getStringWidth("Mint 0.1.1") + 3, renderY - 7, -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
             }
             drawText();
         }
     }
 
     public void drawText() {
-        Safepoint.mc.fontRenderer.drawStringWithShadow("Safepoint 1.0", renderX, renderY, ClickGui.getInstance().color.getColor().getRGB());
+        Safepoint.fontInitializer.drawString("Safepoint 1.0", renderX, renderY, ClickGui.getInstance().color.getColor().getRGB(),ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
     }
 
     public boolean isInsideDragField(int mouseX, int mouseY) {

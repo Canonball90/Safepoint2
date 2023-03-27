@@ -155,9 +155,9 @@ public class Nametags extends Module {
         }
 
         if(shadowedText.getValue()) {
-            Safepoint.OVERLAY_FONT.drawCenteredString(name, (float) (-width), 10.0f, -1);
+            mc.fontRenderer.drawStringWithShadow(name, (float) (-width), 10.0f, -1);
         }else{
-            Safepoint.OVERLAY_FONT.drawCenteredStringWithShadow(name, (float) (-width), 10.0f, -1);
+            mc.fontRenderer.drawString(name, (-width), 10, -1);
         }
 
         int xOffset = 0;

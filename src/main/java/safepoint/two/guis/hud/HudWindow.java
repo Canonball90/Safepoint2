@@ -50,14 +50,13 @@ public class HudWindow extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         dragScreen(mouseX, mouseY);
         RenderUtil.drawRect(x, y, x + w, y + h, ClickGui.getInstance().color.getColor().getRGB());
-        Safepoint.mc.fontRenderer.drawStringWithShadow("Hud Editor", x + (w / 2f) - (Safepoint.mc.fontRenderer.getStringWidth("Hud Editor") / 2f), y + (h / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
         if (isInsideCloseButton(mouseX, mouseY))
             RenderUtil.drawRect(x + w - Safepoint.mc.fontRenderer.getStringWidth("x") - 4, y, x + w, y + h, new Color(0, 0, 0, 100).getRGB());
-        Safepoint.mc.fontRenderer.drawStringWithShadow("x", x + w - Safepoint.mc.fontRenderer.getStringWidth("x") - 2, y + (h / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
+        Safepoint.fontInitializer.drawString("x", x + w - Safepoint.mc.fontRenderer.getStringWidth("x") - 2, y + (h / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
 
         if (isInsideCloseButton(mouseX, mouseY)) {
             RenderUtil.drawRect(mouseX + 5, mouseY, mouseX + 5 + Safepoint.mc.fontRenderer.getStringWidth("Left Click: Close | Right Click: Return"), mouseY + 10, new Color(0, 0, 0, 100).getRGB());
-            Safepoint.mc.fontRenderer.drawStringWithShadow("Left Click: Close | Right Click: Return", mouseX + 5, mouseY + 1, -1);
+            Safepoint.fontInitializer.drawString("Left Click: Close | Right Click: Return", mouseX + 5, mouseY + 1, -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
         }
         int yIncrease = y;
         for (HudModule hudModule : hudModules) {

@@ -34,14 +34,14 @@ public class HudWelcomerComponent extends HudModule {
             if (isInsideDragField(mouseX, mouseY)) {
                 RenderUtil.drawRect(renderX, renderY, renderX + mc.fontRenderer.getStringWidth("Welcome to Safepoint + 2, " + mc.player.getName()), renderY + mc.fontRenderer.FONT_HEIGHT, new Color(0, 0, 0, 100).getRGB());
                 RenderUtil.drawRect(renderX + mc.fontRenderer.getStringWidth("Welcome to Safepoint + 2, " + mc.player.getName()) + 3, renderY - 7, renderX + mc.fontRenderer.getStringWidth("Welcome to Safepoint + 2, " + mc.player.getName()) + 3 + mc.fontRenderer.getStringWidth("renderX: " + renderX + " renderY: " + renderY), renderY - 7 + mc.fontRenderer.FONT_HEIGHT, new Color(0, 0, 0, 100).getRGB());
-                mc.fontRenderer.drawStringWithShadow("renderX: " + renderX + " renderY: " + renderY, renderX + mc.fontRenderer.getStringWidth("Welcome to Safepoint + 2, " + mc.player.getName()) + 3, renderY - 7, -1);
+                Safepoint.fontInitializer.drawString("renderX: " + renderX + " renderY: " + renderY, renderX + mc.fontRenderer.getStringWidth("Welcome to Safepoint + 2, " + mc.player.getName()) + 3, renderY - 7, -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
             }
             drawText();
         }
     }
 
     public void drawText() {
-        mc.fontRenderer.drawStringWithShadow("Welcome to Safepoint + 2, " + mc.player.getName(), renderX, renderY, ClickGui.getInstance().color.getColor().getRGB());
+        Safepoint.fontInitializer.drawString("Welcome to Safepoint + 2, " + mc.player.getName(), renderX, renderY, ClickGui.getInstance().color.getColor().getRGB(),ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
     }
 
     public boolean isInsideDragField(int mouseX, int mouseY) {
