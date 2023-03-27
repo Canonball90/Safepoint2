@@ -21,7 +21,7 @@ public class HudModule {
 
     public void drawScreen() {
         RenderUtil.drawRect(x, y, x + w, y + h,value ? ClickGui.getInstance().color.getColor().getRGB() : ClickGui.getInstance().backgroundColor.getColor().getRGB());
-        Safepoint.mc.fontRenderer.drawStringWithShadow(name, x, y, -1);
+        Safepoint.fontInitializer.drawString(name, x, y, -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
     }
 
     public void render(int mouseX, int mouseY, float partialTicks) {

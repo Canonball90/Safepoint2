@@ -29,7 +29,7 @@ public class KeyButton extends Button {
         if (keySetting.hasParentSetting) RenderUtil.drawRect(x - 2, y, x, y + height, keySetting.module.category.getColor().getRGB());
         if (isInside(mouseX, mouseY))
             RenderUtil.drawRect(x, y, x + width, y + height, new Color(0, 0, 0, 100).getRGB());
-        Safepoint.mc.fontRenderer.drawStringWithShadow(keySetting.isTyping ? keySetting.getName() + " ..." : keySetting.getName() + " " + ChatFormatting.GRAY + (keySetting.getKey() == -1 ? "None" : Keyboard.getKeyName(keySetting.getKey())), x + 2, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
+        Safepoint.fontInitializer.drawString(keySetting.isTyping ? keySetting.getName() + " ..." : keySetting.getName() + " " + ChatFormatting.GRAY + (keySetting.getKey() == -1 ? "None" : Keyboard.getKeyName(keySetting.getKey())), x + 2, (int) (y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f)), -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
     }
 
     @Override

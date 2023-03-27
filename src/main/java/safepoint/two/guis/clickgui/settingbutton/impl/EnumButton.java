@@ -31,7 +31,7 @@ public class EnumButton extends Button {
         if (setting.hasParentSetting) RenderUtil.drawRect(x - 2, y, x, y + height, setting.module.category.getColor().getRGB());
         if (isInside(mouseX, mouseY))
             RenderUtil.drawRect(x, y, x + width, y + height, new Color(0, 0, 0, 100).getRGB());
-        Safepoint.mc.fontRenderer.drawStringWithShadow(enumSetting.getName() + " " + ChatFormatting.GRAY + enumSetting.getValueAsString(), x + 2, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f)+1, -1);
+        Safepoint.fontInitializer.drawString(enumSetting.getName() + " " + ChatFormatting.GRAY + enumSetting.getValueAsString(), x + 2, (int) (y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f)+1), -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
         int y = this.y;
         if (enumSetting.droppedDown) {
             for (String string : enumSetting.getModes()) {
@@ -41,7 +41,7 @@ public class EnumButton extends Button {
                 RenderUtil.drawRect(x, y-15, x + 1, y + height, setting.module.category.getColor().getRGB());
                 if (mouseX > x+3 && mouseX < x + width-1 && mouseY > y+1 && mouseY < y + height-1)
                     RenderUtil.drawRect(x+ 3, y+1, x + width - 1, y + height-1, new Color(0, 0, 0, 100).getRGB());
-                Safepoint.mc.fontRenderer.drawStringWithShadow(enumSetting.getValue().equals(string) ? string : ChatFormatting.GRAY + string, (mouseX > x+3 && mouseX < x + width-1 && mouseY > y+1 && mouseY < y + height-1) ? x + 5 : x + 4, y+4, -1);
+                Safepoint.fontInitializer.drawString(enumSetting.getValue().equals(string) ? string : ChatFormatting.GRAY + string, (mouseX > x+3 && mouseX < x + width-1 && mouseY > y+1 && mouseY < y + height-1) ? x + 5 : x + 4, y+4, -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
             }
             RenderUtil.drawOutlineRect(x + 3, this.y + height+1, x + width - 1, y + height-1, setting.module.category.getColor(), 1f);
         }

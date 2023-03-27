@@ -1,8 +1,10 @@
 State:Disabled
-Cat Colors:true
-Color:-800131847
-Color:java.awt.Color[r=78,g=244,b=249]
+Cat Colors:false
+Color:-7407360
+Color:java.awt.Color[r=142,g=249,b=0]
 Background Color:838860800
 Background Color:java.awt.Color[r=0,g=0,b=0]
 I:100
+Custom Font:true
+Shadow:false
 Keybind:54

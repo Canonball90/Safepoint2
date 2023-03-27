@@ -30,7 +30,7 @@ public class BooleanButton extends Button {
             RenderUtil.drawRect(x+2, y+3, x + 11, y + height-3, setting.module.category.getColor().getRGB());
         RenderUtil.drawOutlineRect(x+2, y+3, x + 11, y + height-3, new Color(0,0,0), 1.0f);
 
-        Safepoint.mc.fontRenderer.drawStringWithShadow(setting.getName(), x + 15, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f)+1, -1);
+        Safepoint.fontInitializer.drawString(setting.getName(), x + 15, (int) (y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f)+1), -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
     }
 
     @Override

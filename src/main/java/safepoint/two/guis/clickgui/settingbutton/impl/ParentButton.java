@@ -29,8 +29,8 @@ public class ParentButton extends Button {
         if (isInside(mouseX, mouseY))
             RenderUtil.drawRect(x, y, x + width, y + height, new Color(0, 0, 0, 100).getRGB());
         RenderUtil.drawRect(x+2, y, x + width-2, y + height, setting.module.category.getColor().getRGB());
-        Safepoint.mc.fontRenderer.drawStringWithShadow(parentSetting.isOpen ? "-" : "+", x + width - Safepoint.mc.fontRenderer.getStringWidth(parentSetting.isOpen ? "-" : "+") - 4, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
-        Safepoint.mc.fontRenderer.drawStringWithShadow(parentSetting.getName(), x + 4, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
+        Safepoint.fontInitializer.drawString(parentSetting.isOpen ? "-" : "+", x + width - Safepoint.mc.fontRenderer.getStringWidth(parentSetting.isOpen ? "-" : "+") - 4, (int) (y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f)), -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
+        Safepoint.fontInitializer.drawString(parentSetting.getName(), x + 4, (int) (y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f)), -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
     }
 
     @Override

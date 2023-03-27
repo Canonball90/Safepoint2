@@ -68,15 +68,15 @@ public class ColorButton extends Button {
         RenderUtil.drawRect(x + width - 12, y + 2, x + width - 3, y + height-2 - (colorSetting.isOpen() ? 112 : 0), colorSetting.getColor().getRGB());
         RenderUtil.drawOutlineRect(x + width - 12, y + 2, x + width - 3, y + height-2 - (colorSetting.isOpen() ? 112 : 0), new Color(0, 0, 0), 0.1f);
 
-        Safepoint.mc.fontRenderer.drawStringWithShadow(colorSetting.getName(), x+2, y+4, -1);
+        Safepoint.fontInitializer.drawString(colorSetting.getName(), x+2, y+4, -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
         String hex = String.format("#%06x", colorSetting.getColor().getRGB() & 0xFFFFFF);
         if (colorSetting.isOpen()) {
             drawPicker(colorSetting, x + 1, y + 12+extraYoffset, x + 111, y + 12+extraYoffset, x + 1, y + 94, mouseX, mouseY);
             RenderUtil.drawRect(x + 1, y + 107+extraYoffset, x + 109, y + (colorSetting.isSelected() ? 130 : 120)+extraYoffset, ClickGui.getInstance().backgroundColor.getColor().getRGB());
-            Safepoint.mc.fontRenderer.drawStringWithShadow(colorSetting.isSelected() ? ChatFormatting.UNDERLINE + hex : hex, x + 109 / 2f - (Safepoint.mc.fontRenderer.getStringWidth(hex) / 2f), y + 109 + (11 / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f)+3, -1);
+            Safepoint.fontInitializer.drawString(colorSetting.isSelected() ? ChatFormatting.UNDERLINE + hex : hex, (int) (x + 109 / 2f - (Safepoint.fontInitializer.getStringWidth(hex,ClickGui.getInstance().customFont.getValue()) / 2f)), (int) (y + 109 + (11 / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f)+3), -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
             if (colorSetting.isSelected()) {
-                Safepoint.mc.fontRenderer.drawStringWithShadow(isInsideCopy(mouseX, mouseY) ? ChatFormatting.UNDERLINE + "Copy" : "Copy", (x + ((107) / 8f) * 2) - (Safepoint.mc.fontRenderer.getStringWidth("Copy") / 2f), y + 120+4, -1);
-                Safepoint.mc.fontRenderer.drawStringWithShadow(isInsidePaste(mouseX, mouseY) ? ChatFormatting.UNDERLINE + "Paste" : "Paste", (x + ((107) / 8f) * 6) - (Safepoint.mc.fontRenderer.getStringWidth("Paste") / 2f), y + 120+4, -1);
+                Safepoint.fontInitializer.drawString(isInsideCopy(mouseX, mouseY) ? ChatFormatting.UNDERLINE + "Copy" : "Copy", (int) ((x + ((107) / 8f) * 2) - (Safepoint.fontInitializer.getStringWidth("Copy",ClickGui.getInstance().customFont.getValue()) / 2f)), y + 120+4, -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
+                Safepoint.fontInitializer.drawString(isInsidePaste(mouseX, mouseY) ? ChatFormatting.UNDERLINE + "Paste" : "Paste", (int) ((x + ((107) / 8f) * 6) - (Safepoint.fontInitializer.getStringWidth("Paste", ClickGui.getInstance().customFont.getValue()) / 2f)), y + 120+4, -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
             }
             colorSetting.setColor(finalColor);
         }

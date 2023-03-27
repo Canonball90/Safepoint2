@@ -17,6 +17,8 @@ public class ClickGui extends Module {
     public ColorSetting color = new ColorSetting("Color", new Color(239, 12, 12, 208), this, v -> !customColors.getValue());
     public ColorSetting backgroundColor = new ColorSetting("Background Color", new Color(0, 0, 0, 50), this);
     public IntegerSetting integerSetting = new IntegerSetting("I", 100, 0, 500, this);
+    public BooleanSetting customFont = new BooleanSetting("Custom Font", true, this);
+    public BooleanSetting shadow = new BooleanSetting("Shadow", true, this);
 
     @Override
     public void initializeModule() {

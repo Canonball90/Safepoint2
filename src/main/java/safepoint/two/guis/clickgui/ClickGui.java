@@ -42,9 +42,9 @@ public class ClickGui extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         RenderUtil.drawRect(Minecraft.getMinecraft().currentScreen.width - 960, Minecraft.getMinecraft().currentScreen.height - 60, Minecraft.getMinecraft().currentScreen.width - 700, Minecraft.getMinecraft().currentScreen.height + 40, new Color(25,25,25, 100).getRGB());
         drawHead(Objects.requireNonNull(mc.getConnection()).getPlayerInfo(mc.player.getUniqueID()).getLocationSkin(), Minecraft.getMinecraft().currentScreen.width - 950, Minecraft.getMinecraft().currentScreen.height - 50);
-        mc.fontRenderer.drawString("Kills: " + getPlayerKills(), Minecraft.getMinecraft().currentScreen.width - 900, Minecraft.getMinecraft().currentScreen.height - 50, new Color(255, 255, 255, 255).getRGB());
-        mc.fontRenderer.drawString("Deaths: " + getPlayerDeaths(), Minecraft.getMinecraft().currentScreen.width - 900, Minecraft.getMinecraft().currentScreen.height - 40, new Color(255, 255, 255, 255).getRGB());
-        mc.fontRenderer.drawString("Time: " + onlineTime(), Minecraft.getMinecraft().currentScreen.width - 900, Minecraft.getMinecraft().currentScreen.height - 30, new Color(255, 255, 255, 255).getRGB());
+        Safepoint.fontInitializer.drawString("Kills: " + getPlayerKills(), Minecraft.getMinecraft().currentScreen.width - 900, Minecraft.getMinecraft().currentScreen.height - 50, new Color(255, 255, 255, 255).getRGB(), safepoint.two.module.core.ClickGui.getInstance().shadow.getValue(), safepoint.two.module.core.ClickGui.getInstance().customFont.getValue());
+        Safepoint.fontInitializer.drawString("Deaths: " + getPlayerDeaths(), Minecraft.getMinecraft().currentScreen.width - 900, Minecraft.getMinecraft().currentScreen.height - 40, new Color(255, 255, 255, 255).getRGB(), safepoint.two.module.core.ClickGui.getInstance().shadow.getValue(), safepoint.two.module.core.ClickGui.getInstance().customFont.getValue());
+        Safepoint.fontInitializer.drawString("Time: " + onlineTime(), Minecraft.getMinecraft().currentScreen.width - 900, Minecraft.getMinecraft().currentScreen.height - 30, new Color(255, 255, 255, 255).getRGB(), safepoint.two.module.core.ClickGui.getInstance().shadow.getValue(), safepoint.two.module.core.ClickGui.getInstance().customFont.getValue());
 
         windows.forEach(windows -> windows.drawScreen(mouseX, mouseY, partialTicks));
     }

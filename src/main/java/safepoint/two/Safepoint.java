@@ -8,7 +8,9 @@ import safepoint.two.core.module.ModuleInitializer;
 import safepoint.two.core.settings.SettingInitializer;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.Display;
+import safepoint.two.utils.core.turok.render.font.TurokFont;
 
+import java.awt.*;
 import java.util.Date;
 
 public class Safepoint {
@@ -26,6 +28,9 @@ public class Safepoint {
     public static ServerInitializer serverInitializer;
     public static ThreadInitializer threadInitializer;
     public static SoundInitializer soundInitializer;
+    public static FontInitializer fontInitializer;
+
+    public static TurokFont OVERLAY_FONT = new TurokFont(new Font("Arial", 0, 16), true, true);
 
     public void init() {
         Display.setTitle("Safepoint+2 1.0");
@@ -41,6 +46,7 @@ public class Safepoint {
         serverInitializer = new ServerInitializer();
         threadInitializer = new ThreadInitializer();
         soundInitializer = new SoundInitializer();
+        fontInitializer = new FontInitializer();
         RotationInitializer.init();
         time = System.currentTimeMillis();
 

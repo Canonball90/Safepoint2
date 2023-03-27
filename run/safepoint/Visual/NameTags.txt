@@ -1,5 +1,5 @@
 State:Enabled
-Size:2.5
+Size:1.5
 Hight:0.1
 CustomPos:false
 X:0.0
@@ -9,8 +9,8 @@ Box:false
 Rounded:false
 Radius:5.1
 OutlineSize:1.0
-Height:1.9
-Width:0.4
+Height:0.2
+Width:-0.7
 Other:false
 HP:true
 Items:true
