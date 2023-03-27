@@ -1,2 +1,14 @@
-State:Enabled
+State:Disabled
+Rotate:true
+Rotate:false
+Rotate:true
+Rotate:true
+Rotate:true
+Rotate:true
+Rotate:true
+Rotate:true
+Rotate:0.7
+Rotate:0.41999998688697815
+Color:-13765597
+Color:java.awt.Color[r=45,g=244,b=35]
 Keybind:0

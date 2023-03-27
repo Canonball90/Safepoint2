@@ -49,6 +49,7 @@ public class ModuleInitializer {
         moduleList.add(new ReverseStep());
         moduleList.add(new Sprint());
         moduleList.add(new Velocity());
+        moduleList.add(new Scaffold());
 
         //PLAYER
         moduleList.add(new AutoToolModule());

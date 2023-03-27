@@ -388,4 +388,8 @@ public class BlockUtil {
         IBlockState iBlockState = mc.world.getBlockState(pos);
         return iBlockState.getSelectedBoundingBox(mc.world, pos).expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D);
     }
+
+    public static Vec3d posToVec3d(BlockPos pos) {
+        return new Vec3d(pos);
+    }
 }
