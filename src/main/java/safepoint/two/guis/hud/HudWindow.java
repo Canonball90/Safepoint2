@@ -52,7 +52,7 @@ public class HudWindow extends GuiScreen {
         RenderUtil.drawRect(x, y, x + w, y + h, ClickGui.getInstance().color.getColor().getRGB());
         if (isInsideCloseButton(mouseX, mouseY))
             RenderUtil.drawRect(x + w - Safepoint.mc.fontRenderer.getStringWidth("x") - 4, y, x + w, y + h, new Color(0, 0, 0, 100).getRGB());
-        Safepoint.fontInitializer.drawString("x", x + w - Safepoint.mc.fontRenderer.getStringWidth("x") - 2, y + (h / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
+//        Safepoint.fontInitializer.drawString("x", x + w - Safepoint.mc.fontRenderer.getStringWidth("x") - 2, y + (h / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1,ClickGui.getInstance().shadow.getValue(),ClickGui.getInstance().customFont.getValue());
 
         if (isInsideCloseButton(mouseX, mouseY)) {
             RenderUtil.drawRect(mouseX + 5, mouseY, mouseX + 5 + Safepoint.mc.fontRenderer.getStringWidth("Left Click: Close | Right Click: Return"), mouseY + 10, new Color(0, 0, 0, 100).getRGB());

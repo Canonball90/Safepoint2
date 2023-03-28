@@ -21,6 +21,7 @@ public class Module {
     public KeySetting keyBind = new KeySetting("Keybind", Keyboard.KEY_NONE, this);
     public BooleanSetting enabled = new BooleanSetting("Enabled", false, this);
     public boolean isOpened = false;
+    public boolean moduleDisableFlag = false;
 
     public Module() {
         initializeModule();
@@ -33,6 +34,7 @@ public class Module {
     }
 
     public void onDisable() {
+         this.moduleDisableFlag = true;
     }
 
     public void onThread(){

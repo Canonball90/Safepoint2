@@ -29,4 +29,8 @@ public class EventPlayerDamageBlock extends EventProcessor {
     public void setFace(EnumFacing face) {
         this.face = face;
     }
+
+    public void cancel(){
+        cancel();
+    }
 }

@@ -12,11 +12,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import safepoint.two.core.event.events.DisplayGuiScreenEvent;
+import safepoint.two.core.event.events.LeftClickBlockEvent;
 import safepoint.two.core.event.events.RootEvent;
 import safepoint.two.guis.mainmenu.MainMenu;
+import safepoint.two.utils.world.BlockUtil;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
+
+import static safepoint.two.Safepoint.mc;
 
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft {
@@ -43,5 +47,18 @@ public abstract class MixinMinecraft {
 
     @Shadow
     public abstract void displayGuiScreen(@Nullable GuiScreen var1);
+
+    @Inject(method = "clickMouse", at = @At("HEAD"), cancellable = true)
+    public void clickMouseHook(CallbackInfo ci) {
+        if (mc.objectMouseOver != null) {
+            if (BlockUtil.isBlockPlaceable(mc.objectMouseOver.getBlockPos())) {
+                LeftClickBlockEvent event = new LeftClickBlockEvent(mc.objectMouseOver.getBlockPos(), mc.objectMouseOver.sideHit);
+                MinecraftForge.EVENT_BUS.post(event);
+
+                if (event.isCanceled())
+                    ci.cancel();
+            }
+        }
+    }
 
 }

@@ -21,10 +21,9 @@ public class MixinPlayerControllerMP {
     private void onPlayerDamageBlock(BlockPos posBlock, EnumFacing directionFacing, CallbackInfoReturnable<Boolean> cir) {
         final EventPlayerDamageBlock event = new EventPlayerDamageBlock(posBlock, directionFacing);
         MinecraftForge.EVENT_BUS.post(event);
-        if (event.isCanceled()) {
+
+        if (event.isCanceled())
             cir.setReturnValue(false);
-            cir.cancel();
-        }
     }
 
 

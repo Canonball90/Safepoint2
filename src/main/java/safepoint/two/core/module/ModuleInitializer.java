@@ -44,6 +44,7 @@ public class ModuleInitializer {
         //MISC
         moduleList.add(new FakePlayer());
         moduleList.add(new TestModule());
+        moduleList.add(new AntiAim());
 
         //MOVEMENT
         moduleList.add(new ReverseStep());
@@ -56,6 +57,7 @@ public class ModuleInitializer {
         moduleList.add(new PacketEXP());
         moduleList.add(new Replanish());
         moduleList.add(new VClip());
+        moduleList.add(new PacketMine());
 
         //VISUAL
         moduleList.add(new Chams());
