@@ -2,8 +2,11 @@ package safepoint.two.module.visual;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,7 +48,7 @@ public class Nametags extends Module {
     public BooleanSetting rounded = new BooleanSetting("Rounded", false, this).setParent(boxParent);
     public DoubleSetting radius = new DoubleSetting("Radius", 4.0, 0.1, 5.0, this, v -> rounded.getValue()).setParent(boxParent);
     public FloatSetting outlineSize = new FloatSetting("OutlineSize", 1.2f, 0.1f, 5.0f, this).setParent(boxParent);
-    public FloatSetting height = new FloatSetting("Height", 0f, -10f, 10f, this).setParent(boxParent);
+    public FloatSetting height = new FloatSetting("Height", 0f, -50f, 10f, this).setParent(boxParent);
     public FloatSetting width = new FloatSetting("Width", 0f, -10f, 10f, this).setParent(boxParent);
 
     public ParentSetting other = new ParentSetting("Other", false, this);
@@ -149,7 +152,7 @@ public class Nametags extends Module {
         final int width = RenderUtil.getStringWidth(name) / 2;
 
         if (rounded.getValue()) {
-            RenderUtil.roundedRect(-width - 3 - this.width.getValue(), 8.0f - this.height.getValue(), width + 52 + this.width.getValue(), 13 + this.height.getValue(), radius.getValue(), c);
+            gradient(-width - 3 - this.width.getValue(), -(mc.fontRenderer.FONT_HEIGHT + 1.0f) - (-17.3f), width + 2 + this.width.getValue(), 2f - (-17.3f), rainbow(0),  this.rainbow((int)(6000.0f * (1f))));
         } else {
             RenderUtil.drawBorderedRect(-width - 3 - this.width.getValue(), 8.0f - this.height.getValue(), width + 2 + this.width.getValue(), 20.0f + this.height.getValue(), outlineSize.getValue(), BackColor.getValue().getRGB(), (outline.getValue() ? c.getRGB() : 1962934272));
         }
@@ -284,6 +287,46 @@ public class Nametags extends Module {
         }
     }
 
+
+    private void gradient(float f, float f2, float f3, float f4, int n, int n2) {
+        this.rect(f, f2, f, f4, ((Float)this.outlineSize.getValue()).floatValue(), n, n2);
+        this.rect(f3, f2, f3, f4, ((Float)this.outlineSize.getValue()).floatValue(), n2, n);
+        this.rect(f, f2, f3, f2, ((Float)this.outlineSize.getValue()).floatValue(), n, n2);
+        this.rect(f, f4, f3, f4, ((Float)this.outlineSize.getValue()).floatValue(), n2, n);
+    }
+
+    private void rect(float f, float f2, float f3, float f4, float f5, int n, int n2) {
+        float f6 = (float)(n >> 24 & 0xFF) / 255.0f;
+        float f7 = (float)(n >> 16 & 0xFF) / 255.0f;
+        float f8 = (float)(n >> 8 & 0xFF) / 255.0f;
+        float f9 = (float)(n & 0xFF) / 255.0f;
+        float f10 = (float)(n2 >> 24 & 0xFF) / 255.0f;
+        float f11 = (float)(n2 >> 16 & 0xFF) / 255.0f;
+        float f12 = (float)(n2 >> 8 & 0xFF) / 255.0f;
+        float f13 = (float)(n2 & 0xFF) / 255.0f;
+        GlStateManager.pushMatrix();
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
+        GlStateManager.shadeModel((int)7425);
+        GL11.glLineWidth((float)f5);
+        GL11.glEnable((int)2848);
+        GL11.glHint((int)3154, (int)4354);
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
+        bufferBuilder.begin(3, DefaultVertexFormats.POSITION_COLOR);
+        bufferBuilder.pos((double)f, (double)f2, 0.0).color(f7, f8, f9, f6).endVertex();
+        bufferBuilder.pos((double)f3, (double)f4, 0.0).color(f11, f12, f13, f10).endVertex();
+        tessellator.draw();
+        GlStateManager.shadeModel((int)7424);
+        GL11.glDisable((int)2848);
+        GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
+        GlStateManager.popMatrix();
+    }
+
     boolean isCrouching(EntityPlayer p) {
         return p.isSneaking();
     }
@@ -296,6 +339,12 @@ public class Nametags extends Module {
         } catch (Exception ignored) {
         }
     }
+
+    private int rainbow(int n) {
+        double d = Math.ceil((double)(System.currentTimeMillis() + (long)n) / (20.0 * (double)(1f)));
+        return Color.getHSBColor((float)((d %= 360.0) / 360.0), ((Float)1f), (Float)1f).getRGB();
+    }
+
 
     public void setExecutorService(ExecutorService executorService) {
         this.executorService = executorService;

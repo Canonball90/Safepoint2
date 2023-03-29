@@ -32,6 +32,7 @@ import java.util.List;
 public class Scaffold extends Module {
 
     BooleanSetting rotate = new BooleanSetting("Rotate", true, this);
+    BooleanSetting airCheck = new BooleanSetting("AirCheck", true, this,v -> rotate.getValue());
     BooleanSetting render = new BooleanSetting("Render", true, this);
     BooleanSetting swing = new BooleanSetting("Swing", true, this);
     BooleanSetting Switch = new BooleanSetting("Switch", true, this);
@@ -65,8 +66,8 @@ public class Scaffold extends Module {
         }else{
             mc.player.setSneaking(false);
         }
-        if(rotate.getValue()){
-            lookAtPos(pos, EnumFacing.UP);
+        if(rotate.getValue() && this.isAir(pos)){
+            lookAtPos(new ScaffoldBlock(BlockUtil.posToVec3d(this.pos)), EnumFacing.UP);
         }
         if (this.isAir(this.pos)) {//ToDo add , this.mc.player.isSneaking() later
             BlockUtil.placeBlock(pos, EnumHand.MAIN_HAND, rotate.getValue(), this.packet);

@@ -6,11 +6,11 @@ X:0.0
 Y:-0.1
 Z:0.0
 Box:false
-Rounded:false
-Radius:5.1
-OutlineSize:1.0
-Height:0.2
-Width:-0.7
+Rounded:true
+Radius:2.909000015258789
+OutlineSize:4.5
+Height:-17.3
+Width:-0.4
 Other:false
 HP:true
 Items:true

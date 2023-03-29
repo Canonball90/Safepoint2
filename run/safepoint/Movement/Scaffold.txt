@@ -1,6 +1,7 @@
 State:Disabled
 Rotate:true
-Render:true
+AirCheck:false
+Render:false
 Swing:true
 Switch:true
 Tower:true

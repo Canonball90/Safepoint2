@@ -29,6 +29,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2023-03-29 06:50:51 -0700"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/spruce_wooden_slab": {
     "criteria": {
       "has_planks": "2023-03-27 09:21:27 -0700"
