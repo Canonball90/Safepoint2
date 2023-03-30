@@ -85,11 +85,11 @@ key_key.hotbar.6:7
 key_key.hotbar.7:8
 key_key.hotbar.8:9
 key_key.hotbar.9:10
-soundCategory_master:0.0
+soundCategory_master:0.40397352
 soundCategory_music:0.0
 soundCategory_record:0.0
 soundCategory_weather:0.0
-soundCategory_block:0.0
+soundCategory_block:0.06338028
 soundCategory_hostile:0.0
 soundCategory_neutral:0.0
 soundCategory_player:0.0

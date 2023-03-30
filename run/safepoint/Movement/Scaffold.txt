@@ -4,6 +4,7 @@ AirCheck:false
 Render:false
 Swing:true
 Switch:true
+Sneak:true
 Tower:true
 NCP:false
 NCPJump:false

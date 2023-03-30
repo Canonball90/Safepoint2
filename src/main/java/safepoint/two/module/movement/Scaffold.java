@@ -36,6 +36,7 @@ public class Scaffold extends Module {
     BooleanSetting render = new BooleanSetting("Render", true, this);
     BooleanSetting swing = new BooleanSetting("Swing", true, this);
     BooleanSetting Switch = new BooleanSetting("Switch", true, this);
+    BooleanSetting sneak = new BooleanSetting("Sneak", true, this);
     BooleanSetting Tower = new BooleanSetting("Tower", true, this);
     BooleanSetting NCP = new BooleanSetting("NCP", true, this);
     BooleanSetting NCPJumo = new BooleanSetting("NCPJump", true, this);
@@ -70,6 +71,9 @@ public class Scaffold extends Module {
             lookAtPos(new ScaffoldBlock(BlockUtil.posToVec3d(this.pos)), EnumFacing.UP);
         }
         if (this.isAir(this.pos)) {//ToDo add , this.mc.player.isSneaking() later
+            if(sneak.getValue()){
+
+            }
             BlockUtil.placeBlock(pos, EnumHand.MAIN_HAND, rotate.getValue(), this.packet);
             this.blocksToRender.add(new ScaffoldBlock(BlockUtil.posToVec3d(this.pos)));
         }

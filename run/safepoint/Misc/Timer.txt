@@ -1,0 +1,3 @@
+State:Disabled
+Speed:6.4
+Keybind:0

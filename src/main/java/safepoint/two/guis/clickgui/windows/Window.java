@@ -88,7 +88,7 @@ public class Window {
                 modules.add(new ModuleWindow(module.getName(), x, y += height, width, height, ClickGui.getInstance().backgroundColor.getColor(), category.getColor(), module));
                 y += openedHeight;
             }
-            //RenderUtil.drawOutlineRect(x, this.y + height, x + width, y + height, category.getColor(), 1.5f);
+            RenderUtil.drawOutlineRect(x, this.y + height, x + width, y + height, category.getColor(), 1.5f);
         }
         RenderUtil.drawOutlineRect(x, this.y, x + width, this.y + height, category.getColor(), 1.3f);
         if (isOpened)

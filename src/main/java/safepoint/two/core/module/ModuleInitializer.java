@@ -51,6 +51,8 @@ public class ModuleInitializer {
         moduleList.add(new Sprint());
         moduleList.add(new Velocity());
         moduleList.add(new Scaffold());
+        moduleList.add(new AntiWeb());
+        moduleList.add(new Timer());
 
         //PLAYER
         moduleList.add(new AutoToolModule());

@@ -12,15 +12,10 @@
     </facet>
   </component>
   <component name="McpModuleSettings">
-    <option name="mappingFile" value="C:\Users\lucsk\Documents\java\Safepoint2\build\createMcpToSrg\output.tsrg" />
+    <option name="mappingFile" value="C:\Users\natha\Safepoint2\build\createMcpToSrg\output.tsrg" />
     <option name="mcpVersion" value="stable_39-1.12" />
     <option name="minecraftVersion" value="1.12.2" />
     <option name="platformVersion" value="14.23.5.2860" />
     <option name="srgType" value="TSRG" />
-  </component>
-  <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main">
-      <sourceFolder url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
-    </content>
   </component>
 </module>
