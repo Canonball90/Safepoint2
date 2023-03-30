@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.MobEffects;
@@ -161,7 +160,7 @@ public class BlockUtil {
 
     public static boolean isBlockPlaceable(BlockPos pos) {
         Block block = mc.world.getBlockState(pos).getBlock();
-        return block != Blocks.AIR && block != Blocks.WATER && block != Blocks.FLOWING_WATER && block != Blocks.LAVA && block != Blocks.FLOWING_LAVA;
+        return true;
     }
 
     public static boolean isFacePlaceble(BlockPos pos, EnumFacing facing, boolean checkEntity) {

@@ -1,5 +1,5 @@
 State:Disabled
-Speed:6.0
+Speed:10.0
 Pulse:false
 StartPulse:6.206000137329101
 EndPulse:1.0

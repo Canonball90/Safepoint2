@@ -73,57 +73,6 @@ public class Aura extends Module {
     BooleanSetting projectile =
             new BooleanSetting("Projectiles", true, this).setParent(targetP);
 
-    ParentSetting advancedTargeting =
-            new ParentSetting("AdvancedTargeting", false, this);
-    BooleanSetting advancedTarget =
-            new BooleanSetting("AdvancedTarget", false, this).setParent(advancedTargeting);
-    BooleanSetting Aplayers =
-            new BooleanSetting("Players", false, this,v -> advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting aNoNaked =
-            new BooleanSetting("AntiNaked", false, this,v -> Aplayers.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting aFriendProtect =
-            new BooleanSetting("FriendProtect", false, this,v -> Aplayers.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-
-    BooleanSetting Amobs =
-            new BooleanSetting("Mobs", false, this,v -> advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting zombie =
-            new BooleanSetting("Zombie", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting spider =
-            new BooleanSetting("Spider", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting creeper =
-            new BooleanSetting("Creeper", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting blaze =
-            new BooleanSetting("Blaze", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting witch =
-            new BooleanSetting("Witch", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting enderMan =
-            new BooleanSetting("EnderMan", false, this,v -> Amobs.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-
-    BooleanSetting Apassives =
-            new BooleanSetting("Passives", false, this,v -> advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting sheep =
-            new BooleanSetting("Sheep", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting cow =
-            new BooleanSetting("Cow", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting pig =
-            new BooleanSetting("Pig", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting rabbit =
-            new BooleanSetting("Rabbit", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting donkey =
-            new BooleanSetting("Donkey", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting horse =
-            new BooleanSetting("Horse", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting chicken =
-            new BooleanSetting("Chicken", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting villager =
-            new BooleanSetting("Villager", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting squid =
-            new BooleanSetting("Squid", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting bat =
-            new BooleanSetting("Bat", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-    BooleanSetting iromGolem =
-            new BooleanSetting("IronGolem", false, this,v -> Apassives.getValue() && advancedTarget.getValue()).setParent(advancedTargeting);
-
     ParentSetting antiCheat =
             new ParentSetting("AntiCheat", false, this);
     BooleanSetting rotate =
@@ -363,7 +312,7 @@ public class Aura extends Module {
 
     void doKillAura(){
         if (target != null) {
-            if (target.getDistance(mc.player) >= range.getValue() || target.isDead || !target.isEntityAlive() || (aNoNaked.getValue() && isNakedPlayer(target)))
+            if (target.getDistance(mc.player) >= range.getValue() || target.isDead || !target.isEntityAlive())
                 target = null;
         }
 
@@ -399,35 +348,14 @@ public class Aura extends Module {
 
                     }
                     if (entity instanceof EntityAnimal && animals.getValue()) {
-                        if(advancedTarget.getValue() &&
-                                (sheep.getValue() && entity instanceof EntitySheep) ||
-                                (cow.getValue() && entity instanceof EntityCow) ||
-                                (pig.getValue() && entity instanceof EntityPig) ||
-                                (rabbit.getValue() && entity instanceof EntityRabbit) ||
-                                (donkey.getValue() && entity instanceof EntityDonkey) ||
-                                (horse.getValue() && entity instanceof EntityHorse) ||
-                                (chicken.getValue() && entity instanceof EntityChicken) ||
-                                (villager.getValue() && entity instanceof EntityVillager) ||
-                                (squid.getValue() && entity instanceof EntitySquid) ||
-                                (bat.getValue() && entity instanceof EntityBat) ||
-                                (iromGolem.getValue() && entity instanceof EntityIronGolem)) {
-                            target = (EntityLivingBase) entity;
-                        }else{
-                            target = (EntityLivingBase) entity;
-                        }
+
+                        target = (EntityLivingBase) entity;
+
                     }
                     if ((entity instanceof EntityMob || entity instanceof EntitySlime) && mobs.getValue()) {
-                        if(advancedTarget.getValue() &&
-                                (zombie.getValue() && entity instanceof EntityZombie) ||
-                                (spider.getValue() && entity instanceof EntitySpider) ||
-                                (creeper.getValue() && entity instanceof EntityCreeper) ||
-                                (blaze.getValue() && entity instanceof  EntityBlaze) ||
-                                (witch.getValue() && entity instanceof EntityWitch) ||
-                                (enderMan.getValue() && entity instanceof EntityEnderman)) {
-                            target = (EntityLivingBase) entity;
-                        }else{
-                            target = (EntityLivingBase) entity;
-                        }
+
+                        target = (EntityLivingBase) entity;
+
                     }
                     if (isProjectile(entity) && projectile.getValue()) {
                         target = (EntityLivingBase) entity;
@@ -435,8 +363,6 @@ public class Aura extends Module {
                     if ((entity instanceof EntityGhast) && ghast.getValue()) {
                         target = (EntityLivingBase) entity;
                     }
-
-                    float[] arrf = RotationUtil.getRotations(target);
 
                     if(rotate.getValue()){
                         lookAtEnt(target);
