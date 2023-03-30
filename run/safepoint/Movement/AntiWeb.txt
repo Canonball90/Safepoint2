@@ -1,2 +1,3 @@
-State:Disabled
+State:Enabled
+Mode:Solid
 Keybind:0

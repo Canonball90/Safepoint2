@@ -14,7 +14,8 @@
     "AccessorCPacketUseEntity",
     "MixinMinecraft",
     "AccessorCPacketPlayer",
-    "MixinModelBiped"
+    "MixinModelBiped",
+    "MixinBlockWeb"
   ],
   "mixins": [
     "MixinNetworkManager"
