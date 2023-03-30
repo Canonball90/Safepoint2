@@ -1,6 +1,6 @@
 State:Enabled
 Packet:true
-Packets:1
+Packets:2
 JumpHeight:0.3
 OnlyWeapon:false
 Raytrace:false
@@ -10,6 +10,6 @@ NoDesync:false
 Delayed:false
 Delay:3
 Boats:false
-Hits:15
-Crystals:true
+Hits:5
+Crystals:false
 Keybind:0

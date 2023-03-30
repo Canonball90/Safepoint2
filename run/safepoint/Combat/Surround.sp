@@ -14,8 +14,8 @@ BreakCrystalsDelay:50
 MinHealthRemain:8.0
 MaxCrystalDamage:11.0
 render:false
-center:true
+center:false
 disableOnLeaveHole:false
-PlaceWeb:true
-OnShift:true
-Keybind:29
+PlaceWeb:false
+OnShift:false
+Keybind:0

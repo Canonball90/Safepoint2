@@ -38,6 +38,8 @@ public class Scaffold extends Module {
     BooleanSetting Switch = new BooleanSetting("Switch", true, this);
     BooleanSetting sneak = new BooleanSetting("Sneak", true, this);
     BooleanSetting Tower = new BooleanSetting("Tower", true, this);
+    BooleanSetting timed = new BooleanSetting("Timed", true, this,v -> Tower.getValue());
+    DoubleSetting speedT = new DoubleSetting("Speed", 5.0, 2.0, 10.0, this,v -> timed.getValue());
     BooleanSetting NCP = new BooleanSetting("NCP", true, this);
     BooleanSetting NCPJumo = new BooleanSetting("NCPJump", true, this);
     BooleanSetting center = new BooleanSetting("Center", true, this);
@@ -97,19 +99,13 @@ public class Scaffold extends Module {
             }
         }
         if (NCP.getValue()) {
-            if (mc.gameSettings.keyBindJump.isKeyDown()) {
-                if (NCPJumo.getValue()) {
-                    mc.player.jump();
+            if (mc.gameSettings.keyBindJump.isKeyDown() && mc.player.moveForward == 0.0F && mc.player.moveStrafing == 0.0F && !mc.player.isPotionActive(MobEffects.JUMP_BOOST)) {
+                if (this.towerTimer.passedMs(1500L)) {
+                    this.towerTimer.reset();
+                    mc.player.motionY = -0.28f;
                 } else {
-                    mc.player.motionY = 0.2;
-                }
-
-                mc.player.motionX *= 0.3;
-                mc.player.motionZ *= 0.3;
-
-                if (towerTimer.passedMs(1200L)) {
-                    towerTimer.reset();
-                    mc.player.motionY = -0.28;
+                    float f = 0.42f;
+                    mc.player.setVelocity(0.0, (double)0.42f, 0.0);
                 }
             }
         }else {
@@ -121,7 +117,15 @@ public class Scaffold extends Module {
                 }
                 if (center.getValue() && !this.teleported)
                     return;
-                mc.player.setVelocity(0.0, 0.42, 0.0);
+                if(timed.getValue()){
+                    if(mc.gameSettings.keyBindJump.isKeyDown()) {
+                        mc.timer.tickLength = 50f / speedT.getValue().floatValue();
+                    }else if (mc.player.moveForward >= 0.0F && mc.player.moveStrafing >= 0.0F){
+                        mc.timer.tickLength = 50f;
+                    }
+                }else {
+                    mc.player.setVelocity(0.0, 0.42, 0.0);
+                }
                 if (towerTimer.passedMs(1500)) {
                     mc.player.motionY = -0.28;
                     towerTimer.reset();
@@ -195,5 +199,6 @@ public class Scaffold extends Module {
     public void onDisable() {
         super.onDisable();
         this.blocksToRender.clear();
+        mc.timer.tickLength = 50f;
     }
 }

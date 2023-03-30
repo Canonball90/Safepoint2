@@ -1,4 +1,0 @@
-State:Enabled
-Modules:true
-Deaths:false
-Keybind:0

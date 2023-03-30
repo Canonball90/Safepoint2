@@ -13,7 +13,7 @@ public class Timer extends Module {
     BooleanSetting pulse = new BooleanSetting("Pulse", false, this);
     DoubleSetting startVal = new DoubleSetting("StartPulse", 1.0, 1.0, 10.0, this,v -> pulse.getValue());
     DoubleSetting endVal = new DoubleSetting("EndPulse", 1.0, 1.0, 10.0, this,v -> pulse.getValue());
-    DoubleSetting pulseSpeed = new DoubleSetting("Speed", 1.0, 0.0, 10.0, this,v -> pulse.getValue());
+    DoubleSetting pulseSpeed = new DoubleSetting("Speed", 1.0, 0.0, 20.0, this,v -> pulse.getValue());
     Inhibitator inhibitator = new Inhibitator();
 
     @Override
