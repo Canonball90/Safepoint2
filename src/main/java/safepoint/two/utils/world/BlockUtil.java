@@ -158,9 +158,10 @@ public class BlockUtil {
         return pos;
     }
 
+    //ToDo fix this bc it causes the game to crash when u hit an entity
     public static boolean isBlockPlaceable(BlockPos pos) {
         Block block = mc.world.getBlockState(pos).getBlock();
-        return true;
+        return block != Blocks.AIR && block != Blocks.WATER && block != Blocks.FLOWING_WATER && block != Blocks.LAVA && block != Blocks.FLOWING_LAVA;
     }
 
     public static boolean isFacePlaceble(BlockPos pos, EnumFacing facing, boolean checkEntity) {
