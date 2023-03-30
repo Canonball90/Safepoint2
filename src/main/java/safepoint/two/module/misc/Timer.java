@@ -4,7 +4,6 @@ import safepoint.two.core.module.Module;
 import safepoint.two.core.module.ModuleInfo;
 import safepoint.two.core.settings.impl.BooleanSetting;
 import safepoint.two.core.settings.impl.DoubleSetting;
-import safepoint.two.core.settings.impl.FloatSetting;
 import safepoint.two.utils.math.Inhibitator;
 
 @ModuleInfo(name = "Timer", category = Module.Category.Misc, description = "")

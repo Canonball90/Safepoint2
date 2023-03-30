@@ -1,6 +1,7 @@
 State:Disabled
 Speed:6.0
 Pulse:false
-StartPulse:8.958000183105469
-EndPulse:5.461999893188477
+StartPulse:6.206000137329101
+EndPulse:1.0
+Speed:10.0
 Keybind:0
