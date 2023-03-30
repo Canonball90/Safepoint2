@@ -48,17 +48,5 @@ public abstract class MixinMinecraft {
     @Shadow
     public abstract void displayGuiScreen(@Nullable GuiScreen var1);
 
-    @Inject(method = "clickMouse", at = @At("HEAD"), cancellable = true)
-    public void clickMouseHook(CallbackInfo ci) {
-        if (mc.objectMouseOver != null) {
-            if (BlockUtil.isBlockPlaceable(mc.objectMouseOver.getBlockPos())) {
-                LeftClickBlockEvent event = new LeftClickBlockEvent(mc.objectMouseOver.getBlockPos(), mc.objectMouseOver.sideHit);
-                MinecraftForge.EVENT_BUS.post(event);
-
-                if (event.isCanceled())
-                    ci.cancel();
-            }
-        }
-    }
 
 }
