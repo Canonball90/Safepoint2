@@ -152,6 +152,7 @@ public class Nametags extends Module {
         final int width = RenderUtil.getStringWidth(name) / 2;
 
         if (rounded.getValue()) {
+            RenderUtil.drawBorderedRect(-width - 3 - this.width.getValue(), 8.0f + this.height.getValue(), width + 2 + this.width.getValue(), 19.8f + this.height.getValue(), 0f, 1962934272, 1962934272);
             gradient(-width - 3 - this.width.getValue(), -(mc.fontRenderer.FONT_HEIGHT + 1.0f) - (-17.3f), width + 2 + this.width.getValue(), 2f - (-17.3f), rainbow(0),  this.rainbow((int)(6000.0f * (1f))));
         } else {
             RenderUtil.drawBorderedRect(-width - 3 - this.width.getValue(), 8.0f - this.height.getValue(), width + 2 + this.width.getValue(), 20.0f + this.height.getValue(), outlineSize.getValue(), BackColor.getValue().getRGB(), (outline.getValue() ? c.getRGB() : 1962934272));

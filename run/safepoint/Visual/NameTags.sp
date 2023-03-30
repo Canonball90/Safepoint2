@@ -1,6 +1,6 @@
 State:Enabled
-Size:2.0
-Hight:0.0
+Size:1.3
+Hight:0.1
 CustomPos:false
 X:0.0
 Y:0.0
@@ -8,8 +8,8 @@ Z:0.0
 Box:false
 Rounded:true
 Radius:4.0
-OutlineSize:2.8
-Height:0.0
+OutlineSize:5.1
+Height:-0.4
 Width:0.0
 Other:false
 HP:true

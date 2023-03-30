@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import safepoint.two.Safepoint;
 import safepoint.two.core.event.events.DisplayGuiScreenEvent;
 import safepoint.two.core.event.events.LeftClickBlockEvent;
 import safepoint.two.core.event.events.RootEvent;
@@ -25,6 +26,15 @@ import static safepoint.two.Safepoint.mc;
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft {
 
+    @Redirect(method = {"run"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;displayCrashReport(Lnet/minecraft/crash/CrashReport;)V"))
+    public void onCrashReport(Minecraft minecraft, CrashReport crashReport) {
+        this.saveNekoConfiguration();
+    }
+
+    @Inject(method = {"shutdown"}, at = @At(value = "HEAD"))
+    public void shutdown(CallbackInfo info) {
+        this.saveNekoConfiguration();
+    }
 
     @Inject(method = "displayGuiScreen", at = @At("HEAD"), cancellable = true)
     public void displayGuiScreen(GuiScreen guiScreenIn, CallbackInfo info) {
@@ -44,9 +54,10 @@ public abstract class MixinMinecraft {
         MinecraftForge.EVENT_BUS.post(event);
     }
 
-
     @Shadow
     public abstract void displayGuiScreen(@Nullable GuiScreen var1);
 
-
+    public void saveNekoConfiguration() {
+        Objects.requireNonNull(Safepoint.configInitializer).save();
+    }
 }

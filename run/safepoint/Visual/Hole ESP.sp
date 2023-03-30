@@ -1,7 +1,7 @@
 State:Disabled
 Hole Radius:8.0
 Obsidian Holes:false
-Obsidian Box:false
+Obsidian Box:true
 Obsidian Box Color:1694433280
 Obsidian Box Color:java.awt.Color[r=255,g=0,b=0]
 Obsidian Outline:false

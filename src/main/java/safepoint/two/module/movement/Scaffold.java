@@ -18,6 +18,7 @@ import safepoint.two.core.settings.impl.ColorSetting;
 import safepoint.two.core.settings.impl.DoubleSetting;
 import safepoint.two.mixin.mixins.AccessorCPacketPlayer;
 import safepoint.two.utils.core.MathUtil;
+import safepoint.two.utils.crystal.BlockPosWithFacing;
 import safepoint.two.utils.math.Timer;
 import safepoint.two.utils.render.RenderUtil;
 import safepoint.two.utils.world.BlockUtil;
@@ -40,8 +41,6 @@ public class Scaffold extends Module {
     BooleanSetting Tower = new BooleanSetting("Tower", true, this);
     BooleanSetting timed = new BooleanSetting("Timed", true, this,v -> Tower.getValue());
     DoubleSetting speedT = new DoubleSetting("Speed", 5.0, 2.0, 10.0, this,v -> timed.getValue());
-    BooleanSetting NCP = new BooleanSetting("NCP", true, this);
-    BooleanSetting NCPJumo = new BooleanSetting("NCPJump", true, this);
     BooleanSetting center = new BooleanSetting("Center", true, this);
     DoubleSetting speed = new DoubleSetting("Speed",  0.7, 0.0, 1.0, this);
     DoubleSetting upSpeed = new DoubleSetting("upSpeed", 0.41999998688697815D, 0.0, 1.0, this);
@@ -59,6 +58,7 @@ public class Scaffold extends Module {
     transient public static float pitch;
     transient public static float renderPitch;
     transient public static boolean shouldSpoofPacket;
+    BlockPosWithFacing posll = new BlockPosWithFacing(pos, EnumFacing.UP);
 
     @Override
     public void onTick() {
@@ -98,38 +98,26 @@ public class Scaffold extends Module {
                 break;
             }
         }
-        if (NCP.getValue()) {
-            if (mc.gameSettings.keyBindJump.isKeyDown() && mc.player.moveForward == 0.0F && mc.player.moveStrafing == 0.0F && !mc.player.isPotionActive(MobEffects.JUMP_BOOST)) {
-                if (this.towerTimer.passedMs(1500L)) {
-                    this.towerTimer.reset();
-                    mc.player.motionY = -0.28f;
-                } else {
-                    float f = 0.42f;
-                    mc.player.setVelocity(0.0, (double)0.42f, 0.0);
-                }
+        if (mc.gameSettings.keyBindJump.isKeyDown() && mc.player.moveForward == 0.0F && mc.player.moveStrafing == 0.0F && Tower.getValue() && !mc.player.isPotionActive(MobEffects.JUMP_BOOST)) {
+            if (!this.teleported && center.getValue()) {
+                this.teleported = true;
+                BlockPos pos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
+                mc.player.setPosition(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
             }
-        }else {
-            if (mc.gameSettings.keyBindJump.isKeyDown() && mc.player.moveForward == 0.0F && mc.player.moveStrafing == 0.0F && Tower.getValue() && !mc.player.isPotionActive(MobEffects.JUMP_BOOST)) {
-                if (!this.teleported && center.getValue()) {
-                    this.teleported = true;
-                    BlockPos pos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
-                    mc.player.setPosition(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
+            if (center.getValue() && !this.teleported)
+                return;
+            if(timed.getValue()){
+                if(mc.gameSettings.keyBindJump.isKeyDown()) {
+                    mc.timer.tickLength = 50f / speedT.getValue().floatValue();
+                }else if (mc.player.moveForward >= 0.0F && mc.player.moveStrafing >= 0.0F){
+                    mc.timer.tickLength = 50f;
                 }
-                if (center.getValue() && !this.teleported)
-                    return;
-                if(timed.getValue()){
-                    if(mc.gameSettings.keyBindJump.isKeyDown()) {
-                        mc.timer.tickLength = 50f / speedT.getValue().floatValue();
-                    }else if (mc.player.moveForward >= 0.0F && mc.player.moveStrafing >= 0.0F){
-                        mc.timer.tickLength = 50f;
-                    }
-                }else {
-                    mc.player.setVelocity(0.0, 0.42, 0.0);
-                }
-                if (towerTimer.passedMs(1500)) {
-                    mc.player.motionY = -0.28;
-                    towerTimer.reset();
-                }
+            }else {
+                mc.player.setVelocity(0.0, 0.42, 0.0);
+            }
+            if (towerTimer.passedMs(1500)) {
+                mc.player.motionY = -0.28;
+                towerTimer.reset();
             }
         }
     }
