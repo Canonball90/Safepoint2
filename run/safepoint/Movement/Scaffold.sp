@@ -7,7 +7,7 @@ Switch:true
 Sneak:false
 Tower:true
 Timed:false
-Speed:8.016000366210937
+Speed:0.27999999523162844
 Center:true
 Speed:0.27999999523162844
 upSpeed:0.29700000286102296

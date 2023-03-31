@@ -40,6 +40,7 @@ public class ModuleInitializer {
         moduleList.add(new ConfigSave());
         moduleList.add(new HudEditor());
         moduleList.add(new MusicPlayer());
+        moduleList.add(new TestGui());
 
         //MISC
         moduleList.add(new FakePlayer());

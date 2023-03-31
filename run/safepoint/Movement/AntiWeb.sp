@@ -1,3 +1,5 @@
 State:Disabled
-Mode:Solid
+Mode:Timer
+HoleOnly:false
+TimerSpeed:25.3
 Keybind:0

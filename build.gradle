@@ -40,6 +40,9 @@ repositories {
     maven {
         url = "https://jitpack.io"
     }
+    maven {
+        url = "https://repo.essential.gg/repository/maven-public"
+    }
     mavenCentral()
 }
 
@@ -92,6 +95,8 @@ dependencies {
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
 
     compileOnly 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+
+    implementation("gg.essential:elementa-1.12.2-forge:578")
 
     implementation configurations.jarDepend
 }
