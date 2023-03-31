@@ -53,6 +53,7 @@ public class ModuleInitializer {
         moduleList.add(new Scaffold());
         moduleList.add(new AntiWeb());
         moduleList.add(new Timer());
+        moduleList.add(new Speed());
 
         //PLAYER
         moduleList.add(new AutoToolModule());

@@ -2,6 +2,7 @@ package safepoint.two.utils.render;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import safepoint.two.Safepoint;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.*;
@@ -804,4 +805,44 @@ public class RenderUtil {
             GlStateManager.popMatrix();
         }
     }
+
+    public static void drawNametag(Vec3d vec3d, String text) {
+        GlStateManager.pushMatrix();
+        glBillboardDistanceScaled((float) vec3d.x, (float) vec3d.y, (float) vec3d.z, mc.player, 1);
+        GlStateManager.disableDepth();
+        GlStateManager.translate(-(mc.fontRenderer.getStringWidth(text) / 2.0), 0.0, 0.0);
+        mc.fontRenderer.drawStringWithShadow(text, 0, 0, -1);
+        GlStateManager.popMatrix();
+    }
+
+    public static void drawNametag(BlockPos blockPos, float height, String text) {
+        GlStateManager.pushMatrix();
+        glBillboardDistanceScaled(blockPos.getX() + 0.5f, blockPos.getY() + height, blockPos.getZ() + 0.5f, mc.player, 1);
+        GlStateManager.disableDepth();
+        GlStateManager.translate(-(mc.fontRenderer.getStringWidth(text) / 2.0), 0.0, 0.0);
+        mc.fontRenderer.drawStringWithShadow(text, 0, 0, -1);
+        GlStateManager.popMatrix();
+    }
+
+    public static void glBillboardDistanceScaled(float x, float y, float z, EntityPlayer player, float scale) {
+        glBillboard(x, y, z);
+        int distance = (int) player.getDistance(x, y, z);
+        float scaleDistance = distance / 2F / (2 + (2 - scale));
+
+        if (scaleDistance < 1)
+            scaleDistance = 1;
+
+        GlStateManager.scale(scaleDistance, scaleDistance, scaleDistance);
+    }
+
+    public static void glBillboard(float x, float y, float z) {
+        float scale = 0.02666667f;
+
+        GlStateManager.translate(x - mc.getRenderManager().viewerPosX, y - mc.getRenderManager().viewerPosY, z - mc.getRenderManager().viewerPosZ);
+        GlStateManager.glNormal3f(0, 1, 0);
+        GlStateManager.rotate(-mc.player.rotationYaw, 0, 1, 0);
+        GlStateManager.rotate(mc.player.rotationPitch, (mc.gameSettings.thirdPersonView == 2) ? -1 : 1, 0, 0);
+        GlStateManager.scale(-scale, -scale, scale);
+    }
+
 }

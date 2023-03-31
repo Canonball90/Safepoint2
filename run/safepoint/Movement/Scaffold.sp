@@ -4,10 +4,10 @@ AirCheck:true
 Render:true
 Swing:true
 Switch:true
-Sneak:true
-Tower:false
+Sneak:false
+Tower:true
 Timed:false
-Speed:0.27999999523162844
+Speed:8.016000366210937
 Center:true
 Speed:0.27999999523162844
 upSpeed:0.29700000286102296

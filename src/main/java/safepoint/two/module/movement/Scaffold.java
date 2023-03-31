@@ -9,6 +9,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import safepoint.two.Safepoint;
+import safepoint.two.core.event.events.EventMove;
 import safepoint.two.core.event.events.PacketEvent;
 import safepoint.two.core.event.events.RenderModelEvent;
 import safepoint.two.core.module.Module;
@@ -60,8 +61,8 @@ public class Scaffold extends Module {
     transient public static boolean shouldSpoofPacket;
     BlockPosWithFacing posll = new BlockPosWithFacing(pos, EnumFacing.UP);
 
-    @Override
-    public void onTick() {
+    @SubscribeEvent
+    public void onMove(EventMove event) {
         if(mc.player == null || mc.world == null) return;
         this.pos = new BlockPos(this.mc.player.posX, this.mc.player.posY - 1.0, this.mc.player.posZ);
         if(isAir(this.pos)){

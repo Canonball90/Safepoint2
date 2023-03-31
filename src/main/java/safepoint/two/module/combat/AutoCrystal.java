@@ -370,6 +370,7 @@ public class AutoCrystal extends Module {
                 }
             }else {
                 RenderUtil.renderBox(pos, boxColor.getValue(), 1);
+                RenderUtil.drawNametag(pos, 0.7f, target2.getName());
             }
         }
     }

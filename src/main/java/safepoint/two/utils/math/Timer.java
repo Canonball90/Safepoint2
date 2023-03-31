@@ -32,6 +32,10 @@ public class Timer {
         return getMs(System.nanoTime() - this.time);
     }
 
+    public long getPassedTimeS(){
+        return getMs((long) (System.nanoTime() - this.time * 1000.0));
+    }
+
     public void reset() {
         this.time = System.nanoTime();
     }

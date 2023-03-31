@@ -11,15 +11,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/decorations/item_frame": {
+  "minecraft:recipes/redstone/wooden_button": {
     "criteria": {
-      "has_leather": "2023-03-20 05:49:24 -0700"
+      "has_planks": "2023-03-31 06:23:18 -0700"
     },
     "done": true
   },
-  "minecraft:recipes/tools/wooden_pickaxe": {
+  "minecraft:recipes/decorations/item_frame": {
     "criteria": {
-      "has_stick": "2023-03-20 05:48:21 -0700"
+      "has_leather": "2023-03-20 05:49:24 -0700"
     },
     "done": true
   },
@@ -32,6 +32,73 @@
   "minecraft:recipes/combat/leather_chestplate": {
     "criteria": {
       "has_leather": "2023-03-20 05:49:24 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/spruce_fence": {
+    "criteria": {
+      "has_planks": "2023-03-31 06:23:18 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/spruce_door": {
+    "criteria": {
+      "has_planks": "2023-03-31 06:23:18 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/brewing/golden_carrot": {
+    "criteria": {
+      "has_gold_nugget": "2023-03-20 05:48:21 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_hoe": {
+    "criteria": {
+      "has_stick": "2023-03-20 05:48:21 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/spruce_fence_gate": {
+    "criteria": {
+      "has_planks": "2023-03-31 06:23:18 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/spruce_stairs": {
+    "criteria": {
+      "has_planks": "2023-03-31 06:23:18 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/leather_helmet": {
+    "criteria": {
+      "has_leather": "2023-03-20 05:49:24 -0700"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "forest": "2023-03-20 05:49:47 -0700",
+      "plains": "2023-03-20 05:48:21 -0700"
+    },
+    "done": false
+  },
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "has_planks": "2023-03-31 06:23:18 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_pickaxe": {
+    "criteria": {
+      "has_stick": "2023-03-20 05:48:21 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/trapdoor": {
+    "criteria": {
+      "has_planks": "2023-03-31 06:23:18 -0700"
     },
     "done": true
   },
@@ -65,21 +132,27 @@
     },
     "done": true
   },
+  "minecraft:recipes/building_blocks/spruce_wooden_slab": {
+    "criteria": {
+      "has_planks": "2023-03-31 06:23:18 -0700"
+    },
+    "done": true
+  },
   "minecraft:recipes/tools/wooden_shovel": {
     "criteria": {
       "has_stick": "2023-03-20 05:48:21 -0700"
     },
     "done": true
   },
-  "minecraft:recipes/brewing/golden_carrot": {
+  "minecraft:recipes/redstone/wooden_pressure_plate": {
     "criteria": {
-      "has_gold_nugget": "2023-03-20 05:48:21 -0700"
+      "has_planks": "2023-03-31 06:23:18 -0700"
     },
     "done": true
   },
-  "minecraft:recipes/tools/wooden_hoe": {
+  "minecraft:recipes/misc/stick": {
     "criteria": {
-      "has_stick": "2023-03-20 05:48:21 -0700"
+      "has_planks": "2023-03-31 06:23:18 -0700"
     },
     "done": true
   },
@@ -101,9 +174,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/combat/leather_helmet": {
+  "minecraft:recipes/decorations/sign": {
     "criteria": {
-      "has_leather": "2023-03-20 05:49:24 -0700"
+      "has_planks": "2023-03-31 06:23:18 -0700"
     },
     "done": true
   },
@@ -112,12 +185,5 @@
       "has_leather": "2023-03-20 05:49:24 -0700"
     },
     "done": true
-  },
-  "minecraft:adventure/adventuring_time": {
-    "criteria": {
-      "forest": "2023-03-20 05:49:47 -0700",
-      "plains": "2023-03-20 05:48:21 -0700"
-    },
-    "done": false
   }
 }
