@@ -1,7 +1,7 @@
 State:Disabled
-Speed:10.743000030517578
-Pulse:true
-StartPulse:7.023999786376953
+Speed:6.354999923706055
+Pulse:false
+StartPulse:9.404000091552735
 EndPulse:2.5610000610351564
-Speed:10.743000030517578
+Speed:20.0
 Keybind:47

@@ -1,5 +1,5 @@
 State:Disabled
-Mode:Normal
+Mode:Step
 HoleOnly:false
 TimerSpeed:25.3
 OnGround:false
