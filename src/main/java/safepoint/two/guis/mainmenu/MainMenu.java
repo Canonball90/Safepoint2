@@ -11,6 +11,8 @@ import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiWorldSelection;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import safepoint.two.Safepoint;
 import safepoint.two.utils.render.RenderUtil;
@@ -49,12 +51,13 @@ public class MainMenu
 
     public void drawScreen(int p_drawScreen_1_, int p_drawScreen_2_, float p_drawScreen_3_) {
         ScaledResolution sr = new ScaledResolution(this.mc);
-        RenderUtil.drawRect(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), new Color(255, 70, 80).getRGB());
-        //Render2DUtil.rect(0, sr.getScaledHeight() / 2 + 10, sr.getScaledWidth(), sr.getScaledHeight() / 2 + 25, new Color(38, 38, 38, 152));
+        //mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+        RenderUtil.drawRect(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), new Color(0,0,0).getRGB());
+        RenderUtil.roundedRect(5,5,sr.getScaledWidth()/5,sr.getScaledHeight()/3, sr.getScaledWidth()/15, new Color(224, 29, 29));
+        RenderUtil.roundedRect(sr.getScaledWidth()-sr.getScaledWidth()/5, sr.getScaledHeight()-sr.getScaledHeight()/3, sr.getScaledWidth()/5, sr.getScaledHeight()/3, sr.getScaledWidth()/15, new Color(127, 140, 255));
 
         //mc.fontRenderer.drawString("Safepoint", 4, sr.getScaledHeight() - mc.fontRenderer.FONT_HEIGHT, -1);
-        drawLogo.drawString(5, "Safepoint+2", this.width / 10 - this.fontRenderer.getStringWidth("Safepoint+2") / 2,
-                this.height / 20,-1);
+        drawLogo.drawString(5, "Safepoint+2", this.width / 10 - this.fontRenderer.getStringWidth("Safepoint+2") / 2, this.height / 20,-1);
 
         this.settingsButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 + 25);
         this.quitButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, sr.getScaledWidth() / 2 - -80, sr.getScaledHeight() / 2 + 25);
@@ -94,15 +97,15 @@ public class MainMenu
             this.y = y;
             this.w = w;
             this.h = 20;
-            this.color = new Color(0, 0, 0, 50);
-            this.colorPressed = new Color(0, 0, 0, 103);
+            this.color = new Color(116, 116, 116, 64);
+            this.colorPressed = new Color(116, 116, 116, 153);
         }
 
         public void renderButton(int mouseX, int mouseY, int x, int y) {
             this.x = x;
             this.y = y;
-            RenderUtil.drawRect(x, y, x+this.w, y+this.h, this.color.getRGB());
-            RenderUtil.drawRect(x, y, x+this.w, y+this.h, RenderUtil.isHovered(x, y, this.w, this.h, mouseX, mouseY) ? this.colorPressed.getRGB() : this.color.getRGB());
+            RenderUtil.roundedRect(x, y, this.w, this.h, 10, this.color);
+            RenderUtil.roundedRect(x, y, this.w, this.h, 10, RenderUtil.isHovered(x, y, this.w, this.h, mouseX, mouseY) ? this.colorPressed : this.color);
             mc.fontRenderer.drawString(this.s, x + this.w / 2 - mc.fontRenderer.getStringWidth(this.s) / 2, y + this.h / 2 - 4, -1);
 
         }
