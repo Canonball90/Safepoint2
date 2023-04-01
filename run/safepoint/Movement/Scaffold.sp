@@ -7,10 +7,10 @@ Switch:true
 Sneak:false
 Tower:true
 Timed:false
-Speed:0.27999999523162844
+Speed:1.0
 Center:true
-Speed:0.27999999523162844
+Speed:1.0
 upSpeed:0.29700000286102296
 Color:-13765597
 Color:java.awt.Color[r=45,g=244,b=35]
-Keybind:0
+Keybind:45

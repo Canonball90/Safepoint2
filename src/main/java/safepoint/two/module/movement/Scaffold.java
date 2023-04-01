@@ -110,11 +110,12 @@ public class Scaffold extends Module {
             if(timed.getValue()){
                 if(mc.gameSettings.keyBindJump.isKeyDown()) {
                     mc.timer.tickLength = 50f / speedT.getValue().floatValue();
-                }else if (mc.player.moveForward >= 0.0F && mc.player.moveStrafing >= 0.0F){
+                }
+                if (mc.player.onGround && !mc.gameSettings.keyBindJump.isKeyDown() && mc.player.isSneaking()){
                     mc.timer.tickLength = 50f;
                 }
             }else {
-                mc.player.setVelocity(0.0, 0.42, 0.0);
+                event.setY(0.42);
             }
             if (towerTimer.passedMs(1500)) {
                 mc.player.motionY = -0.28;

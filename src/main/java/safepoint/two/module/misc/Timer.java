@@ -10,7 +10,6 @@ import safepoint.two.utils.math.Inhibitator;
 public class Timer extends Module {
 
     DoubleSetting speed = new DoubleSetting("Speed", 4.0, 1.0, 10.0, this);
-    BooleanSetting slowed = new BooleanSetting("Slowed", false, this);
     BooleanSetting pulse = new BooleanSetting("Pulse", false, this);
     DoubleSetting startVal = new DoubleSetting("StartPulse", 1.0, 1.0, 10.0, this,v -> pulse.getValue());
     DoubleSetting endVal = new DoubleSetting("EndPulse", 1.0, 1.0, 10.0, this,v -> pulse.getValue());
@@ -30,12 +29,7 @@ public class Timer extends Module {
             inhibitator.doInhibitation(speed, pulseSpeed.getValue(), startVal.getValue(), endVal.getValue());
         }
 
-        float tttt = (float) (speed.getValue().doubleValue() - ((slowed.getValue()) ? tickTimer.getPassedTimeS() : 0f));
-
-        if(tickTimer.passedS(10)){
-            tickTimer.reset();
-            disableModule();
-        }
+        float tttt = (float) (speed.getValue().doubleValue());
 
         mc.timer.tickLength = 50.0f / tttt;
         super.onTick();
