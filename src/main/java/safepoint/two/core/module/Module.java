@@ -7,6 +7,7 @@ import safepoint.two.core.settings.impl.KeySetting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
+import safepoint.two.module.core.ClickGui;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -117,6 +118,12 @@ public class Module {
         Category(Color color) {
             this.color = color;
         }
-        public Color getColor(){return color;}
+
+        public Color getColor(){
+            if (ClickGui.getInstance().customColors.getValue())
+                return color;
+            else
+                return ClickGui.getInstance().color.getColor();
+        }
     }
 }

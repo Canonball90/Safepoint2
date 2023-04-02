@@ -4,7 +4,7 @@ IDK:false
 Self:false
 SelfColor:-16711936
 SelfColor:java.awt.Color[r=0,g=255,b=0]
-SelfAlpha:150
+SelfAlpha:134
 SelfBlink:true
 SelfBlinkSpeed:1.0
 SelfNoArmor:false
@@ -14,7 +14,7 @@ SelfAngel:false
 Friend:true
 FriendColor:-16763905
 FriendColor:java.awt.Color[r=0,g=51,b=255]
-FriendAlpha:150
+FriendAlpha:26
 FriendBlink:true
 FriendBlinkSpeed:1.0
 FriendNoArmor:false
@@ -22,7 +22,7 @@ FriendForceGlint:false
 Enemy:true
 EnemyColor:-16763905
 EnemyColor:java.awt.Color[r=0,g=51,b=255]
-EnemyAlpha:150
+EnemyAlpha:26
 EnemyBlink:true
 EnemyBlinkSpeed:1.0
 EnemyNoArmor:false

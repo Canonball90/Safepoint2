@@ -1,4 +1,4 @@
-State:Enabled
+State:Disabled
 Packet:true
 Packets:2
 JumpHeight:0.3

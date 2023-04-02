@@ -5,15 +5,18 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.gui.GuiMultiplayer;
-import net.minecraft.client.gui.GuiOptions;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiWorldSelection;
-import net.minecraft.client.gui.ScaledResolution;
+
+import net.minecraft.client.gui.*;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.RenderTexture;
 import safepoint.two.Safepoint;
 import safepoint.two.utils.render.RenderUtil;
 
@@ -51,10 +54,12 @@ public class MainMenu
 
     public void drawScreen(int p_drawScreen_1_, int p_drawScreen_2_, float p_drawScreen_3_) {
         ScaledResolution sr = new ScaledResolution(this.mc);
-        //mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
         RenderUtil.drawRect(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), new Color(0,0,0).getRGB());
         RenderUtil.roundedRect(5,5,sr.getScaledWidth()/5,sr.getScaledHeight()/3, sr.getScaledWidth()/15, new Color(224, 29, 29));
         RenderUtil.roundedRect(sr.getScaledWidth()-sr.getScaledWidth()/5, sr.getScaledHeight()-sr.getScaledHeight()/3, sr.getScaledWidth()/5, sr.getScaledHeight()/3, sr.getScaledWidth()/15, new Color(127, 140, 255));
+        //mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+
+//        drawBlurredBackground(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), 10, new Color(255,0,0).getRGB());
 
         //mc.fontRenderer.drawString("Safepoint", 4, sr.getScaledHeight() - mc.fontRenderer.FONT_HEIGHT, -1);
         drawLogo.drawString(5, "Safepoint+2", this.width / 10 - this.fontRenderer.getStringWidth("Safepoint+2") / 2, this.height / 20,-1);

@@ -5,7 +5,7 @@ Predict:true
 1.13+:false
 FacePlace:8
 Break:false
-HitDelay:0.0
+HitDelay:79.14000244140625
 Ak47:true
 SetDead:true
 Instant:true

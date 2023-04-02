@@ -1,4 +1,4 @@
-State:Enabled
+State:Disabled
 Mode:Strict
 NoSprint:false
 Totem:false
