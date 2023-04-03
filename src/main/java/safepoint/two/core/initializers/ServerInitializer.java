@@ -1,5 +1,6 @@
 package safepoint.two.core.initializers;
 
+import safepoint.two.core.Core;
 import safepoint.two.utils.math.Timer;
 
 import java.text.DecimalFormat;
@@ -8,7 +9,7 @@ import java.util.Objects;
 
 import static safepoint.two.Safepoint.mc;
 
-public class ServerInitializer {
+public class ServerInitializer extends Core {
 
     private float TPS = 20.0f;
     private long lastUpdate = -1;
@@ -16,6 +17,10 @@ public class ServerInitializer {
     private final DecimalFormat format = new DecimalFormat("##.00#");
     private String serverBrand = "";
     private final Timer timer = new Timer();
+
+    public ServerInitializer() {
+        super("ServerInitializer");
+    }
 
     public void onPacketReceived() {
         timer.reset();

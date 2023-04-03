@@ -9,13 +9,14 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import safepoint.two.core.Core;
 import safepoint.two.core.event.events.PacketEvent;
 import safepoint.two.core.event.events.RenderModelEvent;
 import safepoint.two.mixin.mixins.AccessorCPacketPlayer;
 import safepoint.two.utils.math.Timer;
 import safepoint.two.utils.world.RotationUtil;
 
-public class RotationInitializer {
+public class RotationInitializer extends Core {
 
     public static Minecraft mc = Minecraft.getMinecraft();
     transient public static float yaw;
@@ -28,6 +29,10 @@ public class RotationInitializer {
     public static float theInt = 0;
     public static boolean flag = false;
     private static final Timer rotateTimer = new Timer();
+
+    public RotationInitializer() {
+        super("RotationInitializer");
+    }
 
     public static void init() {
         MinecraftForge.EVENT_BUS.register(new RotationUtil());

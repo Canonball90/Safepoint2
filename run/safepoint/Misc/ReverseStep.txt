@@ -1,3 +1,0 @@
-State:Enabled
-Double:100.0
-Keybind:0

@@ -1,8 +1,14 @@
 package safepoint.two.core.initializers;
+import safepoint.two.core.Core;
+
 import java.util.ArrayList;
 
-public class FriendInitializer {
+public class FriendInitializer extends Core {
     public ArrayList<FriendPlayer> friendList = new ArrayList<>();
+
+    public FriendInitializer() {
+        super("FriendInitializer");
+    }
 
     public void addFriend(String name){
         friendList.add(new FriendPlayer(name));

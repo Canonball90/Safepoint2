@@ -115,7 +115,7 @@ public class Scaffold extends Module {
                     mc.timer.tickLength = 50f;
                 }
             }else {
-                event.setY(0.42);
+                event.setY(upSpeed.getValue());
             }
             if (towerTimer.passedMs(1500)) {
                 mc.player.motionY = -0.28;

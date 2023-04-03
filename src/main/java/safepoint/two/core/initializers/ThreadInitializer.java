@@ -1,18 +1,20 @@
 package safepoint.two.core.initializers;
 
 import safepoint.two.Safepoint;
+import safepoint.two.core.Core;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
 
 import static safepoint.two.Safepoint.mc;
 
-public class ThreadInitializer {
+public class ThreadInitializer extends Core {
 
     private final ClientService clientService = new ClientService();
     private static final Queue<Runnable> clientProcesses = new ArrayDeque<>();
 
     public ThreadInitializer() {
+        super("ThreadInitializer");
         clientService.setName("safepoint-client-thread");
         clientService.setDaemon(true);
         clientService.start();

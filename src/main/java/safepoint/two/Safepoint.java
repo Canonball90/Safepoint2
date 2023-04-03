@@ -50,10 +50,6 @@ public class Safepoint {
         RotationInitializer.init();
         time = System.currentTimeMillis();
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            configInitializer.save();
-        }));
-
     }
 
     public static final ResourceLocation LIGHTNING_TEXTURE = new ResourceLocation("textures/entity/creeper/creeper_armor.png");

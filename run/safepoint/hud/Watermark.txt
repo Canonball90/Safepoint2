@@ -1,3 +1,0 @@
-State:Enabled
-x:6
-y:6

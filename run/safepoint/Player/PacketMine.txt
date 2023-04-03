@@ -1,9 +1,0 @@
-State:Disabled
-Modr:Packet
-Swap:Silent
-OppositeFaceHit:false
-SpamPackets:false
-InstantMineDelay:7
-Range:8.0
-Rotate:false
-Keybind:0

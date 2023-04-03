@@ -1,6 +1,7 @@
 package safepoint.two.core.initializers;
 
 import net.minecraft.client.audio.ISound;
+import safepoint.two.core.Core;
 import safepoint.two.utils.core.songs.BackInBlood;
 import safepoint.two.utils.core.songs.HardToChoose;
 import safepoint.two.utils.core.songs.Zooties;
@@ -9,7 +10,7 @@ import java.util.*;
 
 import static safepoint.two.Safepoint.mc;
 
-public class SoundInitializer {
+public class SoundInitializer extends Core {
 
     Random random = new Random();
 
@@ -22,6 +23,7 @@ public class SoundInitializer {
     private ISound currentSong;
 
     public SoundInitializer() {
+        super("SoundInitializer");
         this.menuSong = this.getRandomSong();
         this.currentSong = this.getRandomSong();
     }

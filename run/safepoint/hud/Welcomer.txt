@@ -1,3 +1,0 @@
-State:Enabled
-x:414
-y:12
