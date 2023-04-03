@@ -1,116 +1,188 @@
 {
   "minecraft:recipes/tools/flint_and_steel": {
     "criteria": {
-      "has_obsidian": "2023-03-21 22:59:35 +0100"
+      "has_obsidian": "2023-03-21 14:59:35 -0700"
     },
     "done": true
   },
   "minecraft:recipes/combat/wooden_sword": {
     "criteria": {
-      "has_stick": "2023-03-21 22:59:35 +0100"
+      "has_stick": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/wooden_button": {
+    "criteria": {
+      "has_planks": "2023-04-01 13:46:49 -0700"
     },
     "done": true
   },
   "minecraft:recipes/decorations/item_frame": {
     "criteria": {
-      "has_leather": "2023-03-21 22:59:35 +0100"
-    },
-    "done": true
-  },
-  "minecraft:recipes/tools/wooden_pickaxe": {
-    "criteria": {
-      "has_stick": "2023-03-21 22:59:35 +0100"
+      "has_leather": "2023-03-21 14:59:35 -0700"
     },
     "done": true
   },
   "minecraft:recipes/tools/wooden_axe": {
     "criteria": {
-      "has_stick": "2023-03-21 22:59:35 +0100"
+      "has_stick": "2023-03-21 14:59:35 -0700"
     },
     "done": true
   },
   "minecraft:recipes/combat/leather_chestplate": {
     "criteria": {
-      "has_leather": "2023-03-21 22:59:35 +0100"
+      "has_leather": "2023-03-21 14:59:35 -0700"
     },
     "done": true
   },
-  "minecraft:recipes/decorations/ladder": {
+  "minecraft:recipes/decorations/spruce_fence": {
     "criteria": {
-      "has_stick": "2023-03-21 22:59:35 +0100"
+      "has_planks": "2023-04-01 13:46:49 -0700"
     },
     "done": true
   },
-  "minecraft:story/iron_tools": {
+  "minecraft:recipes/food/cake": {
     "criteria": {
-      "iron_pickaxe": "2023-03-21 22:59:35 +0100"
+      "has_egg": "2023-04-01 13:46:49 -0700"
     },
     "done": true
   },
-  "minecraft:recipes/decorations/chest": {
+  "minecraft:recipes/redstone/spruce_door": {
     "criteria": {
-      "has_lots_of_items": "2023-03-21 22:59:35 +0100"
-    },
-    "done": true
-  },
-  "minecraft:story/shiny_gear": {
-    "criteria": {
-      "diamond_chestplate": "2023-03-21 22:59:35 +0100"
-    },
-    "done": true
-  },
-  "minecraft:recipes/decorations/enchanting_table": {
-    "criteria": {
-      "has_obsidian": "2023-03-21 22:59:35 +0100"
-    },
-    "done": true
-  },
-  "minecraft:recipes/tools/wooden_shovel": {
-    "criteria": {
-      "has_stick": "2023-03-21 22:59:35 +0100"
+      "has_planks": "2023-04-01 13:46:49 -0700"
     },
     "done": true
   },
   "minecraft:recipes/brewing/golden_carrot": {
     "criteria": {
-      "has_gold_nugget": "2023-03-21 22:59:35 +0100"
+      "has_gold_nugget": "2023-03-21 14:59:35 -0700"
     },
     "done": true
   },
   "minecraft:recipes/tools/wooden_hoe": {
     "criteria": {
-      "has_stick": "2023-03-21 22:59:35 +0100"
+      "has_stick": "2023-03-21 14:59:35 -0700"
     },
     "done": true
   },
-  "minecraft:recipes/combat/leather_boots": {
+  "minecraft:recipes/redstone/spruce_fence_gate": {
     "criteria": {
-      "has_leather": "2023-03-21 22:59:35 +0100"
+      "has_planks": "2023-04-01 13:46:49 -0700"
     },
     "done": true
   },
-  "minecraft:story/form_obsidian": {
+  "minecraft:recipes/building_blocks/spruce_stairs": {
     "criteria": {
-      "obsidian": "2023-03-21 22:59:35 +0100"
+      "has_planks": "2023-04-01 13:46:49 -0700"
     },
     "done": true
   },
   "minecraft:recipes/combat/leather_helmet": {
     "criteria": {
-      "has_leather": "2023-03-21 22:59:35 +0100"
-    },
-    "done": true
-  },
-  "minecraft:recipes/combat/leather_leggings": {
-    "criteria": {
-      "has_leather": "2023-03-21 22:59:35 +0100"
+      "has_leather": "2023-03-21 14:59:35 -0700"
     },
     "done": true
   },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
-      "plains": "2023-03-21 22:59:35 +0100"
+      "plains": "2023-03-21 14:59:35 -0700"
     },
     "done": false
+  },
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "has_planks": "2023-04-01 13:46:49 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_pickaxe": {
+    "criteria": {
+      "has_stick": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/trapdoor": {
+    "criteria": {
+      "has_planks": "2023-04-01 13:46:49 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/ladder": {
+    "criteria": {
+      "has_stick": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
+  },
+  "minecraft:story/iron_tools": {
+    "criteria": {
+      "iron_pickaxe": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
+  },
+  "minecraft:story/shiny_gear": {
+    "criteria": {
+      "diamond_chestplate": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/enchanting_table": {
+    "criteria": {
+      "has_obsidian": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/spruce_wooden_slab": {
+    "criteria": {
+      "has_planks": "2023-04-01 13:46:49 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_shovel": {
+    "criteria": {
+      "has_stick": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/wooden_pressure_plate": {
+    "criteria": {
+      "has_planks": "2023-04-01 13:46:49 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/stick": {
+    "criteria": {
+      "has_planks": "2023-04-01 13:46:49 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/leather_boots": {
+    "criteria": {
+      "has_leather": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
+  },
+  "minecraft:story/form_obsidian": {
+    "criteria": {
+      "obsidian": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/sign": {
+    "criteria": {
+      "has_planks": "2023-04-01 13:46:49 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/leather_leggings": {
+    "criteria": {
+      "has_leather": "2023-03-21 14:59:35 -0700"
+    },
+    "done": true
   }
 }

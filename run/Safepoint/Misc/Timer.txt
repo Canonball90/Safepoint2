@@ -1,0 +1,7 @@
+State:Disabled
+Speed:1.0
+Pulse:false
+StartPulse:1.0
+EndPulse:1.0
+Speed:1.0
+Keybind:0

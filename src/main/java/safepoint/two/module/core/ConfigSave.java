@@ -11,9 +11,6 @@ public class ConfigSave extends Module {
     @Override
     public void onEnable() {
         Safepoint.configInitializer.save();
-        Safepoint.configInitializer.saveHudState();
-        Safepoint.configInitializer.saveModuleFile();
-        Safepoint.configInitializer.saveFriendList();
         ChatUtil.send("Config Saved!");
         disableModule();
     }

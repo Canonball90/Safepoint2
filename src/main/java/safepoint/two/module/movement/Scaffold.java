@@ -3,6 +3,7 @@ package safepoint.two.module.movement;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.network.play.client.CPacketConfirmTeleport;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -67,11 +68,12 @@ public class Scaffold extends Module {
         this.pos = new BlockPos(this.mc.player.posX, this.mc.player.posY - 1.0, this.mc.player.posZ);
         if(isAir(this.pos)){
             mc.player.setSneaking(true);
+            mc.player.onGround = true;
         }else{
             mc.player.setSneaking(false);
         }
         if(rotate.getValue() && this.isAir(pos)){
-            lookAtPos(new ScaffoldBlock(BlockUtil.posToVec3d(this.pos)), EnumFacing.UP);
+            lookAtPos(new ScaffoldBlock(BlockUtil.posToVec3d(this.pos)), BlockUtil.getFirstFacing(pos));
         }
         if (this.isAir(this.pos)) {//ToDo add , this.mc.player.isSneaking() later
             if(sneak.getValue()){
@@ -115,7 +117,7 @@ public class Scaffold extends Module {
                     mc.timer.tickLength = 50f;
                 }
             }else {
-                event.setY(0.42);
+                event.setY(upSpeed.getValue());
             }
             if (towerTimer.passedMs(1500)) {
                 mc.player.motionY = -0.28;

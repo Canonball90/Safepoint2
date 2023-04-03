@@ -43,16 +43,13 @@ public class Safepoint {
         configInitializer = new ConfigInitializer();
         configInitializer.init();
         rotationInitializer = new RotationInitializer();
+        RotationInitializer.init();
         serverInitializer = new ServerInitializer();
         threadInitializer = new ThreadInitializer();
         soundInitializer = new SoundInitializer();
         fontInitializer = new FontInitializer();
-        RotationInitializer.init();
-        time = System.currentTimeMillis();
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            configInitializer.save();
-        }));
+        time = System.currentTimeMillis();
 
     }
 

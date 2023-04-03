@@ -1,7 +1,0 @@
-State:Disabled
-Speed:2.0
-Pulse:true
-StartPulse:10.0
-EndPulse:1.0
-Speed:10.0
-Keybind:34

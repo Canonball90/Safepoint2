@@ -1,3 +1,0 @@
-State:Enabled
-Mode:Solid
-Keybind:0

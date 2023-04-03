@@ -23,27 +23,23 @@ public class HoleESP extends Module {
     public FloatSetting holeRadius = new FloatSetting("Hole Radius", 8.0f, 0.0f, 20.0f, this);
 
     public ParentSetting obsidianParent = new ParentSetting("Obsidian Holes", false, this);
-    public BooleanSetting obsidianBox = new BooleanSetting("Obsidian Box", false, this).setParent(obsidianParent);
-    public ColorSetting obsidianBoxColor = new ColorSetting("Obsidian Box Color", new Color(255, 0, 0, 100), this, v -> obsidianBox.getValue()).setParent(obsidianParent);
-    public BooleanSetting obsidianOutline = new BooleanSetting("Obsidian Outline", false, this).setParent(obsidianParent);
-    public ColorSetting obsidianOutlineColor = new ColorSetting("Obsidian Outline Color", new Color(255, 0, 0, 100), this, v -> obsidianOutline.getValue()).setParent(obsidianParent);
-    public FloatSetting obsidianOutlineWidth = new FloatSetting("Obsidian Outline Width", 1.0f, 0.0f, 5.0f, this, v -> obsidianOutline.getValue()).setParent(obsidianParent);
+    public ColorSetting obsidianBoxColor = new ColorSetting("Obsidian Box Color", new Color(255, 0, 0, 100), this).setParent(obsidianParent);
+    public ColorSetting obsidianOutlineColor = new ColorSetting("Obsidian Outline Color", new Color(255, 0, 0, 100), this).setParent(obsidianParent);
+    public FloatSetting obsidianOutlineWidth = new FloatSetting("Obsidian Outline Width", 1.0f, 0.0f, 5.0f, this).setParent(obsidianParent);
 
     public ParentSetting bedrockParent = new ParentSetting("Bedrock Holes", false, this);
-    public BooleanSetting bedrockBox = new BooleanSetting("Bedrock Box", false, this).setParent(bedrockParent);
-    public ColorSetting bedrockBoxColor = new ColorSetting("Bedrock Box Color", new Color(0, 255, 0, 100), this, v -> bedrockBox.getValue()).setParent(bedrockParent);
-    public BooleanSetting bedrockOutline = new BooleanSetting("Bedrock Outline", false, this).setParent(bedrockParent);
-    public ColorSetting bedrockOutlineColor = new ColorSetting("Bedrock Outline Color", new Color(0, 255, 0, 100), this, v -> bedrockOutline.getValue()).setParent(bedrockParent);
-    public FloatSetting bedrockOutlineWidth = new FloatSetting("Bedrock Outline Width", 1.0f, 0.0f, 5.0f, this, v -> bedrockOutline.getValue()).setParent(bedrockParent);
+    public ColorSetting bedrockBoxColor = new ColorSetting("Bedrock Box Color", new Color(0, 255, 0, 100), this).setParent(bedrockParent);
+    public ColorSetting bedrockOutlineColor = new ColorSetting("Bedrock Outline Color", new Color(0, 255, 0, 100), this).setParent(bedrockParent);
+    public FloatSetting bedrockOutlineWidth = new FloatSetting("Bedrock Outline Width", 1.0f, 0.0f, 5.0f, this).setParent(bedrockParent);
 
 
     @Override
     public void onWorldRender() {
         if (!obsidianHoles.isEmpty())
-            obsidianHoles.forEach(pos -> RenderUtil.drawBoxESPFlat(pos, obsidianBox.getValue(), obsidianOutline.getValue(), obsidianBoxColor.getColor(), obsidianOutlineColor.getColor(), obsidianOutlineWidth.getValue()));
+            obsidianHoles.forEach(pos -> RenderUtil.drawBoxESPFlat(pos, true, true, obsidianBoxColor.getColor(), obsidianOutlineColor.getColor(), obsidianOutlineWidth.getValue()));
 
         if (!bedrockHoles.isEmpty())
-            bedrockHoles.forEach(pos -> RenderUtil.drawBoxESPFlat(pos, bedrockBox.getValue(), bedrockOutline.getValue(), bedrockBoxColor.getColor(), bedrockOutlineColor.getColor(), bedrockOutlineWidth.getValue()));
+            bedrockHoles.forEach(pos -> RenderUtil.drawBoxESPFlat(pos, true, true, bedrockBoxColor.getColor(), bedrockOutlineColor.getColor(), bedrockOutlineWidth.getValue()));
 
         if (!obsidianHoles.isEmpty())
             obsidianHoles.clear();

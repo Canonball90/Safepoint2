@@ -1,0 +1,5 @@
+State:Disabled
+Mode:yPort
+Strict:true
+Timer:true
+Keybind:0

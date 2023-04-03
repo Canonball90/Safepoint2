@@ -1,10 +1,17 @@
 package safepoint.two.core.initializers;
 
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.MinecraftForge;
 import safepoint.two.Safepoint;
+import safepoint.two.core.Core;
 
 import static safepoint.two.Safepoint.mc;
 
-public class FontInitializer {
+public class FontInitializer extends Core {
+
+    public FontInitializer() {
+        super("FontInitializer");
+    }
 
     public void drawString(String text, int x, int y, int Color, Boolean shadow, Boolean custom){
         if(custom){
