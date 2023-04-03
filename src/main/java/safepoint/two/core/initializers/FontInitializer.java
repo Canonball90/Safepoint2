@@ -1,5 +1,7 @@
 package safepoint.two.core.initializers;
 
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.MinecraftForge;
 import safepoint.two.Safepoint;
 import safepoint.two.core.Core;
 

@@ -1,6 +1,7 @@
 package safepoint.two.core.initializers;
 
 import net.minecraft.client.audio.ISound;
+import net.minecraftforge.common.MinecraftForge;
 import safepoint.two.core.Core;
 import safepoint.two.utils.core.songs.BackInBlood;
 import safepoint.two.utils.core.songs.HardToChoose;

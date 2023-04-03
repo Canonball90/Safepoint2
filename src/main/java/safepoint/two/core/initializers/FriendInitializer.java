@@ -1,4 +1,5 @@
 package safepoint.two.core.initializers;
+import net.minecraftforge.common.MinecraftForge;
 import safepoint.two.core.Core;
 
 import java.util.ArrayList;

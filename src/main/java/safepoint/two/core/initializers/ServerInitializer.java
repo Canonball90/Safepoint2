@@ -1,5 +1,6 @@
 package safepoint.two.core.initializers;
 
+import net.minecraftforge.common.MinecraftForge;
 import safepoint.two.core.Core;
 import safepoint.two.utils.math.Timer;
 
