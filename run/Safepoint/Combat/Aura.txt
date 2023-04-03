@@ -49,7 +49,7 @@ OnKey:false
 Key:0
 Speed:1
 Renders:false
-TargetHud:false
+TargetHud:true
 Width:200
 Height:200
 AnimSpeed:5
