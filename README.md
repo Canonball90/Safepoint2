@@ -8,9 +8,9 @@ Cool client that focuses on quality over quantity and module customizablility fo
 
 **Bugs**
 * config not saving some settings
-* gui not opening
 
 **Done**
 * fix gui bugs (Color Picker and EnumSetting not offsetting properly)
 * work on rotations for animals
 * maybe add custom font
+* gui not opening
